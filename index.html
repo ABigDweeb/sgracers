@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>SG Race Leaderboard Browser</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      background: #111; 
+      color: #eee; 
+      margin: 0; 
+      padding: 15px 30px;
+    }
+    h1 { 
+      margin-bottom: 20px;
+      font-size: 2.8em; 
+      text-align: center;
+    }
+    .container { 
+      max-width: 1200px; 
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .controls { 
+      display: flex; 
+      gap: 40px; 
+      margin-bottom: 20px;
+    }
+    select { 
+      padding: 15px 25px; 
+      background: #222; 
+      color: #eee; 
+      border: 1px solid #444; 
+      border-radius: 8px;
+      font-size: 1.5em;
+      min-width: 250px;
+    }
+    #leaderboardDisplay { 
+      margin-top: 20px;
+      font-family: monospace;
+      font-size: 2em;
+      line-height: 1.8;
+      width: 615px;
+      margin-left: 0;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    .leaderboard-entry { 
+      margin-bottom: 15px; 
+      white-space: pre;
+      letter-spacing: 1.5px;
+    }
+    .first-place {
+      color: gold;
+      text-shadow: 0 0 5px rgba(255,215,0,0.7);
+    }
+    .second-place {
+      color: silver;
+      text-shadow: 0 0 5px rgba(192,192,192,0.7);
+    }
+    .third-place {
+      color: #cd7f32;
+      text-shadow: 0 0 5px rgba(205,127,50,0.7);
+    }
+    .loading { 
+      color: #0bf; 
+      font-style: italic; 
+    }
+    .error { 
+      color: #f55;
+    }
+    .entry-count {
+      margin-top: 10px;
+      font-size: 0.8em;
+      color: #888;
+    }
+    .version {
+      position: fixed;
+      bottom: 10px;
+      right: 20px;
+      color: #666;
+      font-size: 0.8em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Splitgate Race Leaderboard Browser</h1>
+    
+    <div class="controls">
+      <select id="mapSelect"></select>
+      <select id="difficultySelect"></select>
+    </div>
+    
+    <div id="leaderboardDisplay">Loading Stadium Medium leaderboard...</div>
+    <div id="entryCount" class="entry-count"></div>
+  </div>
+
+  <div class="version">v0.1.0</div>
+
+  <script>
+    const maps = [
+      "Abyss", "Atlantis", "Crag", "Foregone_Destruction", "Helix",
+      "Highwind", "Impact", "Karman_Station", "Lavawell", "Oasis",
+      "Olympus", "Pantheon", "Silo", "Stadium"
+    ];
+    const difficulties = ["Easy", "Medium", "Hard"];
+
+    const mapSelect = document.getElementById('mapSelect');
+    const difficultySelect = document.getElementById('difficultySelect');
+    const leaderboardDisplay = document.getElementById('leaderboardDisplay');
+    const entryCountDisplay = document.getElementById('entryCount');
+
+    function formatTime(ms) {
+      const seconds = ms / 1000;
+      if (seconds >= 60) {
+        const mins = Math.floor(seconds / 60);
+        const secs = (seconds % 60).toFixed(3);
+        return `${mins}:${secs.padStart(6, '0')}`; // Format as M:SS.sss
+      }
+      return `  ${seconds.toFixed(3)}`; // Add two spaces only for times <60s
+    }
+
+    function trimUsername(name) {
+      if (name.length > 20) {
+        return name.substring(0, 17) + '...';
+      }
+      return name;
+    }
+
+    function formatEntry(position, displayName, time) {
+      const suffix = position === 1 ? 'st' : position === 2 ? 'nd' : position === 3 ? 'rd' : 'th';
+      // Position formatting
+      let positionText;
+      if (position < 10) {
+        positionText = `  ${position}${suffix}`; // Single digit (1-9)
+      } else if (position < 100) {
+        positionText = ` ${position}${suffix}`;  // Double digit (10-99)
+      } else {
+        positionText = `${position}${suffix}`;   // Triple digit (100+)
+      }
+      
+      // Name formatting
+      const trimmedName = trimUsername(displayName);
+      const nameText = trimmedName.padEnd(20, ' ');
+      
+      // Time formatting
+      const formattedTime = formatTime(time);
+      
+      // Final assembly
+      return `${positionText} - ${nameText} ${formattedTime}`;
+    }
+
+    function displayLeaderboard(data) {
+      try {
+        const entries = Array.isArray(data) ? data : (data.leaderboard || []);
+        
+        if (entries.length === 0) {
+          throw new Error('No leaderboard entries found');
+        }
+
+        let html = '';
+        entries.forEach((entry, index) => {
+          const position = index + 1;
+          const displayName = entry.displayName || entry.name || `Player ${position}`;
+          const time = entry.value || entry.time || entry.score || 0;
+          
+          let entryClass = '';
+          if (position === 1) entryClass = 'first-place';
+          else if (position === 2) entryClass = 'second-place';
+          else if (position === 3) entryClass = 'third-place';
+          
+          html += `<div class="leaderboard-entry ${entryClass}">${formatEntry(position, displayName, time)}</div>`;
+        });
+        
+        leaderboardDisplay.innerHTML = html;
+        leaderboardDisplay.className = "";
+        entryCountDisplay.textContent = `${entries.length} entries`;
+      } catch (error) {
+        leaderboardDisplay.innerHTML = `Error: ${error.message}`;
+        leaderboardDisplay.className = "error";
+        entryCountDisplay.textContent = '';
+      }
+    }
+
+    async function loadLeaderboard() {
+      const map = mapSelect.value;
+      const difficulty = difficultySelect.value;
+      const filename = `${map}_${difficulty}.json`;
+      
+      leaderboardDisplay.innerHTML = "Loading...";
+      leaderboardDisplay.className = "loading";
+      entryCountDisplay.textContent = '';
+
+      try {
+        const response = await fetch(`/leaderboards/${filename}`);
+        if (!response.ok) throw new Error('Leaderboard not found');
+        
+        const data = await response.json();
+        displayLeaderboard(data);
+      } catch (error) {
+        leaderboardDisplay.innerHTML = `Error: ${error.message}`;
+        leaderboardDisplay.className = "error";
+        entryCountDisplay.textContent = '';
+      }
+    }
+
+    function populateDropdowns() {
+      mapSelect.innerHTML = '';
+      difficultySelect.innerHTML = '';
+
+      maps.forEach(map => {
+        const option = document.createElement('option');
+        option.value = map;
+        option.textContent = map.replace(/_/g, ' ');
+        mapSelect.appendChild(option);
+      });
+
+      difficulties.forEach(diff => {
+        const option = document.createElement('option');
+        option.value = diff;
+        option.textContent = diff;
+        difficultySelect.appendChild(option);
+      });
+
+      mapSelect.value = "Stadium";
+      difficultySelect.value = "Medium";
+    }
+
+    function init() {
+      populateDropdowns();
+      mapSelect.addEventListener('change', loadLeaderboard);
+      difficultySelect.addEventListener('change', loadLeaderboard);
+      loadLeaderboard();
+    }
+
+    init();
+  </script>
+</body>
+</html>

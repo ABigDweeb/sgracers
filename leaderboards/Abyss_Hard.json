@@ -1,0 +1,970 @@
+[
+  {
+    "compositeUserId": {
+      "platformId": "76561199081543107",
+      "platform": "STEAM"
+    },
+    "value": 17940,
+    "displayName": "Dweeb"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199472448600",
+      "platform": "STEAM"
+    },
+    "value": 18108,
+    "displayName": "pc"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199120724063",
+      "platform": "STEAM"
+    },
+    "value": 18278,
+    "displayName": "Alfa"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198178160007",
+      "platform": "STEAM"
+    },
+    "value": 18329,
+    "displayName": "blueski"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198875487244",
+      "platform": "STEAM"
+    },
+    "value": 18514,
+    "displayName": "headjakk"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198403707236",
+      "platform": "STEAM"
+    },
+    "value": 18641,
+    "displayName": "Toby Repellant"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198354034498",
+      "platform": "STEAM"
+    },
+    "value": 18916,
+    "displayName": "BraydenChessin"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199755055037",
+      "platform": "STEAM"
+    },
+    "value": 18920,
+    "displayName": "chikken0"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199065374658",
+      "platform": "STEAM"
+    },
+    "value": 18960,
+    "displayName": "e x m p l"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198359912342",
+      "platform": "STEAM"
+    },
+    "value": 18987,
+    "displayName": "void"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198069529391",
+      "platform": "STEAM"
+    },
+    "value": 18989,
+    "displayName": "iAgonyii"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199103355936",
+      "platform": "STEAM"
+    },
+    "value": 19626,
+    "displayName": "Pickle12"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198059437499",
+      "platform": "STEAM"
+    },
+    "value": 19653,
+    "displayName": "Moejoe"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "4044568881281560103",
+      "platform": "PSN"
+    },
+    "value": 19669,
+    "displayName": "PcPlayersAreBad"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199487740366",
+      "platform": "STEAM"
+    },
+    "value": 19747,
+    "displayName": "Frosty"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198081832175",
+      "platform": "STEAM"
+    },
+    "value": 19773,
+    "displayName": "JalenMans"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198149544547",
+      "platform": "STEAM"
+    },
+    "value": 20197,
+    "displayName": "Dr. Michael Morbius"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199536037956",
+      "platform": "STEAM"
+    },
+    "value": 20333,
+    "displayName": "KozmiiðŸŒ™"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "2535469906837470",
+      "platform": "XBOX"
+    },
+    "value": 20370,
+    "displayName": "chikken0"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199668576080",
+      "platform": "STEAM"
+    },
+    "value": 20395,
+    "displayName": "Koz Mii"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "2535440090812706",
+      "platform": "XBOX"
+    },
+    "value": 20537,
+    "displayName": "Shwellsie"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198139220496",
+      "platform": "STEAM"
+    },
+    "value": 20571,
+    "displayName": "SkrubW"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "2535416538046038",
+      "platform": "XBOX"
+    },
+    "value": 20670,
+    "displayName": "EIyjuh"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199079036234",
+      "platform": "STEAM"
+    },
+    "value": 20942,
+    "displayName": "'L;WNDKOLWEPAfaefglkKAR ARARJARJ"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199005012320",
+      "platform": "STEAM"
+    },
+    "value": 21166,
+    "displayName": "cody_raves"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198806445520",
+      "platform": "STEAM"
+    },
+    "value": 21234,
+    "displayName": "LG ZachsSick"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199238330843",
+      "platform": "STEAM"
+    },
+    "value": 21833,
+    "displayName": "gugimangoo"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198263527592",
+      "platform": "STEAM"
+    },
+    "value": 22217,
+    "displayName": "Deni"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199400775549",
+      "platform": "STEAM"
+    },
+    "value": 22326,
+    "displayName": "JinksReaper"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198995528140",
+      "platform": "STEAM"
+    },
+    "value": 22339,
+    "displayName": "Hidden Boxs"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "6506114131206528794",
+      "platform": "PSN"
+    },
+    "value": 22404,
+    "displayName": "rhevl_x"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198221014396",
+      "platform": "STEAM"
+    },
+    "value": 22465,
+    "displayName": "SSG ChenZo"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199025798490",
+      "platform": "STEAM"
+    },
+    "value": 22852,
+    "displayName": "eilish"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "8571509805520379138",
+      "platform": "PSN"
+    },
+    "value": 22989,
+    "displayName": "The_sandman_180"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198812017833",
+      "platform": "STEAM"
+    },
+    "value": 23167,
+    "displayName": "UseCodeBroKidSam"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "2513381608732405068",
+      "platform": "PSN"
+    },
+    "value": 23323,
+    "displayName": "HurricaneFrogTX"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199124965806",
+      "platform": "STEAM"
+    },
+    "value": 23364,
+    "displayName": "nean"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198063740790",
+      "platform": "STEAM"
+    },
+    "value": 23390,
+    "displayName": "ttv/iaihLIVE"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199520237631",
+      "platform": "STEAM"
+    },
+    "value": 23422,
+    "displayName": "è² ã‘ãŸæ•°ã ã‘å¼·ããªã‚Œ"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198256706069",
+      "platform": "STEAM"
+    },
+    "value": 23631,
+    "displayName": "akuvo"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198423424785",
+      "platform": "STEAM"
+    },
+    "value": 23740,
+    "displayName": "Watcher"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198001026411",
+      "platform": "STEAM"
+    },
+    "value": 23950,
+    "displayName": "MegaB7TE"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199446639397",
+      "platform": "STEAM"
+    },
+    "value": 24092,
+    "displayName": "Seerqet"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199136987664",
+      "platform": "STEAM"
+    },
+    "value": 24168,
+    "displayName": "PSYKEY"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198985650224",
+      "platform": "STEAM"
+    },
+    "value": 24188,
+    "displayName": "zC3ltic"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198203272335",
+      "platform": "STEAM"
+    },
+    "value": 24293,
+    "displayName": "Code Phoenix"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199237381207",
+      "platform": "STEAM"
+    },
+    "value": 24328,
+    "displayName": "pielge"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199404920908",
+      "platform": "STEAM"
+    },
+    "value": 24375,
+    "displayName": "BroChildSamantha"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199076935802",
+      "platform": "STEAM"
+    },
+    "value": 24846,
+    "displayName": "@EicHi_SG"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199001134149",
+      "platform": "STEAM"
+    },
+    "value": 25387,
+    "displayName": "ÃŒderra"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198848921819",
+      "platform": "STEAM"
+    },
+    "value": 25643,
+    "displayName": "MoonJuice"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199535446388",
+      "platform": "STEAM"
+    },
+    "value": 25954,
+    "displayName": "mist."
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198116706079",
+      "platform": "STEAM"
+    },
+    "value": 25994,
+    "displayName": "Chaulk"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198056173966",
+      "platform": "STEAM"
+    },
+    "value": 26539,
+    "displayName": "Spurley"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198156252318",
+      "platform": "STEAM"
+    },
+    "value": 26984,
+    "displayName": "âƒ "
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199080771973",
+      "platform": "STEAM"
+    },
+    "value": 26992,
+    "displayName": "Vierzehncent"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "6589903815718678399",
+      "platform": "PSN"
+    },
+    "value": 27126,
+    "displayName": "Seerqet"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199050288719",
+      "platform": "STEAM"
+    },
+    "value": 27172,
+    "displayName": "@Dizzeplays"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198364653613",
+      "platform": "STEAM"
+    },
+    "value": 27936,
+    "displayName": "TTV Hock_52"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198084234999",
+      "platform": "STEAM"
+    },
+    "value": 28342,
+    "displayName": "LIVE|YetiOnAUnicycle"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "2535427444423497",
+      "platform": "XBOX"
+    },
+    "value": 28762,
+    "displayName": "Th1s1sSc13nc3"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "7113099904059854271",
+      "platform": "PSN"
+    },
+    "value": 28878,
+    "displayName": "Pickled_Tg"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "2535470872338487",
+      "platform": "XBOX"
+    },
+    "value": 29746,
+    "displayName": "FinestZulu96"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198799150609",
+      "platform": "STEAM"
+    },
+    "value": 30265,
+    "displayName": "FLETCHER"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199103181633",
+      "platform": "STEAM"
+    },
+    "value": 30866,
+    "displayName": "NCL splicex"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199168102072",
+      "platform": "STEAM"
+    },
+    "value": 31210,
+    "displayName": "GonerRose"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198097998915",
+      "platform": "STEAM"
+    },
+    "value": 31599,
+    "displayName": "Jangutu"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "2535419047491146",
+      "platform": "XBOX"
+    },
+    "value": 31948,
+    "displayName": "Ibraheem138"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198119224414",
+      "platform": "STEAM"
+    },
+    "value": 32935,
+    "displayName": "LHD-SamuelTTV"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198958359255",
+      "platform": "STEAM"
+    },
+    "value": 35165,
+    "displayName": "Cable"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198814076337",
+      "platform": "STEAM"
+    },
+    "value": 35927,
+    "displayName": "CajunBubba"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199044058739",
+      "platform": "STEAM"
+    },
+    "value": 38465,
+    "displayName": "Ryv"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198047957392",
+      "platform": "STEAM"
+    },
+    "value": 42716,
+    "displayName": "Nightfang"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198236711282",
+      "platform": "STEAM"
+    },
+    "value": 43055,
+    "displayName": "DeJay99"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199240234050",
+      "platform": "STEAM"
+    },
+    "value": 43296,
+    "displayName": "ttv.Nerlands"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198066096777",
+      "platform": "STEAM"
+    },
+    "value": 43942,
+    "displayName": "ÃœberCharged Magikarp"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198026803594",
+      "platform": "STEAM"
+    },
+    "value": 44458,
+    "displayName": "Sharkz"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199536112328",
+      "platform": "STEAM"
+    },
+    "value": 44960,
+    "displayName": "pielge"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199090939433",
+      "platform": "STEAM"
+    },
+    "value": 46793,
+    "displayName": "Edd"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198095502656",
+      "platform": "STEAM"
+    },
+    "value": 49350,
+    "displayName": "Squill"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198210588093",
+      "platform": "STEAM"
+    },
+    "value": 49564,
+    "displayName": "Flux"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "2535410583520606",
+      "platform": "XBOX"
+    },
+    "value": 50433,
+    "displayName": "JtOnXbox2499"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198861893177",
+      "platform": "STEAM"
+    },
+    "value": 51624,
+    "displayName": "misterchazey"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199230110667",
+      "platform": "STEAM"
+    },
+    "value": 51741,
+    "displayName": "Emiliano"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198069155496",
+      "platform": "STEAM"
+    },
+    "value": 52132,
+    "displayName": "z0mbie"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199055796697",
+      "platform": "STEAM"
+    },
+    "value": 52874,
+    "displayName": "T4"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198382785036",
+      "platform": "STEAM"
+    },
+    "value": 55900,
+    "displayName": "Crunch"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199198932649",
+      "platform": "STEAM"
+    },
+    "value": 56465,
+    "displayName": "caitlinrtaylor"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199250191591",
+      "platform": "STEAM"
+    },
+    "value": 58841,
+    "displayName": "HerPortals.com"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199129068562",
+      "platform": "STEAM"
+    },
+    "value": 59518,
+    "displayName": "Regina_Cast"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "2535468278608815",
+      "platform": "XBOX"
+    },
+    "value": 63730,
+    "displayName": "Destinynerd1991"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561197960787072",
+      "platform": "STEAM"
+    },
+    "value": 65375,
+    "displayName": "kowzzz@ttv"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199057610585",
+      "platform": "STEAM"
+    },
+    "value": 66770,
+    "displayName": "Rids"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199094629465",
+      "platform": "STEAM"
+    },
+    "value": 67480,
+    "displayName": "DaileyStreamer"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561197998963576",
+      "platform": "STEAM"
+    },
+    "value": 70313,
+    "displayName": "Roger Rabbit"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "2535471782123469",
+      "platform": "XBOX"
+    },
+    "value": 70572,
+    "displayName": "DanaLocks"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199147950905",
+      "platform": "STEAM"
+    },
+    "value": 72348,
+    "displayName": "TTV 00_MUTANT_00"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "2533274973410660",
+      "platform": "XBOX"
+    },
+    "value": 72823,
+    "displayName": "Kxrpi"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198330139943",
+      "platform": "STEAM"
+    },
+    "value": 76629,
+    "displayName": "CYBERWIZ"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199071245660",
+      "platform": "STEAM"
+    },
+    "value": 78146,
+    "displayName": "AthurauZ"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199023255818",
+      "platform": "STEAM"
+    },
+    "value": 78343,
+    "displayName": "Pegee"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198389175554",
+      "platform": "STEAM"
+    },
+    "value": 79364,
+    "displayName": "Zerq"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "2533274815728793",
+      "platform": "XBOX"
+    },
+    "value": 80731,
+    "displayName": "y0vr face"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198171103821",
+      "platform": "STEAM"
+    },
+    "value": 81026,
+    "displayName": "Rune"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199045196012",
+      "platform": "STEAM"
+    },
+    "value": 84068,
+    "displayName": "Aconite77"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198240826062",
+      "platform": "STEAM"
+    },
+    "value": 84098,
+    "displayName": "Quietus"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198923993575",
+      "platform": "STEAM"
+    },
+    "value": 84860,
+    "displayName": "NeedNuggZ"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "3038397852910266586",
+      "platform": "PSN"
+    },
+    "value": 84964,
+    "displayName": "SHOTA1018_FPS"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199211716541",
+      "platform": "STEAM"
+    },
+    "value": 86877,
+    "displayName": "BoredApe"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198890945018",
+      "platform": "STEAM"
+    },
+    "value": 103885,
+    "displayName": "Kalle"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "2535458646981278",
+      "platform": "XBOX"
+    },
+    "value": 104056,
+    "displayName": "TTVWater0"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561197964092740",
+      "platform": "STEAM"
+    },
+    "value": 105313,
+    "displayName": "Mr. n"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198347019595",
+      "platform": "STEAM"
+    },
+    "value": 107976,
+    "displayName": "Minischfee"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "2535424094525136",
+      "platform": "XBOX"
+    },
+    "value": 117468,
+    "displayName": "Va1kyrie"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199247061411",
+      "platform": "STEAM"
+    },
+    "value": 125787,
+    "displayName": "theclearstonewarrior"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198257108307",
+      "platform": "STEAM"
+    },
+    "value": 131671,
+    "displayName": "Tyke"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198292277131",
+      "platform": "STEAM"
+    },
+    "value": 133325,
+    "displayName": "ExLo05"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "2533274815728793",
+      "platform": "XBOX"
+    },
+    "value": 137471,
+    "displayName": "Cheems Guts317"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561198043937418",
+      "platform": "STEAM"
+    },
+    "value": 141289,
+    "displayName": "Pink Floyd"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561197981555502",
+      "platform": "STEAM"
+    },
+    "value": 227564,
+    "displayName": "twistedbrew"
+  },
+  {
+    "compositeUserId": {
+      "platformId": "76561199080417735",
+      "platform": "STEAM"
+    },
+    "value": 352390,
+    "displayName": "Jessica Rabbit"
+  }
+]
