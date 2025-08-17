@@ -557,7 +557,7 @@
       "platform": "STEAM"
     },
     "value": 43657,
-    "displayName": "zelika༺♥༻"
+    "displayName": "zelika"
   },
   {
     "compositeUserId": {
@@ -1057,7 +1057,7 @@
   },
   {
     "compositeUserId": {
-      "platformId": 2535465199214952,
+      "platformId": null,
       "platform": "XBOX"
     },
     "value": 70853,

@@ -165,7 +165,7 @@
       "platform": "STEAM"
     },
     "value": 27512,
-    "displayName": "負けた数だけ強くなれ"
+    "displayName": "Enzo"
   },
   {
     "compositeUserId": {
@@ -749,7 +749,7 @@
       "platform": "STEAM"
     },
     "value": 37061,
-    "displayName": "zelika༺♥༻"
+    "displayName": "zelika"
   },
   {
     "compositeUserId": {
@@ -1025,7 +1025,7 @@
   },
   {
     "compositeUserId": {
-      "platformId": 2535465199214952,
+      "platformId": null,
       "platform": "XBOX"
     },
     "value": 72371,

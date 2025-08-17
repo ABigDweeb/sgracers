@@ -689,7 +689,7 @@
   },
   {
     "compositeUserId": {
-      "platformId": 3309858466645781225,
+      "platformId": null,
       "platform": "PSN"
     },
     "value": 39533,
@@ -885,7 +885,7 @@
       "platform": "STEAM"
     },
     "value": 45905,
-    "displayName": "zelika༺♥༻"
+    "displayName": "zelika"
   },
   {
     "compositeUserId": {
@@ -1401,11 +1401,11 @@
   },
   {
     "compositeUserId": {
-      "platformId": 2535465199214952,
+      "platformId": null,
       "platform": "XBOX"
     },
     "value": 75256,
-    "displayName": "GoGSwaggz"
+    "displayName": null
   },
   {
     "compositeUserId": {
