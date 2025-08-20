@@ -1,506 +1,506 @@
 [
-  {
-    "compositeUserId": {
-      "platformId": "76561199065374658",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199065374658",
+            "platform": "STEAM"
+        },
+        "value": 26807,
+        "displayName": "e x m p l"
     },
-    "value": 26807,
-    "displayName": "e x m p l"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198178160007",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198178160007",
+            "platform": "STEAM"
+        },
+        "value": 26873,
+        "displayName": "blueski"
     },
-    "value": 26873,
-    "displayName": "blueski"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199120724063",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199120724063",
+            "platform": "STEAM"
+        },
+        "value": 27257,
+        "displayName": "Alfa"
     },
-    "value": 27257,
-    "displayName": "Alfa"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199081543107",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199081543107",
+            "platform": "STEAM"
+        },
+        "value": 27571,
+        "displayName": "Dweeb"
     },
-    "value": 27571,
-    "displayName": "Dweeb"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198875487244",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198875487244",
+            "platform": "STEAM"
+        },
+        "value": 27575,
+        "displayName": "headjakk"
     },
-    "value": 27575,
-    "displayName": "headjakk"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199755055037",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199755055037",
+            "platform": "STEAM"
+        },
+        "value": 27639,
+        "displayName": "chikken0"
     },
-    "value": 27639,
-    "displayName": "chikken0"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198359912342",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198359912342",
+            "platform": "STEAM"
+        },
+        "value": 27658,
+        "displayName": "void"
     },
-    "value": 27658,
-    "displayName": "void"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199472448600",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199472448600",
+            "platform": "STEAM"
+        },
+        "value": 27723,
+        "displayName": "pc"
     },
-    "value": 27723,
-    "displayName": "pc"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198403707236",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198403707236",
+            "platform": "STEAM"
+        },
+        "value": 28267,
+        "displayName": "Toby Repellant"
     },
-    "value": 28267,
-    "displayName": "Toby Repellant"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198354034498",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198354034498",
+            "platform": "STEAM"
+        },
+        "value": 28339,
+        "displayName": "Brayden"
     },
-    "value": 28339,
-    "displayName": "Brayden"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "4044568881281560103",
-      "platform": "PSN"
+    {
+        "compositeUserId": {
+            "platformId": "4044568881281560103",
+            "platform": "PSN"
+        },
+        "value": 29646,
+        "displayName": "PcPlayersAreBad"
     },
-    "value": 29646,
-    "displayName": "PcPlayersAreBad"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "2535469906837470",
-      "platform": "XBOX"
+    {
+        "compositeUserId": {
+            "platformId": "2535469906837470",
+            "platform": "XBOX"
+        },
+        "value": 29980,
+        "displayName": "chikken0 (xbox)"
     },
-    "value": 29980,
-    "displayName": "chikken0"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199103355936",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199103355936",
+            "platform": "STEAM"
+        },
+        "value": 30487,
+        "displayName": "Pickle12"
     },
-    "value": 30487,
-    "displayName": "Pickle12"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "2535440090812706",
-      "platform": "XBOX"
+    {
+        "compositeUserId": {
+            "platformId": "2535440090812706",
+            "platform": "XBOX"
+        },
+        "value": 31331,
+        "displayName": "Shwellsie"
     },
-    "value": 31331,
-    "displayName": "Shwellsie"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199536037956",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199536037956",
+            "platform": "STEAM"
+        },
+        "value": 31468,
+        "displayName": "Kozmii🌙"
     },
-    "value": 31468,
-    "displayName": "Kozmii🌙"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198081832175",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198081832175",
+            "platform": "STEAM"
+        },
+        "value": 32265,
+        "displayName": "JalenMans"
     },
-    "value": 32265,
-    "displayName": "JalenMans"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "6589903815718678399",
-      "platform": "PSN"
+    {
+        "compositeUserId": {
+            "platformId": "6589903815718678399",
+            "platform": "PSN"
+        },
+        "value": 32466,
+        "displayName": "Seerqet (ps)"
     },
-    "value": 32466,
-    "displayName": "Seerqet"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199400775549",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199400775549",
+            "platform": "STEAM"
+        },
+        "value": 32498,
+        "displayName": "JinksReaper"
     },
-    "value": 32498,
-    "displayName": "JinksReaper"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199218172468",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199218172468",
+            "platform": "STEAM"
+        },
+        "value": 32766,
+        "displayName": "Todor"
     },
-    "value": 32766,
-    "displayName": "Todor"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199199189187",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199199189187",
+            "platform": "STEAM"
+        },
+        "value": 32771,
+        "displayName": "FreakyTravon"
     },
-    "value": 32771,
-    "displayName": "FreakyTravon"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198139220496",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198139220496",
+            "platform": "STEAM"
+        },
+        "value": 32855,
+        "displayName": "SkrubW"
     },
-    "value": 32855,
-    "displayName": "SkrubW"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198001026411",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198001026411",
+            "platform": "STEAM"
+        },
+        "value": 33322,
+        "displayName": "MegaB7TE"
     },
-    "value": 33322,
-    "displayName": "MegaB7TE"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199025798490",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199025798490",
+            "platform": "STEAM"
+        },
+        "value": 33336,
+        "displayName": "eilish"
     },
-    "value": 33336,
-    "displayName": "eilish"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198063740790",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198063740790",
+            "platform": "STEAM"
+        },
+        "value": 33396,
+        "displayName": "ttv/iaihLIVE"
     },
-    "value": 33396,
-    "displayName": "ttv/iaihLIVE"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199079036234",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199079036234",
+            "platform": "STEAM"
+        },
+        "value": 33514,
+        "displayName": "qjnx"
     },
-    "value": 33514,
-    "displayName": "qjnx"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199237381207",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199237381207",
+            "platform": "STEAM"
+        },
+        "value": 33516,
+        "displayName": "pielge"
     },
-    "value": 33516,
-    "displayName": "pielge"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199005012320",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199005012320",
+            "platform": "STEAM"
+        },
+        "value": 33529,
+        "displayName": "cody_raves"
     },
-    "value": 33529,
-    "displayName": "cody_raves"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "2535427444423497",
-      "platform": "XBOX"
+    {
+        "compositeUserId": {
+            "platformId": "2535427444423497",
+            "platform": "XBOX"
+        },
+        "value": 33600,
+        "displayName": "Th1s1sSc13nc3"
     },
-    "value": 33600,
-    "displayName": "Th1s1sSc13nc3"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198116706079",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198116706079",
+            "platform": "STEAM"
+        },
+        "value": 33653,
+        "displayName": "Chaulk"
     },
-    "value": 33653,
-    "displayName": "Chaulk"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198028740257",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198028740257",
+            "platform": "STEAM"
+        },
+        "value": 33734,
+        "displayName": "R31TZV2"
     },
-    "value": 33734,
-    "displayName": "R31TZV2"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199238330843",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199238330843",
+            "platform": "STEAM"
+        },
+        "value": 33759,
+        "displayName": "FishToEatMySock"
     },
-    "value": 33759,
-    "displayName": "FishToEatMySock"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198054031774",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198054031774",
+            "platform": "STEAM"
+        },
+        "value": 33761,
+        "displayName": "VoidCrumbs"
     },
-    "value": 33761,
-    "displayName": "VoidCrumbs"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198423424785",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198423424785",
+            "platform": "STEAM"
+        },
+        "value": 33856,
+        "displayName": "Watcher"
     },
-    "value": 33856,
-    "displayName": "Watcher"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199124965806",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199124965806",
+            "platform": "STEAM"
+        },
+        "value": 33909,
+        "displayName": "nean"
     },
-    "value": 33909,
-    "displayName": "nean"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198133669882",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198133669882",
+            "platform": "STEAM"
+        },
+        "value": 34000,
+        "displayName": "adost"
     },
-    "value": 34000,
-    "displayName": "adost"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "2533274898986324",
-      "platform": "XBOX"
+    {
+        "compositeUserId": {
+            "platformId": "2533274898986324",
+            "platform": "XBOX"
+        },
+        "value": 34128,
+        "displayName": "TechedCactus65"
     },
-    "value": 34128,
-    "displayName": "TechedCactus65"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198221014396",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198221014396",
+            "platform": "STEAM"
+        },
+        "value": 34157,
+        "displayName": "ChenZo"
     },
-    "value": 34157,
-    "displayName": "ChenZo"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198362230761",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198362230761",
+            "platform": "STEAM"
+        },
+        "value": 34221,
+        "displayName": "Jay"
     },
-    "value": 34221,
-    "displayName": "Jay"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199054685515",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199054685515",
+            "platform": "STEAM"
+        },
+        "value": 34281,
+        "displayName": "zelika"
     },
-    "value": 34281,
-    "displayName": "zelika"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198203272335",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198203272335",
+            "platform": "STEAM"
+        },
+        "value": 34332,
+        "displayName": "Code Phoenix"
     },
-    "value": 34332,
-    "displayName": "Code Phoenix"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199168102072",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199168102072",
+            "platform": "STEAM"
+        },
+        "value": 34409,
+        "displayName": "GonerRose"
     },
-    "value": 34409,
-    "displayName": "GonerRose"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198120831375",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198120831375",
+            "platform": "STEAM"
+        },
+        "value": 34504,
+        "displayName": "Kusch"
     },
-    "value": 34504,
-    "displayName": "Kusch"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199001034505",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199001034505",
+            "platform": "STEAM"
+        },
+        "value": 34696,
+        "displayName": "Brackzy"
     },
-    "value": 34696,
-    "displayName": "Brackzy"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198958359255",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198958359255",
+            "platform": "STEAM"
+        },
+        "value": 34917,
+        "displayName": "Cable"
     },
-    "value": 34917,
-    "displayName": "Cable"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199103181633",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199103181633",
+            "platform": "STEAM"
+        },
+        "value": 34974,
+        "displayName": "NCL splicex"
     },
-    "value": 34974,
-    "displayName": "NCL splicex"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "2535471697903997",
-      "platform": "XBOX"
+    {
+        "compositeUserId": {
+            "platformId": "2535471697903997",
+            "platform": "XBOX"
+        },
+        "value": 35035,
+        "displayName": "Rizzy7771"
     },
-    "value": 35035,
-    "displayName": "Rizzy7771"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "3768801851961611842",
-      "platform": "PSN"
+    {
+        "compositeUserId": {
+            "platformId": "3768801851961611842",
+            "platform": "PSN"
+        },
+        "value": 35101,
+        "displayName": "ondjre"
     },
-    "value": 35101,
-    "displayName": "ondjre"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198026803594",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198026803594",
+            "platform": "STEAM"
+        },
+        "value": 35345,
+        "displayName": "Sharkz"
     },
-    "value": 35345,
-    "displayName": "Sharkz"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199536112328",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199536112328",
+            "platform": "STEAM"
+        },
+        "value": 35499,
+        "displayName": "pielge alt"
     },
-    "value": 35499,
-    "displayName": "pielge"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199535446388",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199535446388",
+            "platform": "STEAM"
+        },
+        "value": 35776,
+        "displayName": "mist."
     },
-    "value": 35776,
-    "displayName": "mist."
-  },
-  {
-    "compositeUserId": {
-      "platformId": "2533275010960588",
-      "platform": "XBOX"
+    {
+        "compositeUserId": {
+            "platformId": "2533275010960588",
+            "platform": "XBOX"
+        },
+        "value": 36887,
+        "displayName": "GardnGangstr"
     },
-    "value": 36887,
-    "displayName": "GardnGangstr"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198097998915",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198097998915",
+            "platform": "STEAM"
+        },
+        "value": 36989,
+        "displayName": "Jangutu"
     },
-    "value": 36989,
-    "displayName": "Jangutu"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198434385848",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198434385848",
+            "platform": "STEAM"
+        },
+        "value": 37056,
+        "displayName": "pxlize"
     },
-    "value": 37056,
-    "displayName": "pxlize"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198812017833",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198812017833",
+            "platform": "STEAM"
+        },
+        "value": 37082,
+        "displayName": "@BroKidSam"
     },
-    "value": 37082,
-    "displayName": "@BroKidSam"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199224584286",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199224584286",
+            "platform": "STEAM"
+        },
+        "value": 37306,
+        "displayName": "Owen"
     },
-    "value": 37306,
-    "displayName": "Owen"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199080771973",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199080771973",
+            "platform": "STEAM"
+        },
+        "value": 38395,
+        "displayName": "Vierzehncent"
     },
-    "value": 38395,
-    "displayName": "Vierzehncent"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "2535424094525136",
-      "platform": "XBOX"
+    {
+        "compositeUserId": {
+            "platformId": "2535424094525136",
+            "platform": "XBOX"
+        },
+        "value": 38672,
+        "displayName": "Va1kyrie"
     },
-    "value": 38672,
-    "displayName": "Va1kyrie"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "2535416538046038",
-      "platform": "XBOX"
+    {
+        "compositeUserId": {
+            "platformId": "2535416538046038",
+            "platform": "XBOX"
+        },
+        "value": 38738,
+        "displayName": "EIyjuh"
     },
-    "value": 38738,
-    "displayName": "EIyjuh"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "2535415202045439",
-      "platform": "XBOX"
+    {
+        "compositeUserId": {
+            "platformId": "2535415202045439",
+            "platform": "XBOX"
+        },
+        "value": 39389,
+        "displayName": "SatanAbaddon"
     },
-    "value": 39389,
-    "displayName": "SatanAbaddon"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199147950905",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199147950905",
+            "platform": "STEAM"
+        },
+        "value": 46664,
+        "displayName": "TTV 00_MUTANT_00"
     },
-    "value": 46664,
-    "displayName": "TTV 00_MUTANT_00"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561198162689191",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561198162689191",
+            "platform": "STEAM"
+        },
+        "value": 49160,
+        "displayName": "endo"
     },
-    "value": 49160,
-    "displayName": "endo"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199071245660",
-      "platform": "STEAM"
+    {
+        "compositeUserId": {
+            "platformId": "76561199071245660",
+            "platform": "STEAM"
+        },
+        "value": 80583,
+        "displayName": "AthurauZ"
     },
-    "value": 80583,
-    "displayName": "AthurauZ"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199055796697",
-      "platform": "STEAM"
-    },
-    "value": 110779,
-    "displayName": "T4"
-  }
+    {
+        "compositeUserId": {
+            "platformId": "76561199055796697",
+            "platform": "STEAM"
+        },
+        "value": 110779,
+        "displayName": "T4"
+    }
 ]

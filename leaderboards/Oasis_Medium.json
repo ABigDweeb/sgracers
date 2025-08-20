@@ -9,19 +9,19 @@
   },
   {
     "compositeUserId": {
+      "platformId": "76561199081543107",
+      "platform": "STEAM"
+    },
+    "value": 21701,
+    "displayName": "Dweeb"
+  },
+  {
+    "compositeUserId": {
       "platformId": "76561199755055037",
       "platform": "STEAM"
     },
     "value": 21957,
     "displayName": "chikken0"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199081543107",
-      "platform": "STEAM"
-    },
-    "value": 22398,
-    "displayName": "Dweeb"
   },
   {
     "compositeUserId": {
@@ -101,7 +101,7 @@
       "platform": "XBOX"
     },
     "value": 24541,
-    "displayName": "chikken0"
+    "displayName": "chikken0 (xbox)"
   },
   {
     "compositeUserId": {
@@ -373,7 +373,7 @@
       "platform": "STEAM"
     },
     "value": 33108,
-    "displayName": "pielge"
+    "displayName": "pielge alt"
   },
   {
     "compositeUserId": {
@@ -557,7 +557,7 @@
       "platform": "STEAM"
     },
     "value": 39096,
-    "displayName": "Eclipse"
+    "displayName": "TWT Eclipse"
   },
   {
     "compositeUserId": {
@@ -901,7 +901,7 @@
       "platform": "XBOX"
     },
     "value": 62115,
-    "displayName": "BigSmiggi"
+    "displayName": "BigSmiggi (xbox)"
   },
   {
     "compositeUserId": {
@@ -941,7 +941,7 @@
       "platform": "PSN"
     },
     "value": 69119,
-    "displayName": "HurricaneFrogTX"
+    "displayName": "HurricaneFrogTX (ps)"
   },
   {
     "compositeUserId": {

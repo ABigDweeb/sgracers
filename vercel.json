@@ -2,6 +2,10 @@
   "version": 2,
   "rewrites": [
     {
+      "source": "/data",
+      "destination": "/data/positions"
+    },
+    {
       "source": "/social/public/namespaces/splitgate/leaderboard",
       "destination": "/api/rewrite-handler"
     },

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>SG Race Leaderboard Browser</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      background: #111; 
+      color: #eee; 
+      margin: 0; 
+      padding: 10px 0 15px;
+    }
+    h1 { 
+      margin-bottom: 10px;
+      font-size: 2.8em; 
+      text-align: center;
+    }
+    .container { 
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #leaderboardDisplay { 
+      margin-top: 10px;
+      font-family: monospace;
+      font-size: 1em;
+      line-height: 1.3;
+      width: 99%;
+      max-height: 74vh;
+      overflow-x: auto;
+      overflow-y: auto;
+    }
+    .leaderboard-grid {
+      display: grid;
+      grid-template-columns: 150px repeat(42, 1fr);
+      white-space: nowrap;
+      background-color: #444;
+    }
+    .header-cell {
+      background: #333;
+      padding: 0;
+      text-align: center;
+      font-weight: bold;
+      position: sticky;
+      top: 0;
+      z-index: 4;
+    }
+    .map-header {
+      background: #252525;
+      grid-column: span 3;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      border-right: 1px solid #444;
+    }
+    .difficulty-header {
+      background: #2a2a2a;
+      text-align: center;
+      position: sticky;
+      top: 30px;
+      z-index: 2;
+      font-size: 1em;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid #444;
+      border-bottom: 1px solid #444;
+    }
+    .player-cell {
+      background: #222;
+      padding: 0;
+      text-align: center;
+      font-size: 0.9em;
+      height: 30px;
+      line-height: 30px;
+      border-right: 1px solid #444;
+      border-bottom: 1px solid #444;
+    }
+    .player-name-header {
+      background: #333;
+      padding: 0 4px;
+      text-align: left;
+      font-weight: bold;
+      position: sticky;
+      top: 0;
+      left: 0;
+      z-index: 5;
+      height: 60px;
+      grid-row: span 2;
+      display: flex;
+      align-items: center;
+      border-right: 1px solid #444;
+      border-bottom: 1px solid #444;
+      border-left: 1px solid #444;
+    }
+    .player-name {
+      background: #1a1a1a;
+      padding: 0 4px;
+      text-align: left;
+      position: sticky;
+      left: 0;
+      z-index: 1;
+      height: 30px;
+      line-height: 30px;
+      border-right: 1px solid #444;
+      border-bottom: 1px solid #444;
+      border-left: 1px solid #444;
+    }
+    .first-place {
+      color: gold;
+      background: #614a00;
+    }
+    .second-place {
+      color: #c7c7c7;
+      background: #8a8a8a;
+    }
+    .third-place {
+      color: #cd7f32;
+      background: #453113;
+    }
+    .top5 {
+      color: #cefde7;
+      background: #51b78a;
+    }
+    .top10 {
+      color: #a0d6f7;
+      background: #5186a5;
+    }
+    .loading { 
+      color: #0bf; 
+      font-style: italic; 
+    }
+    .error { 
+      color: #f55;
+    }
+    .entry-count {
+      margin-top: 10px;
+      font-size: 0.8em;
+      color: #888;
+    }
+    #filterControls {
+      margin: 5px 0 10px;
+      padding: 8px;
+      background: #222;
+      border-radius: 5px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #filterControls label {
+      color: #ddd;
+      cursor: pointer;
+    }
+    #filterControls input[type="radio"] {
+      margin-right: 5px;
+    }
+    .dev-box {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      color: #aaa;
+      font-size: 0.85em;
+      text-align: right;
+      line-height: 1.4;
+      background: rgba(30, 30, 30, 0.8);
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid #444;
+    }
+    .dev-box a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .dev-box a:hover {
+      text-decoration: underline;
+    }
+    .discord-logo {
+      height: 16px;
+      width: 21px;
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+    .burger-menu {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+    }
+    .burger-icon {
+      width: 40px;
+      height: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      padding: 5px;
+    }
+    .burger-line {
+      height: 4px;
+      width: 100%;
+      background-color: #eee;
+      border-radius: 2px;
+    }
+    .menu-dropdown {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      background: #222;
+      border: 1px solid #444;
+      border-radius: 5px;
+      min-width: 200px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .menu-dropdown.show {
+      display: flex;
+    }
+    .menu-item {
+      padding: 12px 20px;
+      color: #eee;
+      text-decoration: none;
+      font-size: 1.2em;
+      transition: background-color 0.2s;
+    }
+    .menu-item:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="burger-menu">
+    <div class="burger-icon" id="burgerIcon">
+      <div class="burger-line"></div>
+      <div class="burger-line"></div>
+      <div class="burger-line"></div>
+    </div>
+    <div class="menu-dropdown" id="menuDropdown">
+      <a href="/" class="menu-item">Leaderboard View</a>
+      <a href="/data/times" class="menu-item">Times Spreadsheet</a>
+      <a href="/data/positions" class="menu-item">Positions Spreadsheet</a>
+      <a href="/data/individual" class="menu-item">Individual Lookup</a>
+      <a href="/data/evaluation" class="menu-item">Top Racer Evaluation</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>Spreadsheet View - Positions</h1>
+
+    <div id="filterControls">
+      <label>
+        <input type="radio" name="filter" value="all" checked> Show all players
+      </label>
+      <label>
+        <input type="radio" name="filter" value="completed"> Only all races completed
+      </label>
+      <label>
+        <input type="radio" name="filter" value="top10"> Only has a top 10
+      </label>
+      <label>
+        <input type="radio" name="filter" value="topracers"> Top racer view
+      </label>
+    </div>
+    <div id="leaderboardDisplay">Loading all leaderboard data...</div>
+    <div id="entryCount" class="entry-count"></div>
+  </div>
+
+  <div class="dev-box">
+    <a href="https://discord.gg/YgGdSM3yC4" target="_blank"> 
+    <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-logo" alt="Discord"></a> v0.2.0<br>
+    <a href="https://x.com/ABigDweeb" target="_blank">made by Dweeb</a>
+  </div>
+
+  <script>
+    const maps = [
+      "Abyss", "Atlantis", "Crag", "Foregone_Destruction", "Helix",
+      "Highwind", "Impact", "Karman_Station", "Lavawell", "Oasis",
+      "Olympus", "Pantheon", "Silo", "Stadium"
+    ];
+    const difficulties = ["Easy", "Med", "Hard"];
+    const topRacers = [
+      "Alfa", "blueski", "Brayden", "chikken0", "Dweeb", 
+      "e x m p l", "headjakk", "JalenMans", "Kozmii🌙", "pc", 
+      "Pickle12", "SkrubW", "Toby Repellant", "void"
+    ];
+    const leaderboardDisplay = document.getElementById('leaderboardDisplay');
+    const entryCountDisplay = document.getElementById('entryCount');
+    const burgerIcon = document.getElementById('burgerIcon');
+    const menuDropdown = document.getElementById('menuDropdown');
+
+    burgerIcon.addEventListener('click', function() {
+      menuDropdown.classList.toggle('show');
+    });
+
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('.burger-menu')) {
+        menuDropdown.classList.remove('show');
+      }
+    });
+
+    let allLeaderboards = {};
+    let allPlayersData = [];
+    let totalRaces = 0;
+    let totalPlayers = 0;
+
+    function getMapDisplayName(map) {
+      if (map === "Foregone_Destruction") return "Foregone";
+      if (map === "Karman_Station") return "Karman";
+      if (map === "Silo") return "Club Silo";
+      return map;
+    }
+
+    function formatPlayerName(name) {
+      return name.length > 20 ? name.substring(0, 17) + '...' : name;
+    }
+
+    async function loadAllLeaderboards() {
+      leaderboardDisplay.innerHTML = "Loading all leaderboards...";
+      leaderboardDisplay.className = "loading";
+      entryCountDisplay.textContent = '';
+      totalRaces = maps.length * difficulties.length;
+      
+      try {
+        const leaderboardPromises = maps.flatMap(map => 
+          difficulties.map(async difficulty => {
+            try {
+              const filename = `${map}_${difficulty === 'Med' ? 'Medium' : difficulty}.json`;
+              const response = await fetch(`/leaderboards/${filename}`);
+              if (!response.ok) return { map, difficulty, data: null };
+              const data = await response.json();
+              return { map, difficulty, data };
+            } catch (e) {
+              return { map, difficulty, data: null };
+            }
+          })
+        );
+        
+        const results = await Promise.all(leaderboardPromises);
+        
+        allLeaderboards = {};
+        results.forEach(({ map, difficulty, data }) => {
+          if (!allLeaderboards[map]) allLeaderboards[map] = {};
+          allLeaderboards[map][difficulty] = (data && (data.leaderboard || data)) || [];
+        });
+        
+        processPlayerData();
+        updateView('all');
+      } catch (error) {
+        leaderboardDisplay.innerHTML = `Error: ${error.message}`;
+        leaderboardDisplay.className = "error";
+        entryCountDisplay.textContent = '';
+      }
+    }
+
+    function processPlayerData() {
+      const players = new Set();
+      const playerStats = {};
+
+      maps.forEach(map => {
+        difficulties.forEach(difficulty => {
+          const leaderboard = (allLeaderboards[map] && allLeaderboards[map][difficulty]) || [];
+          leaderboard.forEach((entry, index) => {
+            if (entry) {
+              const playerName = entry.displayName || entry.name || "Unknown Player";
+              players.add(playerName);
+              if (!playerStats[playerName]) {
+                playerStats[playerName] = {
+                  completed: 0,
+                  top10: 0,
+                  positions: {}
+                };
+              }
+              playerStats[playerName].completed++;
+              if (index < 10) playerStats[playerName].top10++;
+              playerStats[playerName].positions[`${map}_${difficulty}`] = index + 1;
+            }
+          });
+        });
+      });
+
+      allPlayersData = Array.from(players).map(player => ({
+        name: player,
+        displayName: formatPlayerName(player),
+        completedAll: playerStats[player].completed === totalRaces,
+        hasTop10: playerStats[player].top10 > 0,
+        isTopRacer: topRacers.includes(player),
+        stats: playerStats[player]
+      }));
+
+      totalPlayers = allPlayersData.length;
+
+      document.querySelectorAll('#filterControls input[name="filter"]').forEach(radio => {
+        radio.addEventListener('change', (e) => updateView(e.target.value));
+      });
+    }
+
+    function updateView(filterType) {
+      let filteredPlayers = allPlayersData;
+      
+      if (filterType === 'completed') {
+        filteredPlayers = allPlayersData.filter(p => p.completedAll);
+      } else if (filterType === 'top10') {
+        filteredPlayers = allPlayersData.filter(p => p.hasTop10);
+      } else if (filterType === 'topracers') {
+        filteredPlayers = allPlayersData.filter(p => p.isTopRacer);
+      }
+      
+      generateGrid(filteredPlayers);
+    }
+
+    function generateGrid(playersData = allPlayersData) {
+      const sortedPlayers = playersData
+        .map(p => p.name)
+        .sort((a, b) => a.localeCompare(b));
+      
+      let html = '<div class="leaderboard-grid">';
+      
+      html += '<div class="player-name-header">Player</div>';
+      
+      maps.forEach(map => {
+        html += `<div class="map-header">${getMapDisplayName(map)}</div>`;
+      });
+      
+      maps.forEach(map => {
+        difficulties.forEach(difficulty => {
+          html += `<div class="difficulty-header">${difficulty}</div>`;
+        });
+      });
+      
+      sortedPlayers.forEach(player => {
+        const playerData = allPlayersData.find(p => p.name === player);
+        html += `<div class="player-name">${playerData.displayName}</div>`;
+        
+        maps.forEach(map => {
+          difficulties.forEach(difficulty => {
+            const position = playerData.stats.positions[`${map}_${difficulty}`];
+            
+            if (!position) {
+              html += '<div class="player-cell">-</div>';
+              return;
+            }
+            
+            let cellClass = "player-cell";
+            if (position === 1) cellClass += " first-place";
+            else if (position === 2) cellClass += " second-place";
+            else if (position === 3) cellClass += " third-place";
+            else if (position <= 5) cellClass += " top5";
+            else if (position <= 10) cellClass += " top10";
+            
+            html += `<div class="${cellClass}">${position}</div>`;
+          });
+        });
+      });
+      
+      html += '</div>';
+      leaderboardDisplay.innerHTML = html;
+      leaderboardDisplay.className = "";
+      
+      entryCountDisplay.textContent = `Showing ${sortedPlayers.length} entries of ${totalPlayers} total players`;
+    }
+
+    function init() {
+      loadAllLeaderboards();
+    }
+
+    init();
+  </script>
+</body>
+</html>
