@@ -241,6 +241,14 @@
     },
     {
         "compositeUserId": {
+            "platformId": "76561198313963777",
+            "platform": "STEAM"
+        },
+        "value": 20057,
+        "displayName": "Boos"
+    },
+    {
+        "compositeUserId": {
             "platformId": "76561198362230761",
             "platform": "STEAM"
         },
