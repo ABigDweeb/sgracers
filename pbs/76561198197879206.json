@@ -1,0 +1,18 @@
+{
+  "userId": "76561198197879206",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Lavawell": {
+      "Hard": 31632
+    },
+    "Oasis": {
+      "Medium": 35497
+    },
+    "Silo": {
+      "Hard": 41733
+    },
+    "Stadium": {
+      "Hard": 47977
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "userId": "2535414603809406",
+  "platform": "XBOX",
+  "bestTimes": {
+    "Atlantis": {
+      "Easy": 63463,
+      "Hard": 98748
+    },
+    "Crag": {
+      "Hard": 183017
+    },
+    "Helix": {
+      "Hard": 188688
+    },
+    "Impact": {
+      "Hard": 128711
+    },
+    "Lavawell": {
+      "Easy": 63379,
+      "Hard": 199198
+    },
+    "Oasis": {
+      "Easy": 44477,
+      "Hard": 126809,
+      "Medium": 101551
+    },
+    "Pantheon": {
+      "Hard": 153752
+    },
+    "Stadium": {
+      "Hard": 253412,
+      "Medium": 42492
+    }
+  }
+}

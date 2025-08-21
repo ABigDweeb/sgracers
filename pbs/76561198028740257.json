@@ -1,0 +1,25 @@
+{
+  "userId": "76561198028740257",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Foregone_Destruction": {
+      "Easy": 28387
+    },
+    "Highwind": {
+      "Easy": 42344
+    },
+    "Impact": {
+      "Hard": 43852
+    },
+    "Karman_Station": {
+      "Easy": 33734
+    },
+    "Lavawell": {
+      "Easy": 35230,
+      "Hard": 28722
+    },
+    "Stadium": {
+      "Easy": 20664
+    }
+  }
+}

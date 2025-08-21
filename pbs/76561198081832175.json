@@ -2,68 +2,68 @@
   "userId": "76561198081832175",
   "platform": "STEAM",
   "bestTimes": {
+    "Abyss": {
+      "Hard": 19773
+    },
     "Atlantis": {
-      "Hard": 22784,
       "Easy": 27357,
+      "Hard": 22784,
       "Medium": 19951
     },
-    "Olympus": {
-      "Easy": 22277,
-      "Medium": 23971,
-      "Hard": 32751
+    "Crag": {
+      "Easy": 28990,
+      "Hard": 27035,
+      "Medium": 18621
     },
-    "Oasis": {
-      "Easy": 21671,
-      "Medium": 27603,
-      "Hard": 35649
+    "Foregone_Destruction": {
+      "Hard": 24544,
+      "Medium": 22197
     },
     "Helix": {
-      "Medium": 25274,
-      "Easy": 21821
+      "Easy": 21821,
+      "Medium": 25274
     },
-    "Pantheon": {
-      "Easy": 27161,
-      "Medium": 22306,
-      "Hard": 30298
-    },
-    "Crag": {
-      "Hard": 27035,
-      "Medium": 18621,
-      "Easy": 28990
+    "Highwind": {
+      "Easy": 20404,
+      "Hard": 29741,
+      "Medium": 22121
     },
     "Impact": {
       "Easy": 22882,
       "Hard": 17386,
       "Medium": 20159
     },
-    "Silo": {
-      "Medium": 20492
-    },
-    "Stadium": {
-      "Easy": 21193,
-      "Medium": 20251,
-      "Hard": 27934
+    "Karman_Station": {
+      "Easy": 32265,
+      "Hard": 24440,
+      "Medium": 20741
     },
     "Lavawell": {
       "Hard": 25149,
       "Medium": 25886
     },
-    "Highwind": {
-      "Medium": 22121,
-      "Easy": 20404,
-      "Hard": 29741
+    "Oasis": {
+      "Easy": 21671,
+      "Hard": 35649,
+      "Medium": 27603
     },
-    "Foregone_Destruction": {
-      "Medium": 22197,
-      "Hard": 24544
+    "Olympus": {
+      "Easy": 22277,
+      "Hard": 32751,
+      "Medium": 23971
     },
-    "Karman_Station": {
-      "Easy": 32265,
-      "Medium": 20741,
-      "Hard": 24440
+    "Pantheon": {
+      "Easy": 27161,
+      "Hard": 30298,
+      "Medium": 22306
     },
-    "Abyss": {
-      "Hard": 19773
+    "Silo": {
+      "Medium": 20492
+    },
+    "Stadium": {
+      "Easy": 21193,
+      "Hard": 27934,
+      "Medium": 20251
     }
   }
 }

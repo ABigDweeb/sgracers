@@ -1,0 +1,21 @@
+{
+  "userId": "76561198449435905",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Crag": {
+      "Hard": 127253
+    },
+    "Olympus": {
+      "Hard": 265626
+    },
+    "Pantheon": {
+      "Hard": 115973
+    },
+    "Silo": {
+      "Easy": 40807
+    },
+    "Stadium": {
+      "Hard": 176270
+    }
+  }
+}

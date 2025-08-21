@@ -1,0 +1,21 @@
+{
+  "userId": "76561198965269677",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Abyss": {
+      "Easy": 32221
+    },
+    "Helix": {
+      "Hard": 121198
+    },
+    "Impact": {
+      "Hard": 51689
+    },
+    "Lavawell": {
+      "Hard": 32877
+    },
+    "Stadium": {
+      "Hard": 51571
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "userId": "76561198070419292",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Foregone_Destruction": {
+      "Medium": 79745
+    },
+    "Helix": {
+      "Hard": 118078,
+      "Medium": 45134
+    },
+    "Impact": {
+      "Hard": 68311
+    },
+    "Karman_Station": {
+      "Hard": 114194
+    },
+    "Lavawell": {
+      "Hard": 112293
+    },
+    "Olympus": {
+      "Hard": 162745
+    },
+    "Silo": {
+      "Hard": 107198
+    },
+    "Stadium": {
+      "Hard": 37915,
+      "Medium": 41906
+    }
+  }
+}

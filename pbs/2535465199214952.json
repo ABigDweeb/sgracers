@@ -1,0 +1,30 @@
+{
+  "userId": "2535465199214952",
+  "platform": "XBOX",
+  "bestTimes": {
+    "Crag": {
+      "Hard": 105355
+    },
+    "Helix": {
+      "Medium": 45611
+    },
+    "Impact": {
+      "Hard": 37730
+    },
+    "Karman_Station": {
+      "Hard": 113763
+    },
+    "Lavawell": {
+      "Hard": 72371
+    },
+    "Olympus": {
+      "Hard": 203384
+    },
+    "Pantheon": {
+      "Hard": 70853
+    },
+    "Stadium": {
+      "Hard": 75256
+    }
+  }
+}

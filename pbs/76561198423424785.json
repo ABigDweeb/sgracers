@@ -1,1 +1,75 @@
-{"userId":"76561198423424785","platform":"STEAM","bestTimes":{"Helix":{"Hard":40624,"Easy":23557,"Medium":25151},"Stadium":{"Hard":33902,"Medium":23768,"Easy":20926},"Pantheon":{"Hard":31450,"Easy":26694},"Atlantis":{"Medium":22395,"Easy":30461,"Hard":28659},"Foregone_Destruction":{"Medium":22509,"Easy":28050,"Hard":39167},"Impact":{"Medium":23665,"Hard":25717,"Easy":22989},"Abyss":{"Easy":24916,"Hard":23740,"Medium":25956},"Highwind":{"Easy":27190,"Hard":36470,"Medium":23575},"Oasis":{"Easy":22829,"Hard":30161,"Medium":29218},"Crag":{"Easy":29687,"Hard":28619,"Medium":18727},"Karman_Station":{"Hard":28444,"Medium":24500,"Easy":33856},"Lavawell":{"Hard":30769,"Easy":30392,"Medium":28324},"Silo":{"Hard":43864,"Easy":26875,"Medium":21697},"Olympus":{"Hard":41750,"Easy":25626,"Medium":24958}}}
+{
+  "userId": "76561198423424785",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Abyss": {
+      "Easy": 24916,
+      "Hard": 23740,
+      "Medium": 25956
+    },
+    "Atlantis": {
+      "Easy": 30461,
+      "Hard": 28659,
+      "Medium": 22395
+    },
+    "Crag": {
+      "Easy": 29687,
+      "Hard": 28619,
+      "Medium": 18727
+    },
+    "Foregone_Destruction": {
+      "Easy": 28050,
+      "Hard": 39167,
+      "Medium": 22509
+    },
+    "Helix": {
+      "Easy": 23557,
+      "Hard": 40624,
+      "Medium": 25151
+    },
+    "Highwind": {
+      "Easy": 27190,
+      "Hard": 36470,
+      "Medium": 23575
+    },
+    "Impact": {
+      "Easy": 22989,
+      "Hard": 25717,
+      "Medium": 23665
+    },
+    "Karman_Station": {
+      "Easy": 33856,
+      "Hard": 28444,
+      "Medium": 24500
+    },
+    "Lavawell": {
+      "Easy": 30392,
+      "Hard": 30769,
+      "Medium": 28324
+    },
+    "Oasis": {
+      "Easy": 22829,
+      "Hard": 30161,
+      "Medium": 29218
+    },
+    "Olympus": {
+      "Easy": 25626,
+      "Hard": 41750,
+      "Medium": 24958
+    },
+    "Pantheon": {
+      "Easy": 26694,
+      "Hard": 31450
+    },
+    "Silo": {
+      "Easy": 26875,
+      "Hard": 43864,
+      "Medium": 21697
+    },
+    "Stadium": {
+      "Easy": 20926,
+      "Hard": 33902,
+      "Medium": 23768
+    }
+  }
+}

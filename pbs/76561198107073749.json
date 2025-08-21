@@ -1,0 +1,33 @@
+{
+  "userId": "76561198107073749",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Crag": {
+      "Hard": 108997
+    },
+    "Helix": {
+      "Hard": 91317
+    },
+    "Highwind": {
+      "Hard": 104654
+    },
+    "Impact": {
+      "Hard": 76499
+    },
+    "Lavawell": {
+      "Hard": 78351
+    },
+    "Olympus": {
+      "Hard": 205166
+    },
+    "Pantheon": {
+      "Hard": 73855
+    },
+    "Silo": {
+      "Hard": 125983
+    },
+    "Stadium": {
+      "Hard": 67346
+    }
+  }
+}

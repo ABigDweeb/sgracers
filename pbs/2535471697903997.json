@@ -1,0 +1,27 @@
+{
+  "userId": "2535471697903997",
+  "platform": "XBOX",
+  "bestTimes": {
+    "Crag": {
+      "Hard": 54139
+    },
+    "Helix": {
+      "Hard": 74136
+    },
+    "Highwind": {
+      "Easy": 48798
+    },
+    "Impact": {
+      "Hard": 25241
+    },
+    "Karman_Station": {
+      "Easy": 35035
+    },
+    "Silo": {
+      "Hard": 95261
+    },
+    "Stadium": {
+      "Medium": 31865
+    }
+  }
+}

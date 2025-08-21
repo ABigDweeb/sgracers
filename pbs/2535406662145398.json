@@ -1,0 +1,16 @@
+{
+  "userId": "2535406662145398",
+  "platform": "XBOX",
+  "bestTimes": {
+    "Abyss": {
+      "Easy": 35835
+    },
+    "Atlantis": {
+      "Easy": 59092,
+      "Hard": 38121
+    },
+    "Oasis": {
+      "Easy": 44894
+    }
+  }
+}

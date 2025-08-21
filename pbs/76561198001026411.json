@@ -1,0 +1,76 @@
+{
+  "userId": "76561198001026411",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Abyss": {
+      "Easy": 24924,
+      "Hard": 23950,
+      "Medium": 24217
+    },
+    "Atlantis": {
+      "Easy": 29095,
+      "Hard": 27770,
+      "Medium": 23201
+    },
+    "Crag": {
+      "Easy": 31509,
+      "Hard": 28944,
+      "Medium": 19612
+    },
+    "Foregone_Destruction": {
+      "Easy": 28472,
+      "Hard": 30093,
+      "Medium": 21997
+    },
+    "Helix": {
+      "Easy": 22257,
+      "Hard": 38848,
+      "Medium": 24605
+    },
+    "Highwind": {
+      "Easy": 23460,
+      "Hard": 35201,
+      "Medium": 21923
+    },
+    "Impact": {
+      "Easy": 22981,
+      "Hard": 23860,
+      "Medium": 23089
+    },
+    "Karman_Station": {
+      "Easy": 33322,
+      "Hard": 26455,
+      "Medium": 22212
+    },
+    "Lavawell": {
+      "Easy": 31233,
+      "Hard": 27740,
+      "Medium": 26589
+    },
+    "Oasis": {
+      "Easy": 23923,
+      "Hard": 28836,
+      "Medium": 27594
+    },
+    "Olympus": {
+      "Easy": 23457,
+      "Hard": 36757,
+      "Medium": 24236
+    },
+    "Pantheon": {
+      "Easy": 27391,
+      "Hard": 29557,
+      "Medium": 22998
+    },
+    "Silo": {
+      "Easy": 26556,
+      "Hard": 31860,
+      "Medium": 20647
+    },
+    "Stadium": {
+      "Easy": 21077,
+      "Hard": 31451,
+      "Medium": 21772
+    }
+  }
+}

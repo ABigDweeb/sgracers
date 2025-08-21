@@ -1,0 +1,31 @@
+{
+  "userId": "76561199023255818",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Abyss": {
+      "Easy": 47156,
+      "Hard": 78343
+    },
+    "Atlantis": {
+      "Easy": 45211,
+      "Hard": 56916
+    },
+    "Helix": {
+      "Hard": 111710
+    },
+    "Lavawell": {
+      "Hard": 29812
+    },
+    "Oasis": {
+      "Medium": 54482
+    },
+    "Olympus": {
+      "Hard": 128149
+    },
+    "Stadium": {
+      "Easy": 21332,
+      "Hard": 59315,
+      "Medium": 23158
+    }
+  }
+}

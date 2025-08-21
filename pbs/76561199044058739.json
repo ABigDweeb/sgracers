@@ -1,0 +1,28 @@
+{
+  "userId": "76561199044058739",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Abyss": {
+      "Hard": 38465
+    },
+    "Helix": {
+      "Hard": 64089
+    },
+    "Karman_Station": {
+      "Hard": 114492
+    },
+    "Oasis": {
+      "Easy": 24817
+    },
+    "Olympus": {
+      "Hard": 138406
+    },
+    "Silo": {
+      "Easy": 34898
+    },
+    "Stadium": {
+      "Hard": 68326,
+      "Medium": 22424
+    }
+  }
+}

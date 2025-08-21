@@ -1,0 +1,27 @@
+{
+  "userId": "76561198925059267",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Abyss": {
+      "Medium": 77871
+    },
+    "Atlantis": {
+      "Hard": 55852,
+      "Medium": 51525
+    },
+    "Foregone_Destruction": {
+      "Medium": 29892
+    },
+    "Lavawell": {
+      "Hard": 33042,
+      "Medium": 45254
+    },
+    "Oasis": {
+      "Hard": 483394
+    },
+    "Stadium": {
+      "Easy": 23782,
+      "Medium": 39540
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "userId": "76561199040300229",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Atlantis": {
+      "Medium": 129326
+    },
+    "Olympus": {
+      "Easy": 39674,
+      "Hard": 87810
+    },
+    "Stadium": {
+      "Hard": 61006,
+      "Medium": 24457
+    }
+  }
+}

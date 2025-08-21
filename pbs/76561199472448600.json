@@ -2,75 +2,75 @@
   "userId": "76561199472448600",
   "platform": "STEAM",
   "bestTimes": {
-    "Highwind": {
-      "Easy": 19954,
-      "Medium": 17733,
-      "Hard": 30324
-    },
-    "Impact": {
-      "Hard": 18750,
-      "Easy": 19956,
-      "Medium": 20277
+    "Abyss": {
+      "Easy": 20898,
+      "Hard": 18108,
+      "Medium": 21691
     },
     "Atlantis": {
       "Easy": 27300,
       "Hard": 23591,
       "Medium": 19967
     },
-    "Karman_Station": {
-      "Medium": 20569,
-      "Easy": 27723,
-      "Hard": 24815
+    "Crag": {
+      "Easy": 28775,
+      "Hard": 25026,
+      "Medium": 18479
     },
     "Foregone_Destruction": {
       "Easy": 24469,
-      "Medium": 17569,
-      "Hard": 25468
+      "Hard": 25468,
+      "Medium": 17569
     },
     "Helix": {
-      "Medium": 22538,
       "Easy": 19376,
-      "Hard": 36076
+      "Hard": 36076,
+      "Medium": 22538
+    },
+    "Highwind": {
+      "Easy": 19954,
+      "Hard": 30324,
+      "Medium": 17733
+    },
+    "Impact": {
+      "Easy": 19956,
+      "Hard": 18750,
+      "Medium": 20277
+    },
+    "Karman_Station": {
+      "Easy": 27723,
+      "Hard": 24815,
+      "Medium": 20569
     },
     "Lavawell": {
       "Easy": 28934,
-      "Medium": 23917,
-      "Hard": 25757
-    },
-    "Crag": {
-      "Medium": 18479,
-      "Easy": 28775,
-      "Hard": 25026
+      "Hard": 25757,
+      "Medium": 23917
     },
     "Oasis": {
       "Easy": 20562,
-      "Medium": 22859,
-      "Hard": 25251
+      "Hard": 25251,
+      "Medium": 22859
     },
-    "Abyss": {
-      "Hard": 18108,
-      "Medium": 21691,
-      "Easy": 20898
-    },
-    "Stadium": {
-      "Medium": 19625,
-      "Easy": 19915,
-      "Hard": 28086
+    "Olympus": {
+      "Easy": 20684,
+      "Hard": 32969,
+      "Medium": 21867
     },
     "Pantheon": {
-      "Hard": 26193,
       "Easy": 24833,
+      "Hard": 26193,
       "Medium": 20226
     },
     "Silo": {
-      "Hard": 28102,
       "Easy": 22763,
+      "Hard": 28102,
       "Medium": 18918
     },
-    "Olympus": {
-      "Medium": 21867,
-      "Easy": 20684,
-      "Hard": 32969
+    "Stadium": {
+      "Easy": 19915,
+      "Hard": 28086,
+      "Medium": 19625
     }
   }
 }

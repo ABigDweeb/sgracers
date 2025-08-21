@@ -1,0 +1,19 @@
+{
+  "userId": "76561199057543408",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Abyss": {
+      "Easy": 71038
+    },
+    "Helix": {
+      "Easy": 112149,
+      "Hard": 220891
+    },
+    "Pantheon": {
+      "Hard": 123316
+    },
+    "Stadium": {
+      "Hard": 347795
+    }
+  }
+}

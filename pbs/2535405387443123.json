@@ -1,0 +1,13 @@
+{
+  "userId": "2535405387443123",
+  "platform": "XBOX",
+  "bestTimes": {
+    "Oasis": {
+      "Easy": 44144,
+      "Medium": 71237
+    },
+    "Stadium": {
+      "Hard": 80343
+    }
+  }
+}

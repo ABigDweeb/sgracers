@@ -1,0 +1,17 @@
+{
+  "userId": "76561198119224414",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Abyss": {
+      "Hard": 32935
+    },
+    "Crag": {
+      "Easy": 37114,
+      "Hard": 88671,
+      "Medium": 26008
+    },
+    "Stadium": {
+      "Medium": 39136
+    }
+  }
+}

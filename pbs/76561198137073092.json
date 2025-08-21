@@ -1,0 +1,30 @@
+{
+  "userId": "76561198137073092",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Abyss": {
+      "Medium": 66940
+    },
+    "Atlantis": {
+      "Hard": 50451
+    },
+    "Impact": {
+      "Easy": 1124679,
+      "Hard": 25526,
+      "Medium": 2469752
+    },
+    "Karman_Station": {
+      "Hard": 81652
+    },
+    "Lavawell": {
+      "Hard": 91924
+    },
+    "Oasis": {
+      "Medium": 71212
+    },
+    "Stadium": {
+      "Easy": 34166,
+      "Medium": 44705
+    }
+  }
+}

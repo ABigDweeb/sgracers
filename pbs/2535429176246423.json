@@ -1,0 +1,26 @@
+{
+  "userId": "2535429176246423",
+  "platform": "XBOX",
+  "bestTimes": {
+    "Abyss": {
+      "Medium": 45528
+    },
+    "Atlantis": {
+      "Easy": 38938
+    },
+    "Crag": {
+      "Medium": 43943
+    },
+    "Impact": {
+      "Hard": 39806
+    },
+    "Silo": {
+      "Hard": 117633
+    },
+    "Stadium": {
+      "Easy": 22305,
+      "Hard": 51184,
+      "Medium": 22555
+    }
+  }
+}

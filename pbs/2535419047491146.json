@@ -1,0 +1,62 @@
+{
+  "userId": "2535419047491146",
+  "platform": "XBOX",
+  "bestTimes": {
+    "Abyss": {
+      "Easy": 27961,
+      "Hard": 31948,
+      "Medium": 33049
+    },
+    "Atlantis": {
+      "Easy": 34834,
+      "Hard": 38204,
+      "Medium": 26810
+    },
+    "Crag": {
+      "Easy": 35585,
+      "Hard": 40874,
+      "Medium": 27760
+    },
+    "Foregone_Destruction": {
+      "Easy": 32482,
+      "Medium": 28328
+    },
+    "Helix": {
+      "Easy": 24090,
+      "Hard": 96212,
+      "Medium": 34317
+    },
+    "Highwind": {
+      "Hard": 56990,
+      "Medium": 34484
+    },
+    "Impact": {
+      "Hard": 39989,
+      "Medium": 26860
+    },
+    "Karman_Station": {
+      "Hard": 46329,
+      "Medium": 33333
+    },
+    "Oasis": {
+      "Easy": 25658,
+      "Hard": 67150,
+      "Medium": 43326
+    },
+    "Olympus": {
+      "Hard": 190689,
+      "Medium": 43743
+    },
+    "Pantheon": {
+      "Medium": 39439
+    },
+    "Silo": {
+      "Hard": 82582,
+      "Medium": 32081
+    },
+    "Stadium": {
+      "Hard": 54787,
+      "Medium": 22872
+    }
+  }
+}

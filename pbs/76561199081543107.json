@@ -2,75 +2,75 @@
   "userId": "76561199081543107",
   "platform": "STEAM",
   "bestTimes": {
-    "Olympus": {
-      "Hard": 32554,
-      "Easy": 19248,
-      "Medium": 20743
+    "Abyss": {
+      "Easy": 20794,
+      "Hard": 17940,
+      "Medium": 21403
     },
-    "Helix": {
-      "Easy": 19530,
-      "Medium": 22310,
-      "Hard": 35743
+    "Atlantis": {
+      "Easy": 27079,
+      "Hard": 22182,
+      "Medium": 19988
     },
-    "Stadium": {
-      "Easy": 19847,
-      "Medium": 19427,
-      "Hard": 27611
-    },
-    "Oasis": {
-      "Easy": 18543,
-      "Hard": 24606,
-      "Medium": 21701
+    "Crag": {
+      "Easy": 28619,
+      "Hard": 24885,
+      "Medium": 18152
     },
     "Foregone_Destruction": {
       "Easy": 24992,
-      "Medium": 17594,
-      "Hard": 24154
+      "Hard": 24154,
+      "Medium": 17594
     },
-    "Atlantis": {
-      "Medium": 19988,
-      "Hard": 22182,
-      "Easy": 27079
+    "Helix": {
+      "Easy": 19530,
+      "Hard": 35743,
+      "Medium": 22310
     },
     "Highwind": {
       "Easy": 20263,
-      "Medium": 17486,
-      "Hard": 29566
+      "Hard": 29566,
+      "Medium": 17486
     },
-    "Crag": {
-      "Hard": 24885,
-      "Medium": 18152,
-      "Easy": 28619
+    "Impact": {
+      "Easy": 19937,
+      "Hard": 17514,
+      "Medium": 19965
+    },
+    "Karman_Station": {
+      "Easy": 27571,
+      "Hard": 24785,
+      "Medium": 20760
     },
     "Lavawell": {
       "Easy": 29008,
       "Hard": 25352,
       "Medium": 23521
     },
+    "Oasis": {
+      "Easy": 18543,
+      "Hard": 24606,
+      "Medium": 21701
+    },
+    "Olympus": {
+      "Easy": 19248,
+      "Hard": 32554,
+      "Medium": 20743
+    },
+    "Pantheon": {
+      "Easy": 24703,
+      "Hard": 26024,
+      "Medium": 20158
+    },
     "Silo": {
       "Easy": 23366,
       "Hard": 27882,
       "Medium": 18887
     },
-    "Impact": {
-      "Easy": 19937,
-      "Medium": 19965,
-      "Hard": 17514
-    },
-    "Karman_Station": {
-      "Easy": 27571,
-      "Medium": 20760,
-      "Hard": 24785
-    },
-    "Pantheon": {
-      "Easy": 24703,
-      "Medium": 20158,
-      "Hard": 26024
-    },
-    "Abyss": {
-      "Medium": 21403,
-      "Easy": 20794,
-      "Hard": 17940
+    "Stadium": {
+      "Easy": 19847,
+      "Hard": 27611,
+      "Medium": 19427
     },
     "Lobby": {
       "Medium": 904608000

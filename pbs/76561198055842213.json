@@ -1,0 +1,41 @@
+{
+  "userId": "76561198055842213",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Atlantis": {
+      "Hard": 52705,
+      "Medium": 46254
+    },
+    "Crag": {
+      "Hard": 99262
+    },
+    "Helix": {
+      "Hard": 123322
+    },
+    "Highwind": {
+      "Hard": 131933
+    },
+    "Impact": {
+      "Hard": 94670
+    },
+    "Lavawell": {
+      "Hard": 83791
+    },
+    "Oasis": {
+      "Hard": 69681
+    },
+    "Olympus": {
+      "Hard": 136917
+    },
+    "Pantheon": {
+      "Hard": 88106
+    },
+    "Silo": {
+      "Hard": 114883
+    },
+    "Stadium": {
+      "Easy": 35775,
+      "Hard": 86422
+    }
+  }
+}

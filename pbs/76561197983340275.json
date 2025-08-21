@@ -1,0 +1,27 @@
+{
+  "userId": "76561197983340275",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Atlantis": {
+      "Hard": 50850
+    },
+    "Helix": {
+      "Hard": 131986
+    },
+    "Lavawell": {
+      "Hard": 62418
+    },
+    "Olympus": {
+      "Hard": 162785
+    },
+    "Pantheon": {
+      "Hard": 79394
+    },
+    "Silo": {
+      "Hard": 100017
+    },
+    "Stadium": {
+      "Hard": 65180
+    }
+  }
+}

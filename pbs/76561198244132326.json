@@ -1,0 +1,36 @@
+{
+  "userId": "76561198244132326",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Atlantis": {
+      "Medium": 28245
+    },
+    "Impact": {
+      "Medium": 62758
+    },
+    "Karman_Station": {
+      "Medium": 41363
+    },
+    "Lavawell": {
+      "Medium": 66746
+    },
+    "Oasis": {
+      "Easy": 31294,
+      "Hard": 70362,
+      "Medium": 61537
+    },
+    "Olympus": {
+      "Medium": 63499
+    },
+    "Pantheon": {
+      "Medium": 29631
+    },
+    "Silo": {
+      "Medium": 47220
+    },
+    "Stadium": {
+      "Hard": 93688,
+      "Medium": 25424
+    }
+  }
+}

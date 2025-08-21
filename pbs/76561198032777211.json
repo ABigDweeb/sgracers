@@ -1,0 +1,34 @@
+{
+  "userId": "76561198032777211",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Abyss": {
+      "Easy": 30921
+    },
+    "Atlantis": {
+      "Hard": 55166
+    },
+    "Crag": {
+      "Hard": 166370
+    },
+    "Helix": {
+      "Hard": 98666
+    },
+    "Impact": {
+      "Hard": 61988
+    },
+    "Lavawell": {
+      "Hard": 30423
+    },
+    "Olympus": {
+      "Hard": 100870
+    },
+    "Silo": {
+      "Hard": 128452
+    },
+    "Stadium": {
+      "Easy": 21465,
+      "Hard": 34749
+    }
+  }
+}

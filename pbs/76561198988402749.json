@@ -1,0 +1,27 @@
+{
+  "userId": "76561198988402749",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Atlantis": {
+      "Hard": 29175
+    },
+    "Foregone_Destruction": {
+      "Hard": 33068
+    },
+    "Impact": {
+      "Hard": 21942
+    },
+    "Pantheon": {
+      "Hard": 68744,
+      "Medium": 262079
+    },
+    "Silo": {
+      "Medium": 20803
+    },
+    "Stadium": {
+      "Easy": 25613,
+      "Hard": 82094,
+      "Medium": 24320
+    }
+  }
+}

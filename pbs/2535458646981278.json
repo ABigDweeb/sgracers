@@ -1,0 +1,38 @@
+{
+  "userId": "2535458646981278",
+  "platform": "XBOX",
+  "bestTimes": {
+    "Abyss": {
+      "Easy": 33417,
+      "Hard": 104056
+    },
+    "Atlantis": {
+      "Easy": 49350
+    },
+    "Highwind": {
+      "Easy": 44778,
+      "Hard": 114749
+    },
+    "Impact": {
+      "Hard": 38222
+    },
+    "Oasis": {
+      "Easy": 42226,
+      "Medium": 54355
+    },
+    "Olympus": {
+      "Easy": 46531
+    },
+    "Pantheon": {
+      "Hard": 84235
+    },
+    "Silo": {
+      "Easy": 31214,
+      "Medium": 36787
+    },
+    "Stadium": {
+      "Easy": 31665,
+      "Hard": 73091
+    }
+  }
+}

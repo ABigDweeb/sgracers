@@ -1,0 +1,28 @@
+{
+  "userId": "76561199016214076",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Atlantis": {
+      "Hard": 68282,
+      "Medium": 76234
+    },
+    "Crag": {
+      "Hard": 116245
+    },
+    "Highwind": {
+      "Easy": 45724,
+      "Medium": 59703
+    },
+    "Lavawell": {
+      "Hard": 84801
+    },
+    "Pantheon": {
+      "Hard": 102315,
+      "Medium": 56423
+    },
+    "Stadium": {
+      "Hard": 82994,
+      "Medium": 58329
+    }
+  }
+}

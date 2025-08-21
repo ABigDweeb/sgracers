@@ -1,0 +1,25 @@
+{
+  "userId": "76561198899725094",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Abyss": {
+      "Easy": 24675,
+      "Medium": 29176
+    },
+    "Foregone_Destruction": {
+      "Easy": 27545
+    },
+    "Helix": {
+      "Medium": 26869
+    },
+    "Highwind": {
+      "Medium": 26193
+    },
+    "Impact": {
+      "Hard": 29541
+    },
+    "Stadium": {
+      "Medium": 22763
+    }
+  }
+}

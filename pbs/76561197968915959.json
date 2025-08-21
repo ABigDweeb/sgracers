@@ -1,0 +1,33 @@
+{
+  "userId": "76561197968915959",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Atlantis": {
+      "Medium": 66218
+    },
+    "Foregone_Destruction": {
+      "Medium": 135994
+    },
+    "Helix": {
+      "Hard": 160821,
+      "Medium": 57984
+    },
+    "Highwind": {
+      "Medium": 66622
+    },
+    "Impact": {
+      "Hard": 74712
+    },
+    "Pantheon": {
+      "Hard": 89493,
+      "Medium": 52385
+    },
+    "Silo": {
+      "Hard": 256781
+    },
+    "Stadium": {
+      "Hard": 117895,
+      "Medium": 50009
+    }
+  }
+}
