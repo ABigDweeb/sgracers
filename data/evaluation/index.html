@@ -437,7 +437,14 @@
         html += `<div class="sub-header" data-column="${timeCols[i]}">${timeSubs[i]}</div>`;
       }
       
-      for (let i = 0; i < posSubs.length; i++) { html += `<div class="sub-header clickable" data-column="${posCols[i]}">${posSubs[i]}</div>`; }
+      for (let i = 0; i < posSubs.length; i++) { 
+        if(i < 8) {
+          html += `<div class="sub-header" data-column="${posCols[i]}">${posSubs[i]}</div>`;
+        }
+        else {
+          html += `<div class="sub-header clickable" data-column="${posCols[i]}">${posSubs[i]}</div>`;
+        }
+      }
 
       players.forEach(player => {
         const s = player.stats;
