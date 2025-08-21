@@ -1,0 +1,35 @@
+{
+  "userId": "3768801851961611842",
+  "platform": "PSN",
+  "bestTimes": {
+    "Atlantis": {
+      "Easy": 39439,
+      "Hard": 48648,
+      "Medium": 48782
+    },
+    "Impact": {
+      "Easy": 25959,
+      "Hard": 48182,
+      "Medium": 27443
+    },
+    "Karman_Station": {
+      "Easy": 35101
+    },
+    "Oasis": {
+      "Easy": 27694,
+      "Medium": 39189
+    },
+    "Olympus": {
+      "Easy": 26744,
+      "Hard": 110743
+    },
+    "Silo": {
+      "Easy": 39339,
+      "Hard": 126142,
+      "Medium": 37955
+    },
+    "Stadium": {
+      "Medium": 24240
+    }
+  }
+}

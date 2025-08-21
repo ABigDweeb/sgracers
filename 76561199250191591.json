@@ -1,0 +1,36 @@
+{
+  "userId": "76561199250191591",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Abyss": {
+      "Easy": 35104,
+      "Hard": 58841,
+      "Medium": 67663
+    },
+    "Atlantis": {
+      "Easy": 48756
+    },
+    "Highwind": {
+      "Easy": 42549,
+      "Hard": 97344
+    },
+    "Impact": {
+      "Easy": 54983
+    },
+    "Oasis": {
+      "Easy": 45552
+    },
+    "Olympus": {
+      "Medium": 59896
+    },
+    "Pantheon": {
+      "Easy": 41871,
+      "Hard": 69636
+    },
+    "Stadium": {
+      "Easy": 24306,
+      "Hard": 66067,
+      "Medium": 45667
+    }
+  }
+}

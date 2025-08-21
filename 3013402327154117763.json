@@ -1,0 +1,28 @@
+{
+  "userId": "3013402327154117763",
+  "platform": "PSN",
+  "bestTimes": {
+    "Atlantis": {
+      "Easy": 38470
+    },
+    "Crag": {
+      "Easy": 33383
+    },
+    "Helix": {
+      "Easy": 23422
+    },
+    "Highwind": {
+      "Medium": 24508
+    },
+    "Impact": {
+      "Hard": 42742
+    },
+    "Karman_Station": {
+      "Medium": 47397
+    },
+    "Stadium": {
+      "Easy": 24173,
+      "Hard": 40039
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "userId": "76561199277453948",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Stadium": {
+      "Medium": 48791,
+      "Easy": 44396
+    },
+    "Impact": {
+      "Hard": 73262,
+      "Medium": 24212
+    },
+    "Helix": {
+      "Medium": 28348,
+      "Hard": 76419
+    },
+    "Karman_Station": {
+      "Easy": 54000
+    },
+    "Crag": {
+      "Easy": 37580
+    },
+    "Atlantis": {
+      "Easy": 40274
+    },
+    "Silo": {
+      "Medium": 55427,
+      "Easy": 55638
+    },
+    "Highwind": {
+      "Medium": 55943
+    },
+    "Foregone_Destruction": {
+      "Easy": 55919
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "userId": "6506114131206528794",
+  "platform": "PSN",
+  "bestTimes": {
+    "Abyss": {
+      "Hard": 22404
+    },
+    "Atlantis": {
+      "Medium": 45607
+    },
+    "Impact": {
+      "Hard": 27209
+    },
+    "Lavawell": {
+      "Hard": 28060
+    },
+    "Pantheon": {
+      "Hard": 60991
+    },
+    "Silo": {
+      "Hard": 202888
+    },
+    "Stadium": {
+      "Hard": 37502
+    }
+  }
+}

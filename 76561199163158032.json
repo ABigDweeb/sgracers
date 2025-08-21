@@ -1,0 +1,31 @@
+{
+  "userId": "76561199163158032",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Abyss": {
+      "Easy": 33531
+    },
+    "Crag": {
+      "Hard": 91383
+    },
+    "Helix": {
+      "Hard": 89877
+    },
+    "Impact": {
+      "Hard": 60421
+    },
+    "Olympus": {
+      "Hard": 142843
+    },
+    "Pantheon": {
+      "Hard": 64899
+    },
+    "Silo": {
+      "Hard": 98028
+    },
+    "Stadium": {
+      "Hard": 59724,
+      "Medium": 43660
+    }
+  }
+}

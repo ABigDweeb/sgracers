@@ -1,0 +1,45 @@
+{
+  "userId": "7113099904059854271",
+  "platform": "PSN",
+  "bestTimes": {
+    "Abyss": {
+      "Hard": 28878
+    },
+    "Atlantis": {
+      "Hard": 33349
+    },
+    "Crag": {
+      "Hard": 39238
+    },
+    "Helix": {
+      "Hard": 51101
+    },
+    "Highwind": {
+      "Hard": 65179
+    },
+    "Impact": {
+      "Hard": 28421
+    },
+    "Karman_Station": {
+      "Hard": 60510
+    },
+    "Lavawell": {
+      "Hard": 31765
+    },
+    "Oasis": {
+      "Hard": 72237
+    },
+    "Olympus": {
+      "Hard": 174474
+    },
+    "Pantheon": {
+      "Hard": 76423
+    },
+    "Silo": {
+      "Hard": 153654
+    },
+    "Stadium": {
+      "Hard": 94794
+    }
+  }
+}

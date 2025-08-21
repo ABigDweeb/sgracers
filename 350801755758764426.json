@@ -1,0 +1,33 @@
+{
+  "userId": "350801755758764426",
+  "platform": "PSN",
+  "bestTimes": {
+    "Atlantis": {
+      "Medium": 48566
+    },
+    "Crag": {
+      "Medium": 46846
+    },
+    "Helix": {
+      "Medium": 31598
+    },
+    "Highwind": {
+      "Medium": 45150
+    },
+    "Impact": {
+      "Hard": 65061
+    },
+    "Lavawell": {
+      "Medium": 58224
+    },
+    "Oasis": {
+      "Medium": 54086
+    },
+    "Pantheon": {
+      "Medium": 40100
+    },
+    "Stadium": {
+      "Hard": 67408
+    }
+  }
+}

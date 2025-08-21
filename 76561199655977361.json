@@ -1,0 +1,23 @@
+{
+  "userId": "76561199655977361",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Abyss": {
+      "Medium": 25962
+    },
+    "Atlantis": {
+      "Hard": 31766
+    },
+    "Impact": {
+      "Hard": 19574
+    },
+    "Lavawell": {
+      "Hard": 527888
+    },
+    "Silo": {
+      "Easy": 29307,
+      "Hard": 65216,
+      "Medium": 31079
+    }
+  }
+}

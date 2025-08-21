@@ -1,0 +1,32 @@
+{
+  "userId": "76561199224584286",
+  "platform": "STEAM",
+  "bestTimes": {
+    "Abyss": {
+      "Easy": 33471,
+      "Medium": 23229
+    },
+    "Atlantis": {
+      "Easy": 38015
+    },
+    "Crag": {
+      "Easy": 29084
+    },
+    "Highwind": {
+      "Medium": 22249
+    },
+    "Karman_Station": {
+      "Easy": 37306
+    },
+    "Oasis": {
+      "Easy": 27486
+    },
+    "Pantheon": {
+      "Easy": 47041
+    },
+    "Stadium": {
+      "Easy": 26329,
+      "Medium": 52237
+    }
+  }
+}
