@@ -14,7 +14,6 @@ async function loadMappings() {
       const data = JSON.parse(textData);
       userMap = new Map();
       
-      // Handle both array and object formats
       const entries = Array.isArray(data) ? data : Object.values(data);
       
       entries.forEach(user => {

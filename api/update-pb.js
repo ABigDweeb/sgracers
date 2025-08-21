@@ -3,7 +3,6 @@ const { Octokit } = require('@octokit/rest');
 module.exports = async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
 
-  // Parse body
   let body;
   try {
     if (req.method === 'POST') {
@@ -28,7 +27,6 @@ module.exports = async (req, res) => {
     });
   }
 
-  // Validate fields
   const { platform, platformUserId, map, timeMs, difficulty } = body;
   if (!platform || !platformUserId || !map || timeMs === undefined || !difficulty) {
     return res.status(400).json({ error: 'Missing required fields' });
@@ -37,14 +35,12 @@ module.exports = async (req, res) => {
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
   try {
-    // Get current commit SHA
     const { data: { commit: { sha: latestCommitSha } } } = await octokit.repos.getBranch({
       owner: process.env.GITHUB_REPO_OWNER,
       repo: process.env.GITHUB_REPO_NAME,
       branch: 'main'
     });
 
-    // Get current PB data
     let pbSha = null;
     let currentPb;
     try {
@@ -61,7 +57,6 @@ module.exports = async (req, res) => {
       if (error.status !== 404) throw error;
     }
 
-    // Check if new record
     if (currentPb !== undefined && timeMs >= currentPb) {
       return res.status(200).json({
         success: false,
@@ -71,7 +66,6 @@ module.exports = async (req, res) => {
       });
     }
 
-    // Prepare updated PB
     const updatedPb = {
       userId: platformUserId,
       platform: platform,
@@ -94,7 +88,6 @@ module.exports = async (req, res) => {
       }
     };
 
-    // Prepare leaderboard update
     const leaderboardPath = `leaderboards/${map}_${difficulty}.json`;
     let leaderboardSha = null;
     let leaderboard = [];
@@ -119,7 +112,6 @@ module.exports = async (req, res) => {
       if (error.status !== 404) throw error;
     }
 
-    // Update leaderboard
     const updatedLeaderboard = leaderboard
       .filter(e => e.compositeUserId.platformId !== platformUserId)
       .concat({
@@ -132,7 +124,6 @@ module.exports = async (req, res) => {
       })
       .sort((a, b) => a.value - b.value);
 
-    // Create blobs for both files
     const { data: pbBlob } = await octokit.git.createBlob({
       owner: process.env.GITHUB_REPO_OWNER,
       repo: process.env.GITHUB_REPO_NAME,
@@ -147,7 +138,6 @@ module.exports = async (req, res) => {
       encoding: 'utf-8'
     });
 
-    // Create new tree with both files
     const { data: newTree } = await octokit.git.createTree({
       owner: process.env.GITHUB_REPO_OWNER,
       repo: process.env.GITHUB_REPO_NAME,
@@ -168,7 +158,6 @@ module.exports = async (req, res) => {
       ]
     });
 
-    // Create commit
     const { data: commit } = await octokit.git.createCommit({
       owner: process.env.GITHUB_REPO_OWNER,
       repo: process.env.GITHUB_REPO_NAME,
@@ -177,7 +166,6 @@ module.exports = async (req, res) => {
       parents: [latestCommitSha]
     });
 
-    // Update reference
     await octokit.git.updateRef({
       owner: process.env.GITHUB_REPO_OWNER,
       repo: process.env.GITHUB_REPO_NAME,

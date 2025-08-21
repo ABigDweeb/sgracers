@@ -19,7 +19,6 @@ export default async (req, res) => {
       });
     }
 
-    // Read file and remove BOM if present
     let data = fs.readFileSync(filePath, 'utf8');
     if (data.charCodeAt(0) === 0xFEFF) {
       data = data.slice(1); // Remove BOM
@@ -38,7 +37,6 @@ export default async (req, res) => {
       });
     }
 
-    // Get only the top 10 entries
     const top10 = Array.isArray(leaderboardData) 
       ? leaderboardData.slice(0, 10) 
       : leaderboardData;

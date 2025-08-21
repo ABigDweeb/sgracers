@@ -6,6 +6,10 @@
       "destination": "/data/positions"
     },
     {
+      "source": "/worldrecords",
+      "destination": "/wrs"
+    },
+    {
       "source": "/social/public/namespaces/splitgate/leaderboard",
       "destination": "/api/rewrite-handler"
     },

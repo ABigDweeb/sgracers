@@ -5,7 +5,6 @@ export const config = {
 };
 
 export default async function handler(request) {
-  // Main handler
   if (request.method !== 'POST') {
     return new Response(JSON.stringify({
       error: 'Method not allowed',
@@ -14,7 +13,6 @@ export default async function handler(request) {
   }
 
   try {
-    // Parse JSON body
     const body = await request.json();
     const { category, difficulty } = body || {};
     
@@ -25,7 +23,6 @@ export default async function handler(request) {
       }), { status: 400 });
     }
 
-    // Load leaderboard data
     const leaderboardUrl = new URL(
       `/leaderboards/${encodeURIComponent(category)}_${encodeURIComponent(difficulty)}.json`,
       request.url
@@ -41,20 +38,18 @@ export default async function handler(request) {
 
     const leaderboardData = await leaderboardResponse.json();
 
-    // Transform to desired format
     const formattedData = await Promise.all(
       leaderboardData.map(async (entry) => {
         const platformId = entry.compositeUserId?.platformId;
         return {
-          userId: await getUserId(platformId) || platformId, // Fallback to platformId if no mapping
+          userId: await getUserId(platformId) || platformId,
           platform: entry.compositeUserId?.platform || 'STEAM',
           value: entry.value,
-          difficulty: difficulty // From request
+          difficulty: difficulty
         };
       })
     );
 
-    // Filter out null userIds if needed
     const filteredData = formattedData.filter(entry => entry.userId);
 
     return new Response(JSON.stringify(filteredData), {
@@ -72,4 +67,3 @@ export default async function handler(request) {
     }), { status: 500 });
   }
 }
-

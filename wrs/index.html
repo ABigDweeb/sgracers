@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>SG Race World Records</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      background: #111; 
+      color: #eee; 
+      margin: 0; 
+      padding: 15px 30px;
+    }
+    h1 { 
+      margin-bottom: 20px;
+      font-size: 2.8em; 
+      text-align: center;
+    }
+    .container { 
+      max-width: 1200px; 
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .controls { 
+      display: flex; 
+      gap: 40px; 
+      margin-bottom: 20px;
+    }
+    select { 
+      padding: 15px 25px; 
+      background: #222; 
+      color: #eee; 
+      border: 1px solid #444; 
+      border-radius: 8px;
+      font-size: 1.5em;
+      min-width: 250px;
+    }
+    .video-container {
+      margin-top: 10px;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .video-placeholder {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      color: #888;
+      font-size: 1.5em;
+    }
+    iframe, video {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .loading { 
+      color: #0bf; 
+      font-style: italic; 
+    }
+    .error { 
+      color: #f55;
+    }
+    .dev-box {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      color: #aaa;
+      font-size: 0.85em;
+      text-align: right;
+      line-height: 1.4;
+      background: rgba(30, 30, 30, 0.8);
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid #444;
+    }
+    .dev-box a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .dev-box a:hover {
+      text-decoration: underline;
+    }
+    .discord-logo {
+      height: 16px;
+      width: 21px;
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+    .burger-menu {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+    }
+    .burger-icon {
+      width: 40px;
+      height: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      padding: 5px;
+    }
+    .burger-line {
+      height: 4px;
+      width: 100%;
+      background-color: #eee;
+      border-radius: 2px;
+    }
+    .menu-dropdown {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      background: #222;
+      border: 1px solid #444;
+      border-radius: 5px;
+      min-width: 200px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .menu-dropdown.show {
+      display: flex;
+    }
+    .menu-item {
+      padding: 12px 20px;
+      color: #eee;
+      text-decoration: none;
+      font-size: 1.2em;
+      transition: background-color 0.2s;
+    }
+    .menu-item:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="burger-menu">
+    <div class="burger-icon" id="burgerIcon">
+      <div class="burger-line"></div>
+      <div class="burger-line"></div>
+      <div class="burger-line"></div>
+    </div>
+    <div class="menu-dropdown" id="menuDropdown">
+      <a href="/" class="menu-item">Leaderboard View</a>
+      <a href="/data/times" class="menu-item">Times Spreadsheet</a>
+      <a href="/data/positions" class="menu-item">Positions Spreadsheet</a>
+      <a href="/data/individual" class="menu-item">Individual Lookup</a>
+      <a href="/wrs" class="menu-item">World Records</a>
+      <a href="/data/evaluation" class="menu-item">Top Racer Evaluation</a>
+    </div>
+  </div>
+  
+  <div class="container">
+    <h1>Splitgate Race World Records</h1>
+    
+    <div class="controls">
+      <select id="mapSelect"></select>
+      <select id="difficultySelect"></select>
+    </div>
+    
+    <div class="video-container">
+      <div class="video-placeholder" id="videoPlaceholder">
+        Select a map and difficulty to view the world record
+      </div>
+    </div>
+  </div>
+
+  <div class="dev-box">
+    <a href="https://discord.gg/YgGdSM3yC4" target="_blank"> 
+    <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-logo" alt="Discord"></a> v0.3.0<br>
+    <a href="https://x.com/ABigDweeb" target="_blank">made by Dweeb</a>
+  </div>
+
+  <script>
+    burgerIcon.addEventListener('click', function() {
+      menuDropdown.classList.toggle('show');
+    });
+
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('.burger-menu')) {
+        menuDropdown.classList.remove('show');
+      }
+    });
+    
+    const maps = [
+      "Abyss", "Atlantis", "Crag", "Foregone_Destruction", "Helix",
+      "Highwind", "Impact", "Karman_Station", "Lavawell", "Oasis",
+      "Olympus", "Pantheon", "Silo", "Stadium"
+    ];
+    const difficulties = ["Easy", "Medium", "Hard"];
+
+    const mapSelect = document.getElementById('mapSelect');
+    const difficultySelect = document.getElementById('difficultySelect');
+    const videoPlaceholder = document.getElementById('videoPlaceholder');
+    const videoContainer = document.querySelector('.video-container');
+
+    const wrVideos = {
+      "Abyss": {
+        "Easy": { type: "discord", url: "https://cdn.discordapp.com/attachments/976805183910735922/1387967530366402792/abyss_easy_20.274.mp4?ex=68a7c77e&is=68a675fe&hm=464bde40893384e76f153307c8aded00594b2588f4a6d8d77af8263cdc3dd9fb&" },
+        "Medium": { type: "youtube", id: "eHdlDRgFUeE" },
+        "Hard": { type: "youtube", id: "IHRxU2MC2hk" }
+      },
+      "Atlantis": {
+        "Easy": { type: "youtube", id: "QTSP5eRpdEg" }, 
+        "Medium": { type: "youtube", id: "KNmhHXFQPlo" },
+        "Hard": { type: "discord", url: "https://cdn.discordapp.com/attachments/976805183910735922/1407974305425522708/8mb.video-BV7-CdjNqMny.mp4?ex=68a80dc1&is=68a6bc41&hm=d167abd6074857ef9f55301b972cfb77be0d465c742807b0fb6e07950cb6a0ef&" }
+      },
+      "Crag": {
+        "Easy": { type: "youtube", id: "2Fflkxj5L0A" }, 
+        "Medium": { type: "youtube", id: "1MGWysQY50c" },
+        "Hard": { type: "youtube", id: "F6RgSt6i-n0" }
+      },
+      "Foregone_Destruction": {
+        "Easy": { type: "youtube", id: "0q9a6Hr60qk" }, 
+        "Medium": { type: "youtube", id: "8BCIiAc6Dao" },
+        "Hard": { type: "discord", url: "https://cdn.discordapp.com/attachments/976805183910735922/1394795542818717706/foregone_hard_24.502.mp4?ex=68a79213&is=68a64093&hm=a3b4602fb1a2534df4c063e5d24184a7539fdbe6836fd8fa986f3494442b8533&" }
+      },
+      "Helix": {
+        "Easy": { type: "youtube", id: "ErW3QeBrYu8" }, 
+        "Medium": { type: "youtube", id: "QW0K6_3z74c" },
+        "Hard": { type: "youtube", id: "vzHwb-zWBKw" }
+      },
+      "Highwind": {
+        "Easy": { type: "youtube", id: "NFaxVoWsJ_w" }, 
+        "Medium": { type: "youtube", id: "_C_pToOFLZg" },
+        "Hard": { type: "youtube", id: "fQpMWe75Ndk" }
+      },
+      "Impact": {
+        "Easy": { type: "youtube", id: "7ju6ereRsD4" }, 
+        "Medium": { type: "youtube", id: "N47uRji-iKA" },
+        "Hard": { type: "discord", url: "https://cdn.discordapp.com/attachments/976805183910735922/1399359560455819375/8mb.video-rZQ-yCS0haOX.mp4?ex=68a7b1e6&is=68a66066&hm=0fb1058ced71052a831498dc25d03a63dd7073f3aaa50d0163b97f9212a5f107&" }
+      },
+      "Karman_Station": {
+        "Easy": { type: "youtube", id: "SQIOCTk_Pho" }, 
+        "Medium": { type: "youtube", id: "wOgoQn17WRI" },
+        "Hard": { type: "discord", url: "https://cdn.discordapp.com/attachments/976805183910735922/1394114994479693934/karman_station_hard_24.431.mp4?ex=68a7bb44&is=68a669c4&hm=c367f642be638ffc89a19079f9623afa01aad59926057259b0ba5112a884a37e&" }
+      },
+      "Lavawell": {
+        "Easy": { type: "youtube", id: "A9hUXPkTbaQ" }, 
+        "Medium": { type: "youtube", id: "YUAHFn1QsfM" },
+        "Hard": { type: "youtube", id: "DEiHZLcS80k" }
+      },
+      "Oasis": {
+        "Easy": { type: "discord", url: "https://cdn.discordapp.com/attachments/976805183910735922/1363291804933427361/8mb.video-Urr-A49oKUeL.mp4?ex=68a7a86f&is=68a656ef&hm=24a9f6c561124fb93187c363090ebeacab9220de6264128281e0009bc6f98965&" }, 
+        "Medium": { type: "discord", url: "https://cdn.discordapp.com/attachments/976805183910735922/1273007952135065741/oasis_med_21.743.mov?ex=68a77a8b&is=68a6290b&hm=bea1fa1249b5e5d17d670409cf127465207c71d96a0aab345e1a42b043aada24&" },
+        "Hard": { type: "youtube", id: "S5o6AvJTFC8" }
+      },
+      "Olympus": {
+        "Easy": { type: "discord", url: "https://cdn.discordapp.com/attachments/976805183910735922/1371020545709052076/olympus_easy_19.057.mp4?ex=68a76e22&is=68a61ca2&hm=1e6034e85e3719a2c037f6ccf5db3bce173507366d9cf6987adfc949d504874f&" }, 
+        "Medium": { type: "youtube", id: "n1bvinv1zDM" },
+        "Hard": { type: "youtube", id: "_ivxlFzN2f8" }
+      },
+      "Pantheon": {
+        "Easy": { type: "youtube", id: "X0klUdqpcpA" }, 
+        "Medium": { type: "discord", url: "https://cdn.discordapp.com/attachments/976805183910735922/1154983375023656970/panth_med_19.858.mp4?ex=68a7e497&is=68a69317&hm=7bf70060ecae977576f5fc930a3c3ca0a0bc7a718e9dfcb3f96c5da8cb15822b&" },
+        "Hard": { type: "youtube", id: "tpGjCUWM-TQ" }
+      },
+      "Silo": {
+        "Easy": { type: "youtube", id: "WlqfBdLQYeQ" }, 
+        "Medium": { type: "youtube", id: "yijv_lz_1Jg" },
+        "Hard": { type: "youtube", id: "LKPukuUlcIM" }
+      },
+      "Stadium": {
+        "Easy": { type: "youtube", id: "kT2tkhfEhgY" }, 
+        "Medium": { type: "youtube", id: "-JbbzQe3eDE" },
+        "Hard": { type: "youtube", id: "EiTJ6tpWdUY" }
+      }
+    };
+
+    function getDisplayName(map) {
+      if (map === "Silo") {
+        return "Club Silo";
+      }
+      return map.replace(/_/g, ' ');
+    }
+
+    async function loadVideo() {
+      const map = mapSelect.value;
+      const difficulty = difficultySelect.value;
+      
+      videoContainer.innerHTML = '<div class="video-placeholder loading">Loading...</div>';
+      
+      if (wrVideos[map] && wrVideos[map][difficulty]) {
+        const videoData = wrVideos[map][difficulty];
+        
+        try {
+          if (videoData.type === "youtube") {
+            videoContainer.innerHTML = `
+              <iframe 
+                src="https://www.youtube.com/embed/${videoData.id}" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            `;
+          } 
+          else if (videoData.type === "discord") {
+            videoContainer.innerHTML = `
+              <video controls>
+                <source src="${videoData.url}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            `;
+          }
+        } catch (error) {
+          console.error("Error loading video:", error);
+          videoContainer.innerHTML = `
+            <div class="video-placeholder error">
+              Error loading video: ${error.message}
+            </div>
+          `;
+        }
+      } else {
+        videoContainer.innerHTML = `
+          <div class="video-placeholder">
+            No world record video available for ${getDisplayName(map)} ${difficulty}
+          </div>
+        `;
+      }
+    }
+
+    function populateDropdowns() {
+      mapSelect.innerHTML = '';
+      difficultySelect.innerHTML = '';
+
+      maps.forEach(map => {
+        const option = document.createElement('option');
+        option.value = map;
+        option.textContent = getDisplayName(map);
+        mapSelect.appendChild(option);
+      });
+
+      difficulties.forEach(diff => {
+        const option = document.createElement('option');
+        option.value = diff;
+        option.textContent = diff;
+        difficultySelect.appendChild(option);
+      });
+
+      mapSelect.value = "Stadium";
+      difficultySelect.value = "Medium";
+    }
+
+    function init() {
+      populateDropdowns();
+      mapSelect.addEventListener('change', loadVideo);
+      difficultySelect.addEventListener('change', loadVideo);
+      loadVideo();
+    }
+
+    init();
+  </script>
+</body>
+</html>
