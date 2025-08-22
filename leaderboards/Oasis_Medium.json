@@ -1,19 +1,19 @@
 [
   {
     "compositeUserId": {
+      "platformId": "76561199081543107",
+      "platform": "STEAM"
+    },
+    "value": 21323,
+    "displayName": "Dweeb"
+  },
+  {
+    "compositeUserId": {
       "platformId": "76561198178160007",
       "platform": "STEAM"
     },
     "value": 21430,
     "displayName": "blueski"
-  },
-  {
-    "compositeUserId": {
-      "platformId": "76561199081543107",
-      "platform": "STEAM"
-    },
-    "value": 21701,
-    "displayName": "Dweeb"
   },
   {
     "compositeUserId": {
