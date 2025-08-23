@@ -67,30 +67,6 @@
     .error { 
       color: #f55;
     }
-    .player-info {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #614a00;
-      color: gold;
-      padding: 15px;
-      border: 1px solid gold;
-      border-radius: 5px;
-      max-width: 400px;
-      z-index: 100;
-    }
-    .player-info h3 {
-      margin: 0 0 10px 0;
-      text-align: center;
-    }
-    .player-info p {
-      margin: 5px 0;
-    }
-    .time-display {
-      font-size: 1.2em;
-      text-align: left;
-      margin-top: 10px;
-    }
     .dev-box {
       position: fixed;
       bottom: 15px;
@@ -198,12 +174,6 @@
     </div>
   </div>
 
-  <div class="player-info" id="playerInfo">
-    <h3>World Record Holder</h3>
-    <p id="playerName">Loading...</p>
-    <p id="playerTime" class="time-display">Time: Loading...</p>
-  </div>
-
   <div class="dev-box">
     <a href="https://discord.gg/YgGdSM3yC4" target="_blank"> 
     <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-logo" alt="Discord"></a> v0.3.1<br>
@@ -232,21 +202,17 @@
     const difficultySelect = document.getElementById('difficultySelect');
     const videoPlaceholder = document.getElementById('videoPlaceholder');
     const videoContainer = document.querySelector('.video-container');
-    const playerInfo = document.getElementById('playerInfo');
-    const playerName = document.getElementById('playerName');
-    const playerPlatform = document.getElementById('playerPlatform');
-    const playerTime = document.getElementById('playerTime');
 
     const wrVideos = {
       "Abyss": {
-        "Easy": { type: "discord", url: "https://cdn.discordapp.com/attachments/976805183910735922/1387967530366402792/abyss_easy_20.274.mp4?ex=68a7c77e&is=68a675fe&hm=464bde40893384e76f153307c8aded00594b2588f4a6d8d77af8263cdc3dd9fb&" },
+        "Easy": { type: "gdrive", id: "1wT2UOYpFeqn8Qi86gUkKIoMymyPpESHj" },
         "Medium": { type: "youtube", id: "eHdlDRgFUeE" },
         "Hard": { type: "youtube", id: "IHRxU2MC2hk" }
       },
       "Atlantis": {
         "Easy": { type: "youtube", id: "QTSP5eRpdEg" }, 
         "Medium": { type: "youtube", id: "KNmhHXFQPlo" },
-        "Hard": { type: "discord", url: "https://cdn.discordapp.com/attachments/976805183910735922/1407974305425522708/8mb.video-BV7-CdjNqMny.mp4?ex=68a80dc1&is=68a6bc41&hm=d167abd6074857ef9f55301b972cfb77be0d465c742807b0fb6e07950cb6a0ef&" }
+        "Hard": { type: "gdrive", id: "1DNfjXxW9G0FZgV5KcJSoXdA1Vjt_9Yjh" }
       },
       "Crag": {
         "Easy": { type: "youtube", id: "2Fflkxj5L0A" }, 
@@ -256,7 +222,7 @@
       "Foregone_Destruction": {
         "Easy": { type: "youtube", id: "0q9a6Hr60qk" }, 
         "Medium": { type: "youtube", id: "8BCIiAc6Dao" },
-        "Hard": { type: "discord", url: "https://cdn.discordapp.com/attachments/976805183910735922/1394795542818717706/foregone_hard_24.502.mp4?ex=68a79213&is=68a64093&hm=a3b4602fb1a2534df4c063e5d24184a7539fdbe6836fd8fa986f3494442b8533&" }
+        "Hard": { type: "gdrive", id: "1A71btbE1hsVFyP-hcK5fozESPZDQvVay" }
       },
       "Helix": {
         "Easy": { type: "youtube", id: "ErW3QeBrYu8" }, 
@@ -271,12 +237,12 @@
       "Impact": {
         "Easy": { type: "youtube", id: "7ju6ereRsD4" }, 
         "Medium": { type: "youtube", id: "N47uRji-iKA" },
-        "Hard": { type: "discord", url: "https://cdn.discordapp.com/attachments/976805183910735922/1399359560455819375/8mb.video-rZQ-yCS0haOX.mp4?ex=68a7b1e6&is=68a66066&hm=0fb1058ced71052a831498dc25d03a63dd7073f3aaa50d0163b97f9212a5f107&" }
+        "Hard": { type: "gdrive", id: "1-rXKTTwsVvO8ACpliCPapHyhX7whSubB" }
       },
       "Karman_Station": {
         "Easy": { type: "youtube", id: "SQIOCTk_Pho" }, 
         "Medium": { type: "youtube", id: "wOgoQn17WRI" },
-        "Hard": { type: "discord", url: "https://cdn.discordapp.com/attachments/976805183910735922/1394114994479693934/karman_station_hard_24.431.mp4?ex=68a7bb44&is=68a669c4&hm=c367f642be638ffc89a19079f9623afa01aad59926057259b0ba5112a884a37e&" }
+        "Hard": { type: "gdrive", id: "1mlSctksyp59FeTak1xp8OJBhbQlZ_hqo" }
       },
       "Lavawell": {
         "Easy": { type: "youtube", id: "A9hUXPkTbaQ" }, 
@@ -284,18 +250,18 @@
         "Hard": { type: "youtube", id: "DEiHZLcS80k" }
       },
       "Oasis": {
-        "Easy": { type: "discord", url: "https://cdn.discordapp.com/attachments/976805183910735922/1363291804933427361/8mb.video-Urr-A49oKUeL.mp4?ex=68a7a86f&is=68a656ef&hm=24a9f6c561124fb93187c363090ebeacab9220de6264128281e0009bc6f98965&" }, 
-        "Medium": { type: "discord", url: "https://cdn.discordapp.com/attachments/976805183910735922/1273007952135065741/oasis_med_21.743.mov?ex=68a77a8b&is=68a6290b&hm=bea1fa1249b5e5d17d670409cf127465207c71d96a0aab345e1a42b043aada24&" },
+        "Easy": { type: "gdrive", id: "1IW-am75nxt45MC5UP2Xm_vdMycr277df" }, 
+        "Medium": { type: "gdrive", id: "1DPJm4BKOGJ3U7y01A9CXefW6y6Y1P2ez" },
         "Hard": { type: "youtube", id: "S5o6AvJTFC8" }
       },
       "Olympus": {
-        "Easy": { type: "discord", url: "https://cdn.discordapp.com/attachments/976805183910735922/1371020545709052076/olympus_easy_19.057.mp4?ex=68a76e22&is=68a61ca2&hm=1e6034e85e3719a2c037f6ccf5db3bce173507366d9cf6987adfc949d504874f&" }, 
+        "Easy": { type: "gdrive", id: "1drgDOz3J5BkK8I5ZnvHVfeXJ_n5Z9z76" }, 
         "Medium": { type: "youtube", id: "n1bvinv1zDM" },
         "Hard": { type: "youtube", id: "_ivxlFzN2f8" }
       },
       "Pantheon": {
         "Easy": { type: "youtube", id: "X0klUdqpcpA" }, 
-        "Medium": { type: "discord", url: "https://cdn.discordapp.com/attachments/976805183910735922/1154983375023656970/panth_med_19.858.mp4?ex=68a7e497&is=68a69317&hm=7bf70060ecae977576f5fc930a3c3ca0a0bc7a718e9dfcb3f96c5da8cb15822b&" },
+        "Medium": { type: "gdrive", id: "1a5X19uLGgd3dSYTHI1DlAUwg3DoZ9njw" },
         "Hard": { type: "youtube", id: "tpGjCUWM-TQ" }
       },
       "Silo": {
@@ -317,43 +283,11 @@
       return map.replace(/_/g, ' ');
     }
 
-    function formatTime(milliseconds) {
-      const seconds = (milliseconds / 1000).toFixed(3);
-      return seconds + 's';
-    }
-
-    async function loadLeaderboardData(map, difficulty) {
-      try {
-        const filename = `/leaderboards/${map}_${difficulty}.json`;
-        const response = await fetch(filename);
-        
-        if (!response.ok) {
-          throw new Error(`Failed to load leaderboard: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        
-        if (data && data.length > 0) {
-          const firstPlace = data[0];
-          playerName.textContent = 'Player: ' + firstPlace.displayName;
-          playerTime.textContent = `Time: ${formatTime(firstPlace.value)}`;
-          playerInfo.style.display = 'block';
-        } else {
-          playerInfo.style.display = 'none';
-        }
-      } catch (error) {
-        console.error('Error loading leaderboard data:', error);
-        playerInfo.style.display = 'none';
-      }
-    }
-
     async function loadVideo() {
       const map = mapSelect.value;
       const difficulty = difficultySelect.value;
       
       videoContainer.innerHTML = '<div class="video-placeholder loading">Loading...</div>';
-
-      await loadLeaderboardData(map, difficulty);
       
       if (wrVideos[map] && wrVideos[map][difficulty]) {
         const videoData = wrVideos[map][difficulty];
@@ -368,12 +302,13 @@
               </iframe>
             `;
           } 
-          else if (videoData.type === "discord") {
+          else if (videoData.type === "gdrive") {
             videoContainer.innerHTML = `
-              <video controls>
-                <source src="${videoData.url}" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
+              <iframe
+                src="https://drive.google.com/file/d/${videoData.id}/preview"
+                allow="autoplay"
+                allowfullscreen>
+              </iframe>
             `;
           }
         } catch (error) {
