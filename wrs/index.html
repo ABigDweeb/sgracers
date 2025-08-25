@@ -67,6 +67,30 @@
     .error { 
       color: #f55;
     }
+    .player-info {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #614a00;
+      color: gold;
+      padding: 15px;
+      border: 1px solid gold;
+      border-radius: 5px;
+      max-width: 400px;
+      z-index: 100;
+    }
+    .player-info h3 {
+      margin: 0 0 10px 0;
+      text-align: center;
+    }
+    .player-info p {
+      margin: 5px 0;
+    }
+    .time-display {
+      font-size: 1.2em;
+      text-align: left;
+      margin-top: 10px;
+    }
     .dev-box {
       position: fixed;
       bottom: 15px;
@@ -174,9 +198,15 @@
     </div>
   </div>
 
+  <div class="player-info" id="playerInfo">
+    <h3>World Record Holder</h3>
+    <p id="playerName">Loading...</p>
+    <p id="playerTime" class="time-display">Time: Loading...</p>
+  </div>
+
   <div class="dev-box">
     <a href="https://discord.gg/YgGdSM3yC4" target="_blank"> 
-    <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-logo" alt="Discord"></a> v0.3.1<br>
+    <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-logo" alt="Discord"></a> v0.3.2<br>
     <a href="https://x.com/ABigDweeb" target="_blank">made by Dweeb</a>
   </div>
 
@@ -202,6 +232,10 @@
     const difficultySelect = document.getElementById('difficultySelect');
     const videoPlaceholder = document.getElementById('videoPlaceholder');
     const videoContainer = document.querySelector('.video-container');
+    const playerInfo = document.getElementById('playerInfo');
+    const playerName = document.getElementById('playerName');
+    const playerPlatform = document.getElementById('playerPlatform');
+    const playerTime = document.getElementById('playerTime');
 
     const wrVideos = {
       "Abyss": {
@@ -283,11 +317,43 @@
       return map.replace(/_/g, ' ');
     }
 
+    function formatTime(milliseconds) {
+      const seconds = (milliseconds / 1000).toFixed(3);
+      return seconds + 's';
+    }
+
+    async function loadLeaderboardData(map, difficulty) {
+      try {
+        const filename = `/leaderboards/${map}_${difficulty}.json`;
+        const response = await fetch(filename);
+        
+        if (!response.ok) {
+          throw new Error(`Failed to load leaderboard: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data && data.length > 0) {
+          const firstPlace = data[0];
+          playerName.textContent = 'Player: ' + firstPlace.displayName;
+          playerTime.textContent = `Time: ${formatTime(firstPlace.value)}`;
+          playerInfo.style.display = 'block';
+        } else {
+          playerInfo.style.display = 'none';
+        }
+      } catch (error) {
+        console.error('Error loading leaderboard data:', error);
+        playerInfo.style.display = 'none';
+      }
+    }
+
     async function loadVideo() {
       const map = mapSelect.value;
       const difficulty = difficultySelect.value;
       
       videoContainer.innerHTML = '<div class="video-placeholder loading">Loading...</div>';
+
+      await loadLeaderboardData(map, difficulty);
       
       if (wrVideos[map] && wrVideos[map][difficulty]) {
         const videoData = wrVideos[map][difficulty];
