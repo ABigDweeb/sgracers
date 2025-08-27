@@ -1,9 +1,43 @@
 {
   "userId": "76561198974543147",
   "platform": "STEAM",
+  "displayName": "TheOneGuy",
   "bestTimes": {
+    "Atlantis": {
+      "Hard": 38464
+    },
+    "Crag": {
+      "Hard": 110960
+    },
+    "Helix": {
+      "Hard": 73637
+    },
+    "Highwind": {
+      "Hard": 76383
+    },
+    "Impact": {
+      "Hard": 39386
+    },
+    "Lavawell": {
+      "Hard": 38127
+    },
+    "Oasis": {
+      "Easy": 31372,
+      "Hard": 65818
+    },
+    "Olympus": {
+      "Hard": 118526
+    },
+    "Pantheon": {
+      "Hard": 42910
+    },
     "Silo": {
-      "Hard": 77620
+      "Hard": 65467
+    },
+    "Stadium": {
+      "Easy": 23555,
+      "Hard": 43703,
+      "Medium": 290998
     }
   }
 }

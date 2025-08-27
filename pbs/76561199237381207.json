@@ -1,6 +1,7 @@
 {
   "userId": "76561199237381207",
   "platform": "STEAM",
+  "displayName": "pielge",
   "bestTimes": {
     "Abyss": {
       "Easy": 25692,
@@ -28,8 +29,8 @@
       "Medium": 25557
     },
     "Highwind": {
-      "Easy": 30644,
-      "Hard": 46931,
+      "Easy": 27282,
+      "Hard": 40691,
       "Medium": 22885
     },
     "Impact": {

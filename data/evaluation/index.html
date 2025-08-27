@@ -1,574 +1,825 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="UTF-8">
-  <title>Top Racer Evaluation</title>
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <style>
-    body { font-family: Arial, sans-serif; background: #111; color: #eee; margin: 0; padding: 10px 0 15px; }
-    h1 { margin-bottom: 10px; font-size: 2.8em; text-align: center; }
-    .container { margin: 0 auto; display: flex; flex-direction: column; align-items: center; max-width: 95% }
-    #leaderboardDisplay { margin-top: 10px; font-family: monospace; font-size: 1em; line-height: 1.3; width: 100%; max-height: 74vh; overflow: auto; }
+    <meta charset="UTF-8">
+    <title>Top Racer Evaluation</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: #eee;
+            margin: 0;
+            padding: 10px 0 15px;
+        }
 
-    .leaderboard-grid {
-      display: grid;
-      grid-template-columns: 200px repeat(16, 2fr) repeat(4, 1fr);
-      white-space: nowrap;
-      background-color: #252525;
-    }
+        h1 {
+            margin-bottom: 10px;
+            font-size: 2.8em;
+            text-align: center;
+        }
 
-    .player-name-header {
-      background: #333;
-      text-align: left;
-      font-weight: bold;
-      position: sticky;
-      top: 0;
-      left: 0;
-      z-index: 6;
-      height: 61px; 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      grid-row: span 2;
-      padding-left: 8px;
-      border-right: 1px solid #444;
-      border-bottom: 1px solid #444;
-      cursor: pointer;
-    }
+        .container {
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 95%
+        }
 
-    .filter-header {
-      background: #2a2a2a;
-      grid-column: span 2;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 30px;
-      border-right: 1px solid #444;
-      border-bottom: 1px solid #444;
-      user-select: none;
-    }
+        #leaderboardDisplay {
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 1em;
+            line-height: 1.3;
+            width: 100%;
+            max-height: 74vh;
+            overflow: auto;
+        }
 
-    .filter-header.leaderboard { grid-column: span 4; }
+        .leaderboard-grid {
+            display: grid;
+            grid-template-columns: 200px repeat(16, 2fr) repeat(4, 1fr);
+            white-space: nowrap;
+            background-color: #252525;
+        }
 
-    .sub-header {
-      background: #333;
-      text-align: center;
-      position: sticky;
-      top: 31px;
-      z-index: 4;
-      font-size: 0.85em;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-right: 1px solid #444;
-      border-bottom: 1px solid #444;
-      user-select: none;
-    }
+        .player-name-header {
+            background: #333;
+            text-align: left;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 6;
+            height: 61px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            grid-row: span 2;
+            padding-left: 8px;
+            border-right: 1px solid #444;
+            border-bottom: 1px solid #444;
+            cursor: pointer;
+        }
 
-    .player-name {
-      background: #1a1a1a;
-      padding-left: 8px;
-      text-align: left;
-      position: sticky;
-      left: 0;
-      z-index: 3;
-      height: 30px;
-      line-height: 30px;
-      border-right: 1px solid #444;
-      border-bottom: 1px solid #444;
-    }
+        .filter-header {
+            background: #2a2a2a;
+            grid-column: span 2;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30px;
+            border-right: 1px solid #444;
+            border-bottom: 1px solid #444;
+            user-select: none;
+        }
 
-    .player-cell {
-      background: #222;
-      text-align: center;
-      font-size: 0.9em;
-      height: 30px;
-      line-height: 30px;
-      border-right: 1px solid #444;
-      border-bottom: 1px solid #444;
-    }
+        .filter-header.leaderboard {
+            grid-column: span 4;
+        }
 
-    .evaluation-table th.clickable,
-    .filter-header.clickable,
-    .sub-header.clickable { cursor: pointer; }
-    .clickable:hover { background: #3a3a3a; }
-    .clickable.sorted-asc::after { content: " ↑"; }
-    .clickable.sorted-desc::after { content: " ↓"; }
-    .filter-header.time-group { background: #2a4a4a; }
-    .filter-header.position-group { background: #4a2a4a; }
-    .filter-header.easy-group { background: #2a4a2a; }
-    .filter-header.medium-group { background: #4a4a2a; }
-    .filter-header.hard-group { background: #4a2a2a; }
-    .filter-header.leaderboard-group { background: #2a2a4a; }
+        .sub-header {
+            background: #333;
+            text-align: center;
+            position: sticky;
+            top: 31px;
+            z-index: 4;
+            font-size: 0.85em;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid #444;
+            border-bottom: 1px solid #444;
+            user-select: none;
+        }
 
-    .first-place { color: gold; background: #614a00; }
-    .second-place { color: #c7c7c7; background: #8a8a8a; }
-    .third-place { color: #cd7f32; background: #453113; }
-    
-    .loading { color: #0bf; font-style: italic; }
-    .error { color: #f55; }
-    .entry-count { margin-top: 10px; font-size: 0.8em; color: #888; }
+        .player-name {
+            background: #1a1a1a;
+            padding-left: 8px;
+            text-align: left;
+            position: sticky;
+            left: 0;
+            z-index: 3;
+            height: 30px;
+            line-height: 30px;
+            border-right: 1px solid #444;
+            border-bottom: 1px solid #444;
+        }
 
-    #filterControls { margin: 5px 0 10px; padding: 8px; background: #222; border-radius: 5px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
-    #filterControls label { color: #ddd; cursor: pointer; }
-    #filterControls input[type="radio"] { margin-right: 5px; }
+        .player-cell {
+            background: #222;
+            text-align: center;
+            font-size: 0.9em;
+            height: 30px;
+            line-height: 30px;
+            border-right: 1px solid #444;
+            border-bottom: 1px solid #444;
+        }
 
-    .dev-box { position: fixed; bottom: 15px; right: 15px; color: #aaa; font-size: 0.85em; text-align: right; line-height: 1.4; background: rgba(30, 30, 30, 0.8); padding: 8px 12px; border-radius: 6px; border: 1px solid #444; }
-    .dev-box a { color: inherit; text-decoration: none; }
-    .dev-box a:hover { text-decoration: underline; }
-    .discord-logo { height: 16px; width: 21px; vertical-align: middle; margin-right: 4px; }
-    .burger-menu { position: fixed; top: 20px; left: 20px; z-index: 100; }
-    .burger-icon { width: 40px; height: 30px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; padding: 5px; }
-    .burger-line { height: 4px; width: 100%; background-color: #eee; border-radius: 2px; }
-    .menu-dropdown { position: absolute; top: 50px; left: 0; background: #222; border: 1px solid #444; border-radius: 5px; min-width: 200px; display: none; flex-direction: column; overflow: hidden; }
-    .menu-dropdown.show { display: flex; }
-    .menu-item { padding: 12px 20px; color: #eee; text-decoration: none; font-size: 1.2em; transition: background-color 0.2s; }
-    .menu-item:hover { background-color: #333; }
-  </style>
+        .evaluation-table th.clickable,
+        .filter-header.clickable,
+        .sub-header.clickable {
+            cursor: pointer;
+        }
+
+        .clickable:hover {
+            background: #3a3a3a;
+        }
+
+        .clickable.sorted-asc::after {
+            content: " ↑";
+        }
+
+        .clickable.sorted-desc::after {
+            content: " ↓";
+        }
+
+        .filter-header.time-group {
+            background: #2a4a4a;
+        }
+
+        .filter-header.position-group {
+            background: #4a2a4a;
+        }
+
+        .filter-header.easy-group {
+            background: #2a4a2a;
+        }
+
+        .filter-header.medium-group {
+            background: #4a4a2a;
+        }
+
+        .filter-header.hard-group {
+            background: #4a2a2a;
+        }
+
+        .filter-header.leaderboard-group {
+            background: #2a2a4a;
+        }
+
+        .first-place {
+            color: gold;
+            background: #614a00;
+        }
+
+        .second-place {
+            color: #c7c7c7;
+            background: #8a8a8a;
+        }
+
+        .third-place {
+            color: #cd7f32;
+            background: #453113;
+        }
+
+        .loading {
+            color: #0bf;
+            font-style: italic;
+        }
+
+        .error {
+            color: #f55;
+        }
+
+        .entry-count {
+            margin-top: 10px;
+            font-size: 0.8em;
+            color: #888;
+        }
+
+        #filterControls {
+            margin: 5px 0 10px;
+            padding: 8px;
+            background: #222;
+            border-radius: 5px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        #filterControls label {
+            color: #ddd;
+            cursor: pointer;
+        }
+
+        #filterControls input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .dev-box {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            color: #aaa;
+            font-size: 0.85em;
+            text-align: right;
+            line-height: 1.4;
+            background: rgba(30, 30, 30, 0.8);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #444;
+        }
+
+        .dev-box a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .dev-box a:hover {
+            text-decoration: underline;
+        }
+
+        .discord-logo {
+            height: 16px;
+            width: 21px;
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+
+        .burger-menu {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        .burger-icon {
+            width: 40px;
+            height: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .burger-line {
+            height: 4px;
+            width: 100%;
+            background-color: #eee;
+            border-radius: 2px;
+        }
+
+        .menu-dropdown {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            background: #222;
+            border: 1px solid #444;
+            border-radius: 5px;
+            min-width: 200px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .menu-dropdown.show {
+            display: flex;
+        }
+
+        .menu-item {
+            padding: 12px 20px;
+            color: #eee;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: background-color 0.2s;
+        }
+
+        .menu-item:hover {
+            background-color: #333;
+        }
+    </style>
 </head>
+
 <body>
-  <div class="burger-menu">
-    <div class="burger-icon" id="burgerIcon">
-      <div class="burger-line"></div>
-      <div class="burger-line"></div>
-      <div class="burger-line"></div>
-    </div>
-    <div class="menu-dropdown" id="menuDropdown">
-      <a href="/" class="menu-item">Leaderboard View</a>
-      <a href="/data/times" class="menu-item">Times Spreadsheet</a>
-      <a href="/data/positions" class="menu-item">Positions Spreadsheet</a>
-      <a href="/data/individual" class="menu-item">Individual Lookup</a>
-      <a href="/wrs" class="menu-item">World Records</a>
-      <a href="/data/evaluation" class="menu-item">Top Racer Evaluation</a>
-    </div>
-  </div>
-
-  <div class="container">
-    <h1>Top Racer Evaluation</h1>
-
-    <div id="filterControls">
-      <label><input type="radio" name="filter" value="all"> Show all players</label>
-      <label><input type="radio" name="filter" value="completed" checked> Only all races completed</label>
-      <label><input type="radio" name="filter" value="top10"> Only has a top 10</label>
-      <label><input type="radio" name="filter" value="topracers"> Top racer view</label>
+    <div class="burger-menu">
+        <div class="burger-icon" id="burgerIcon">
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+        </div>
+        <div class="menu-dropdown" id="menuDropdown">
+            <a href="/" class="menu-item">Leaderboard View</a>
+            <a href="/stats" class="menu-item">Individual Lookup</a>
+            <a href="/wrs" class="menu-item">World Records</a>
+            <a href="/data/evaluation" class="menu-item">Top Racer Evaluation</a>
+            <a href="/data" class="menu-item">Data Spreadsheet</a>
+            <a href="/racepicker" class="menu-item">Random Race Picker</a>
+        </div>
     </div>
 
-    <div id="leaderboardDisplay"></div>
-    <div id="entryCount" class="entry-count"></div>
-  </div>
+    <div class="container">
+        <h1>Top Racer Evaluation</h1>
 
-  <div class="dev-box">
-    <a href="https://discord.gg/YgGdSM3yC4" target="_blank"> 
-    <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-logo" alt="Discord"></a> v0.3.2<br>
-    <a href="https://x.com/ABigDweeb" target="_blank">made by Dweeb</a>
-  </div>
+        <div id="filterControls">
+            <label><input type="radio" name="filter" value="all" checked> Show all players</label>
+            <label><input type="radio" name="filter" value="completed"> Only all races completed</label>
+            <label><input type="radio" name="filter" value="top10"> Only has a top 10</label>
+            <label><input type="radio" name="filter" value="topracers"> Top racer view</label>
+        </div>
 
-  <script>
-    const maps = ["Abyss","Atlantis","Crag","Foregone_Destruction","Helix","Highwind","Impact","Karman_Station","Lavawell","Oasis","Olympus","Pantheon","Silo","Stadium"];
-    const difficulties = ["Easy","Medium","Hard"];
-    const topRacers = ["Alfa","blueski","Brayden","chikken0","Dweeb","e x m p l","headjakk","JalenMans","Kozmii🌙","pc","Pickle12","SkrubW","Toby Repellant","void"];
+        <div id="leaderboardDisplay">Loading...</div>
+        <div id="entryCount" class="entry-count"></div>
+    </div>
 
-    const evaluationBody = document.getElementById('leaderboardDisplay');
-    const entryCountDisplay = document.getElementById('entryCount');
-    const burgerIcon = document.getElementById('burgerIcon');
-    const menuDropdown = document.getElementById('menuDropdown');
-    const filters = document.querySelectorAll('input[name=\"filter\"]');
+    <div class="dev-box">
+        <a href="https://discord.gg/YgGdSM3yC4" target="_blank">
+            <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-logo" alt="Discord"></a> v0.5.0<br>
+        <a href="https://x.com/ABigDweeb" target="_blank">made by Dweeb</a>
+    </div>
 
-    let allLeaderboards = {};
-    let allPlayersData = [];
-    let totalRaces = maps.length * difficulties.length;
-    let totalPlayers = 0;
-    let currentSort = { column: 'time', direction: 'asc' };
+    <script>
+        const maps = ["Abyss", "Atlantis", "Crag", "Foregone_Destruction", "Helix", "Highwind", "Impact", "Karman_Station", "Lavawell", "Oasis", "Olympus", "Pantheon", "Silo", "Stadium"];
+        const difficulties = ["Easy", "Medium", "Hard"];
+        const topRacers = ["Alfa", "blueski", "Brayden", "chikken0", "Dweeb", "e x m p l", "headjakk", "JalenMans", "pc", "Pickle12", "Shwellsie", "SkrubW", "Toby Repellant", "void"];
 
-    let highlightMap = {};
+        const evaluationBody = document.getElementById('leaderboardDisplay');
+        const entryCountDisplay = document.getElementById('entryCount');
+        const burgerIcon = document.getElementById('burgerIcon');
+        const menuDropdown = document.getElementById('menuDropdown');
+        const filters = document.querySelectorAll('input[name="filter"]');
 
-    burgerIcon.addEventListener('click', () => menuDropdown.classList.toggle('show'));
-    document.addEventListener('click', e => { if (!e.target.closest('.burger-menu')) menuDropdown.classList.remove('show'); });
+        let allLeaderboards = {};
+        let allPlayersData = [];
+        let totalRaces = maps.length * difficulties.length;
+        let totalPlayers = 0;
+        let currentSort = {
+            column: 'time',
+            direction: 'asc'
+        };
 
-    filters.forEach(r => r.addEventListener('change', () => updateView(r.value)));
+        let highlightMap = {};
 
-    function formatTime(ms) {
-      const v = Number(ms);
-      if (!v || !isFinite(v)) return '2:00.000';
-      const m = Math.floor(v / 60000);
-      const s = Math.floor((v % 60000) / 1000);
-      const msms = Math.floor(v % 1000);
-      return m > 0 ? `${m}:${s.toString().padStart(2,'0')}.${msms.toString().padStart(3,'0')}` : `${s}.${msms.toString().padStart(3,'0')}`;
-    }
+        burgerIcon.addEventListener('click', () => menuDropdown.classList.toggle('show'));
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.burger-menu')) menuDropdown.classList.remove('show');
+        });
 
-    function penaltyPos(missing) { return missing * 200; }
-    function penaltyTime(missing) { return missing * 120000; }
+        filters.forEach(r => r.addEventListener('change', () => updateView(r.value)));
 
-    async function loadAllLeaderboards() {
-      entryCountDisplay.textContent = '';
-      totalRaces = maps.length * difficulties.length;
-      try {
-        const results = await Promise.all(
-          maps.flatMap(map => difficulties.map(async difficulty => {
+        function formatTime(ms) {
+            const v = Number(ms);
+            if (!v || !isFinite(v)) return '2:00.000';
+            const m = Math.floor(v / 60000);
+            const s = Math.floor((v % 60000) / 1000);
+            const msms = Math.floor(v % 1000);
+            return m > 0 ? `${m}:${s.toString().padStart(2,'0')}.${msms.toString().padStart(3,'0')}` : `${s}.${msms.toString().padStart(3,'0')}`;
+        }
+
+        function penaltyPos(missing) {
+            return missing * 200;
+        }
+
+        function penaltyTime(missing) {
+            return missing * 120000;
+        }
+
+        async function loadAllLeaderboards() {
+            entryCountDisplay.textContent = '';
+            totalRaces = maps.length * difficulties.length;
+
             try {
-              const filename = `${map}_${difficulty}.json`;
-              const response = await fetch(`/leaderboards/${filename}`);
-              if (!response.ok) return { map, difficulty, data: null };
-              const data = await response.json();
-              return { map, difficulty, data };
-            } catch (e) { return { map, difficulty, data: null }; }
-          }))
-        );
+                const leaderboardsPayload = maps.flatMap(map =>
+                    difficulties.map(difficulty => ({
+                        map,
+                        difficulty,
+                        length: 'all'
+                    }))
+                );
 
-        allLeaderboards = {};
-        results.forEach(({ map, difficulty, data }) => {
-          if (!allLeaderboards[map]) allLeaderboards[map] = {};
-          allLeaderboards[map][difficulty] = (data && (data.leaderboard || data)) || [];
-        });
+                const response = await fetch('/api/generate-leaderboard', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        leaderboards: leaderboardsPayload
+                    })
+                });
 
-        processPlayerData();
-        computeHighlightMap();
-        const defaultFilter = (document.querySelector('input[name=\"filter\"]:checked') || {}).value || 'completed';
-        updateView(defaultFilter);
-      } catch (err) {
-        evaluationBody.innerHTML = `<div class=\"error\">Error: ${err.message}</div>`;
-        entryCountDisplay.textContent = '';
-      }
-    }
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const nestedData = await response.json();
 
-    function processPlayerData() {
-      const players = new Set();
-      const playerStats = {};
+                allLeaderboards = {};
+                maps.forEach(m => {
+                    allLeaderboards[m] = {};
+                });
 
-      maps.forEach(map => {
-        difficulties.forEach(difficulty => {
-          const lb = (allLeaderboards[map] && allLeaderboards[map][difficulty]) || [];
-          lb.forEach((entry, index) => {
-            if (!entry) return;
-            const name = entry.displayName || entry.name || 'Unknown Player';
-            players.add(name);
-            if (!playerStats[name]) {
-              playerStats[name] = {
-                completed: 0, top10: 0, top5: 0, top3: 0, wr: 0,
-                difficultyStats: {
-                  positions: { Easy:{sum:0,count:0}, Medium:{sum:0,count:0}, Hard:{sum:0,count:0} },
-                  times:     { Easy:{sum:0,count:0}, Medium:{sum:0,count:0}, Hard:{sum:0,count:0} }
+                Object.entries(nestedData || {}).forEach(([mapName, difficultyData]) => {
+                    Object.entries(difficultyData || {}).forEach(([difficultyName, value]) => {
+                        if (!maps.includes(mapName) || !difficulties.includes(difficultyName)) return;
+
+                        const list = value && (value.leaderboard || value);
+                        allLeaderboards[mapName][difficultyName] = Array.isArray(list) ? list : [];
+                    });
+                });
+
+                maps.forEach(map => {
+                    difficulties.forEach(diff => {
+                        if (!Array.isArray(allLeaderboards[map][diff])) {
+                            allLeaderboards[map][diff] = [];
+                        }
+                    });
+                });
+
+                processPlayerData();
+                computeHighlightMap();
+                const defaultFilter = (document.querySelector('input[name="filter"]:checked') || {}).value || 'all';
+                updateView(defaultFilter);
+            } catch (err) {
+                evaluationBody.innerHTML = `<div class="error">Error: ${err.message}</div>`;
+                entryCountDisplay.textContent = '';
+            }
+        }
+
+        function processPlayerData() {
+            const players = new Set();
+            const playerStats = {};
+
+            maps.forEach(map => {
+                difficulties.forEach(difficulty => {
+                    const lb = (allLeaderboards[map] && allLeaderboards[map][difficulty]) || [];
+                    lb.forEach((entry, index) => {
+                        if (!entry) return;
+                        const name = entry.displayName || entry.name || 'Unknown Player';
+                        players.add(name);
+                        if (!playerStats[name]) {
+                            playerStats[name] = {
+                                completed: 0,
+                                top10: 0,
+                                top5: 0,
+                                top3: 0,
+                                wr: 0,
+                                difficultyStats: {
+                                    positions: {
+                                        Easy: {
+                                            sum: 0,
+                                            count: 0
+                                        },
+                                        Medium: {
+                                            sum: 0,
+                                            count: 0
+                                        },
+                                        Hard: {
+                                            sum: 0,
+                                            count: 0
+                                        }
+                                    },
+                                    times: {
+                                        Easy: {
+                                            sum: 0,
+                                            count: 0
+                                        },
+                                        Medium: {
+                                            sum: 0,
+                                            count: 0
+                                        },
+                                        Hard: {
+                                            sum: 0,
+                                            count: 0
+                                        }
+                                    }
+                                }
+                            };
+                        }
+                        const position = index + 1;
+                        const time = entry.value;
+
+                        playerStats[name].completed++;
+                        if (position <= 10) playerStats[name].top10++;
+                        if (position <= 5) playerStats[name].top5++;
+                        if (position <= 3) playerStats[name].top3++;
+                        if (position === 1) playerStats[name].wr++;
+
+                        playerStats[name].difficultyStats.positions[difficulty].sum += position;
+                        playerStats[name].difficultyStats.positions[difficulty].count++;
+                        if (time) {
+                            playerStats[name].difficultyStats.times[difficulty].sum += time;
+                            playerStats[name].difficultyStats.times[difficulty].count++;
+                        }
+                    });
+                });
+            });
+
+            allPlayersData = Array.from(players).map(name => {
+                const stats = playerStats[name];
+                const mapsPerDifficulty = maps.length;
+
+                const ePosSum = stats.difficultyStats.positions.Easy.sum || 0;
+                const ePosCount = stats.difficultyStats.positions.Easy.count || 0;
+                const eMissing = Math.max(0, mapsPerDifficulty - ePosCount);
+                const easyTotalPos = ePosSum + penaltyPos(eMissing);
+                const easyAvgPos = (easyTotalPos / mapsPerDifficulty);
+
+                const mPosSum = stats.difficultyStats.positions.Medium.sum || 0;
+                const mPosCount = stats.difficultyStats.positions.Medium.count || 0;
+                const mMissing = Math.max(0, mapsPerDifficulty - mPosCount);
+                const mediumTotalPos = mPosSum + penaltyPos(mMissing);
+                const mediumAvgPos = (mediumTotalPos / mapsPerDifficulty);
+
+                const hPosSum = stats.difficultyStats.positions.Hard.sum || 0;
+                const hPosCount = stats.difficultyStats.positions.Hard.count || 0;
+                const hMissing = Math.max(0, mapsPerDifficulty - hPosCount);
+                const hardTotalPos = hPosSum + penaltyPos(hMissing);
+                const hardAvgPos = (hardTotalPos / mapsPerDifficulty);
+
+                const eTimeSum = stats.difficultyStats.times.Easy.sum || 0;
+                const eTimeCount = stats.difficultyStats.times.Easy.count || 0;
+                const eTimeMissing = Math.max(0, mapsPerDifficulty - eTimeCount);
+                const easyTotalTime = eTimeSum + penaltyTime(eTimeMissing);
+                const easyAvgTime = easyTotalTime / mapsPerDifficulty;
+
+                const mTimeSum = stats.difficultyStats.times.Medium.sum || 0;
+                const mTimeCount = stats.difficultyStats.times.Medium.count || 0;
+                const mTimeMissing = Math.max(0, mapsPerDifficulty - mTimeCount);
+                const mediumTotalTime = mTimeSum + penaltyTime(mTimeMissing);
+                const mediumAvgTime = mediumTotalTime / mapsPerDifficulty;
+
+                const hTimeSum = stats.difficultyStats.times.Hard.sum || 0;
+                const hTimeCount = stats.difficultyStats.times.Hard.count || 0;
+                const hTimeMissing = Math.max(0, mapsPerDifficulty - hTimeCount);
+                const hardTotalTime = hTimeSum + penaltyTime(hTimeMissing);
+                const hardAvgTime = hardTotalTime / mapsPerDifficulty;
+
+                const racesNotCompleted = totalRaces - stats.completed;
+                const totalPosSum = ePosSum + mPosSum + hPosSum;
+                const totalPos = totalPosSum + penaltyPos(racesNotCompleted);
+
+                const totalTimeSum = eTimeSum + mTimeSum + hTimeSum;
+                const totalTime = totalTimeSum + penaltyTime(racesNotCompleted);
+
+                const avgPos = totalPos / totalRaces;
+                const avgTime = totalTime / totalRaces;
+
+                return {
+                    name,
+                    stats: {
+                        ...stats,
+                        easyTotalPos,
+                        easyAvgPos,
+                        mediumTotalPos,
+                        mediumAvgPos,
+                        hardTotalPos,
+                        hardAvgPos,
+                        easyTotalTime,
+                        easyAvgTime,
+                        mediumTotalTime,
+                        mediumAvgTime,
+                        hardTotalTime,
+                        hardAvgTime,
+                        totalPos,
+                        avgPos,
+                        totalTime,
+                        avgTime,
+                        top10: stats.top10,
+                        top5: stats.top5,
+                        top3: stats.top3,
+                        wr: stats.wr
+                    }
+                };
+            });
+
+            totalPlayers = allPlayersData.length;
+        }
+
+        function hl(col, name) {
+            return (highlightMap[col] && highlightMap[col][name]) ? highlightMap[col][name] : '';
+        }
+
+        function computeHighlightMap() {
+            highlightMap = {};
+
+            const timeCols = ["totalTime", "avgTime", "easyTotalTime", "easyAvgTime", "mediumTotalTime", "mediumAvgTime", "hardTotalTime", "hardAvgTime"];
+            const posCols = ["totalPos", "avgPos", "easyTotalPos", "easyAvgPos", "mediumTotalPos", "mediumAvgPos", "hardTotalPos", "hardAvgPos"];
+            const topCols = ["top10", "top5", "top3", "wr"];
+
+            [...timeCols, ...posCols].forEach(col => {
+                const arr = allPlayersData
+                    .map(p => (p && p.stats && p.stats[col] != null) ? {
+                        name: p.name,
+                        value: p.stats[col]
+                    } : null)
+                    .filter(Boolean)
+                    .filter(x => Number.isFinite(x.value));
+
+                if (arr.length === 0) return;
+
+                arr.sort((a, b) => a.value - b.value);
+
+                let i = 0;
+                let rank = 1;
+                while (i < arr.length && rank <= 3) {
+                    let j = i + 1;
+                    while (j < arr.length && arr[j].value === arr[i].value) j++;
+
+                    for (let k = i; k < j; k++) {
+                        highlightMap[col] = highlightMap[col] || {};
+                        if (rank === 1) highlightMap[col][arr[k].name] = 'first-place';
+                        else if (rank === 2) highlightMap[col][arr[k].name] = 'second-place';
+                        else if (rank === 3) highlightMap[col][arr[k].name] = 'third-place';
+                    }
+
+                    rank += (j - i);
+                    i = j;
                 }
-              };
-            }
-            const position = index + 1;
-            const time = entry.value;
+            });
 
-            playerStats[name].completed++;
-            if (position <= 10) playerStats[name].top10++;
-            if (position <= 5) playerStats[name].top5++;
-            if (position <= 3) playerStats[name].top3++;
-            if (position === 1) playerStats[name].wr++;
+            topCols.forEach(col => {
+                const arr = allPlayersData
+                    .map(p => (p && p.stats && p.stats[col] != null) ? {
+                        name: p.name,
+                        value: p.stats[col]
+                    } : null)
+                    .filter(Boolean)
+                    .filter(x => Number.isFinite(x.value));
 
-            playerStats[name].difficultyStats.positions[difficulty].sum += position;
-            playerStats[name].difficultyStats.positions[difficulty].count++;
-            if (time) {
-              playerStats[name].difficultyStats.times[difficulty].sum += time;
-              playerStats[name].difficultyStats.times[difficulty].count++;
+                if (arr.length === 0) return;
+
+                arr.sort((a, b) => b.value - a.value);
+
+                let i = 0;
+                let rank = 1;
+                while (i < arr.length && rank <= 3) {
+                    let j = i + 1;
+                    while (j < arr.length && arr[j].value === arr[i].value) j++;
+
+                    for (let k = i; k < j; k++) {
+                        highlightMap[col] = highlightMap[col] || {};
+                        if (rank === 1) highlightMap[col][arr[k].name] = 'first-place';
+                        else if (rank === 2) highlightMap[col][arr[k].name] = 'second-place';
+                        else if (rank === 3) highlightMap[col][arr[k].name] = 'third-place';
+                    }
+
+                    rank += (j - i);
+                    i = j;
+                }
+            });
+        }
+
+        function generateTable(players) {
+            let html = '<div class="leaderboard-grid">';
+
+            html += '<div class="player-name-header clickable" data-column="name">Player</div>';
+            html += '<div class="filter-header time-group clickable" data-column="time">Time</div>';
+            html += '<div class="filter-header easy-group clickable" data-column="easyTime">Easy</div>';
+            html += '<div class="filter-header medium-group clickable" data-column="mediumTime">Medium</div>';
+            html += '<div class="filter-header hard-group clickable" data-column="hardTime">Hard</div>';
+            html += '<div class="filter-header position-group clickable" data-column="position">Positions</div>';
+            html += '<div class="filter-header easy-group clickable" data-column="easy">Easy</div>';
+            html += '<div class="filter-header medium-group clickable" data-column="medium">Medium</div>';
+            html += '<div class="filter-header hard-group clickable" data-column="hard">Hard</div>';
+            html += '<div class="filter-header leaderboard-group leaderboard">Top Positions</div>';
+
+            const timeSubs = ["Total", "Avg", "Total", "Avg", "Total", "Avg", "Total", "Avg"];
+            const timeCols = ["totalTime", "avgTime", "easyTotalTime", "easyAvgTime", "mediumTotalTime", "mediumAvgTime", "hardTotalTime", "hardAvgTime"];
+
+            const posSubs = ["Total", "Avg", "Total", "Avg", "Total", "Avg", "Total", "Avg", "T10", "T5", "T3", "WR"];
+            const posCols = ["totalPos", "avgPos", "easyTotalPos", "easyAvgPos", "mediumTotalPos", "mediumAvgPos", "hardTotalPos", "hardAvgPos", "top10", "top5", "top3", "wr"];
+
+            for (let i = 0; i < timeSubs.length; i++) {
+                html += `<div class="sub-header" data-column="${timeCols[i]}">${timeSubs[i]}</div>`;
             }
-          });
+
+            for (let i = 0; i < posSubs.length; i++) {
+                if (i < 8) {
+                    html += `<div class="sub-header" data-column="${posCols[i]}">${posSubs[i]}</div>`;
+                } else {
+                    html += `<div class="sub-header clickable" data-column="${posCols[i]}">${posSubs[i]}</div>`;
+                }
+            }
+
+            players.forEach(player => {
+                const s = player.stats;
+                html += `<div class="player-name">${player.name}</div>`;
+
+                html += `<div class="player-cell ${hl('totalTime', player.name)}">${formatTime(s.totalTime)}</div>`;
+                html += `<div class="player-cell ${hl('avgTime', player.name)}">${formatTime(s.avgTime)}</div>`;
+                html += `<div class="player-cell ${hl('easyTotalTime', player.name)}">${formatTime(s.easyTotalTime)}</div>`;
+                html += `<div class="player-cell ${hl('easyAvgTime', player.name)}">${formatTime(s.easyAvgTime)}</div>`;
+                html += `<div class="player-cell ${hl('mediumTotalTime', player.name)}">${formatTime(s.mediumTotalTime)}</div>`;
+                html += `<div class="player-cell ${hl('mediumAvgTime', player.name)}">${formatTime(s.mediumAvgTime)}</div>`;
+                html += `<div class="player-cell ${hl('hardTotalTime', player.name)}">${formatTime(s.hardTotalTime)}</div>`;
+                html += `<div class="player-cell ${hl('hardAvgTime', player.name)}">${formatTime(s.hardAvgTime)}</div>`;
+
+                html += `<div class="player-cell ${hl('totalPos', player.name)}">${s.totalPos}</div>`;
+                html += `<div class="player-cell ${hl('avgPos', player.name)}">${s.avgPos.toFixed(2)}</div>`;
+                html += `<div class="player-cell ${hl('easyTotalPos', player.name)}">${s.easyTotalPos}</div>`;
+                html += `<div class="player-cell ${hl('easyAvgPos', player.name)}">${s.easyAvgPos.toFixed(2)}</div>`;
+                html += `<div class="player-cell ${hl('mediumTotalPos', player.name)}">${s.mediumTotalPos}</div>`;
+                html += `<div class="player-cell ${hl('mediumAvgPos', player.name)}">${s.mediumAvgPos.toFixed(2)}</div>`;
+                html += `<div class="player-cell ${hl('hardTotalPos', player.name)}">${s.hardTotalPos}</div>`;
+                html += `<div class="player-cell ${hl('hardAvgPos', player.name)}">${s.hardAvgPos.toFixed(2)}</div>`;
+                html += `<div class="player-cell ${hl('top10', player.name)}">${s.top10}</div>`;
+                html += `<div class="player-cell ${hl('top5', player.name)}">${s.top5}</div>`;
+                html += `<div class="player-cell ${hl('top3', player.name)}">${s.top3}</div>`;
+                html += `<div class="player-cell ${hl('wr', player.name)}">${s.wr}</div>`;
+            });
+
+            html += '</div>';
+            evaluationBody.innerHTML = html;
+
+            bindSortHandlers();
+            updateSortIndicators();
+            entryCountDisplay.textContent = `Showing ${players.length} of ${totalPlayers} players`;
+        }
+
+        function sortBy(players, column, direction = 'asc') {
+            const dir = direction === 'asc' ? 1 : -1;
+
+            return [...players].sort((a, b) => {
+                if (column === 'name') {
+                    return a.name.localeCompare(b.name) * dir;
+                }
+                const colMap = {
+                    time: 'avgTime',
+                    easyTime: 'easyAvgTime',
+                    mediumTime: 'mediumAvgTime',
+                    hardTime: 'hardAvgTime',
+                    position: 'avgPos',
+                    easy: 'easyAvgPos',
+                    medium: 'mediumAvgPos',
+                    hard: 'hardAvgPos'
+                };
+                const key = colMap[column] || column;
+                const av = (a.stats && a.stats[key] != null) ? a.stats[key] : (a[key] != null ? a[key] : 0);
+                const bv = (b.stats && b.stats[key] != null) ? b.stats[key] : (b[key] != null ? b[key] : 0);
+
+                if (typeof av === 'string' || typeof bv === 'string') {
+                    return (String(av)).localeCompare(String(bv)) * dir;
+                }
+                if (av < bv) return -1 * dir;
+                if (av > bv) return 1 * dir;
+                return 0;
+            });
+        }
+
+        function bindSortHandlers() {
+            const headers = evaluationBody.querySelectorAll('.clickable[data-column]');
+            headers.forEach(h => {
+                h.addEventListener('click', () => {
+                    const col = h.getAttribute('data-column');
+                    if (currentSort.column === col) {
+                        currentSort.direction = (currentSort.direction === 'asc') ? 'desc' : 'asc';
+                    } else {
+                        currentSort.column = col;
+                        if (['top10', 'top5', 'top3', 'wr'].includes(col)) {
+                            currentSort.direction = 'desc';
+                        } else {
+                            currentSort.direction = 'asc';
+                        }
+                    }
+                    const filtered = applyFilter((document.querySelector('input[name="filter"]:checked') || {}).value || 'completed');
+                    const sorted = sortBy(filtered, currentSort.column, currentSort.direction);
+                    generateTable(sorted);
+                });
+            });
+        }
+
+        function updateSortIndicators() {
+            const headers = evaluationBody.querySelectorAll('.clickable[data-column]');
+            headers.forEach(h => {
+                h.classList.remove('sorted-asc', 'sorted-desc');
+                const col = h.getAttribute('data-column');
+                if (col === currentSort.column) {
+                    h.classList.add(currentSort.direction === 'asc' ? 'sorted-asc' : 'sorted-desc');
+                }
+            });
+        }
+
+        function applyFilter(filter) {
+            switch (filter) {
+                case 'all':
+                    return allPlayersData;
+                case 'completed':
+                    return allPlayersData.filter(p => p.stats.completed === totalRaces);
+                case 'top10':
+                    return allPlayersData.filter(p => p.stats.top10 > 0);
+                case 'topracers':
+                    return allPlayersData.filter(p => topRacers.includes(p.name));
+                default:
+                    return allPlayersData;
+            }
+        }
+
+        function updateView(filter) {
+            const filtered = applyFilter(filter);
+            const sorted = sortBy(filtered, currentSort.column, currentSort.direction);
+            generateTable(sorted);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadAllLeaderboards();
         });
-      });
-
-      allPlayersData = Array.from(players).map(name => {
-        const stats = playerStats[name];
-        const mapsPerDifficulty = maps.length;
-
-        const ePosSum = stats.difficultyStats.positions.Easy.sum || 0;
-        const ePosCount = stats.difficultyStats.positions.Easy.count || 0;
-        const eMissing = Math.max(0, mapsPerDifficulty - ePosCount);
-        const easyTotalPos = ePosSum + penaltyPos(eMissing);
-        const easyAvgPos = (easyTotalPos / mapsPerDifficulty);
-
-        const mPosSum = stats.difficultyStats.positions.Medium.sum || 0;
-        const mPosCount = stats.difficultyStats.positions.Medium.count || 0;
-        const mMissing = Math.max(0, mapsPerDifficulty - mPosCount);
-        const mediumTotalPos = mPosSum + penaltyPos(mMissing);
-        const mediumAvgPos = (mediumTotalPos / mapsPerDifficulty);
-
-        const hPosSum = stats.difficultyStats.positions.Hard.sum || 0;
-        const hPosCount = stats.difficultyStats.positions.Hard.count || 0;
-        const hMissing = Math.max(0, mapsPerDifficulty - hPosCount);
-        const hardTotalPos = hPosSum + penaltyPos(hMissing);
-        const hardAvgPos = (hardTotalPos / mapsPerDifficulty);
-
-
-        const eTimeSum = stats.difficultyStats.times.Easy.sum || 0;
-        const eTimeCount = stats.difficultyStats.times.Easy.count || 0;
-        const eTimeMissing = Math.max(0, mapsPerDifficulty - eTimeCount);
-        const easyTotalTime = eTimeSum + penaltyTime(eTimeMissing);
-        const easyAvgTime = easyTotalTime / mapsPerDifficulty;
-
-        const mTimeSum = stats.difficultyStats.times.Medium.sum || 0;
-        const mTimeCount = stats.difficultyStats.times.Medium.count || 0;
-        const mTimeMissing = Math.max(0, mapsPerDifficulty - mTimeCount);
-        const mediumTotalTime = mTimeSum + penaltyTime(mTimeMissing);
-        const mediumAvgTime = mediumTotalTime / mapsPerDifficulty;
-
-        const hTimeSum = stats.difficultyStats.times.Hard.sum || 0;
-        const hTimeCount = stats.difficultyStats.times.Hard.count || 0;
-        const hTimeMissing = Math.max(0, mapsPerDifficulty - hTimeCount);
-        const hardTotalTime = hTimeSum + penaltyTime(hTimeMissing);
-        const hardAvgTime = hardTotalTime / mapsPerDifficulty;
-
-        const racesNotCompleted = totalRaces - stats.completed;
-        const totalPosSum = ePosSum + mPosSum + hPosSum;
-        const totalPos = totalPosSum + penaltyPos(racesNotCompleted);
-
-        const totalTimeSum = eTimeSum + mTimeSum + hTimeSum;
-        const totalTime = totalTimeSum + penaltyTime(racesNotCompleted);
-
-        const avgPos = totalPos / totalRaces;
-        const avgTime = totalTime / totalRaces;
-
-        return {
-          name,
-          stats: {
-            ...stats,
-            easyTotalPos, easyAvgPos,
-            mediumTotalPos, mediumAvgPos,
-            hardTotalPos, hardAvgPos,
-            easyTotalTime, easyAvgTime,
-            mediumTotalTime, mediumAvgTime,
-            hardTotalTime, hardAvgTime,
-            totalPos, avgPos,
-            totalTime, avgTime,
-            top10: stats.top10, top5: stats.top5, top3: stats.top3, wr: stats.wr
-          }
-        };
-      });
-
-      totalPlayers = allPlayersData.length;
-    }
-
-    function hl(col, name) {
-      return (highlightMap[col] && highlightMap[col][name]) ? highlightMap[col][name] : '';
-    }
-
-    function computeHighlightMap() {
-      highlightMap = {};
-    
-      const timeCols = ["totalTime","avgTime","easyTotalTime","easyAvgTime","mediumTotalTime","mediumAvgTime","hardTotalTime","hardAvgTime"];
-      const posCols  = ["totalPos","avgPos","easyTotalPos","easyAvgPos","mediumTotalPos","mediumAvgPos","hardTotalPos","hardAvgPos"];
-      const topCols  = ["top10","top5","top3","wr"];
-    
-      [...timeCols, ...posCols].forEach(col => {
-        const arr = allPlayersData
-          .map(p => (p && p.stats && p.stats[col] != null) ? { name: p.name, value: p.stats[col] } : null)
-          .filter(Boolean)
-          .filter(x => Number.isFinite(x.value));
-    
-        if (arr.length === 0) return;
-    
-        arr.sort((a,b) => a.value - b.value);
-    
-        let i = 0;
-        let rank = 1;
-        while (i < arr.length && rank <= 3) {
-          let j = i + 1;
-          while (j < arr.length && arr[j].value === arr[i].value) j++;
-    
-          for (let k = i; k < j; k++) {
-            highlightMap[col] = highlightMap[col] || {};
-            if (rank === 1) highlightMap[col][arr[k].name] = 'first-place';
-            else if (rank === 2) highlightMap[col][arr[k].name] = 'second-place';
-            else if (rank === 3) highlightMap[col][arr[k].name] = 'third-place';
-          }
-    
-          rank += (j - i);
-          i = j;
-        }
-      });
-    
-      topCols.forEach(col => {
-        const arr = allPlayersData
-          .map(p => (p && p.stats && p.stats[col] != null) ? { name: p.name, value: p.stats[col] } : null)
-          .filter(Boolean)
-          .filter(x => Number.isFinite(x.value));
-    
-        if (arr.length === 0) return;
-    
-        arr.sort((a,b) => b.value - a.value);
-    
-        let i = 0;
-        let rank = 1;
-        while (i < arr.length && rank <= 3) {
-          let j = i + 1;
-          while (j < arr.length && arr[j].value === arr[i].value) j++;
-    
-          for (let k = i; k < j; k++) {
-            highlightMap[col] = highlightMap[col] || {};
-            if (rank === 1) highlightMap[col][arr[k].name] = 'first-place';
-            else if (rank === 2) highlightMap[col][arr[k].name] = 'second-place';
-            else if (rank === 3) highlightMap[col][arr[k].name] = 'third-place';
-          }
-    
-          rank += (j - i);
-          i = j;
-        }
-      });
-    }
-
-    function generateTable(players) {
-      let html = '<div class=\"leaderboard-grid\">';
-      
-      html += '<div class=\"player-name-header clickable\" data-column=\"name\">Player</div>';
-      html += '<div class=\"filter-header time-group clickable\" data-column=\"time\">Time</div>';
-      html += '<div class=\"filter-header easy-group clickable\" data-column=\"easyTime\">Easy</div>';
-      html += '<div class=\"filter-header medium-group clickable\" data-column=\"mediumTime\">Medium</div>';
-      html += '<div class=\"filter-header hard-group clickable\" data-column=\"hardTime\">Hard</div>';
-      html += '<div class=\"filter-header position-group clickable\" data-column=\"position\">Positions</div>';
-      html += '<div class=\"filter-header easy-group clickable\" data-column=\"easy\">Easy</div>';
-      html += '<div class=\"filter-header medium-group clickable\" data-column=\"medium\">Medium</div>';
-      html += '<div class=\"filter-header hard-group clickable\" data-column=\"hard\">Hard</div>';
-      html += '<div class=\"filter-header leaderboard-group leaderboard\">Top Positions</div>';
-
-      const timeSubs = ["Total","Avg","Total","Avg","Total","Avg","Total","Avg"];
-      const timeCols = ["totalTime","avgTime","easyTotalTime","easyAvgTime","mediumTotalTime","mediumAvgTime","hardTotalTime","hardAvgTime"];
-      
-      const posSubs = ["Total","Avg","Total","Avg","Total","Avg","Total","Avg","T10","T5","T3","WR"];
-      const posCols = ["totalPos","avgPos","easyTotalPos","easyAvgPos","mediumTotalPos","mediumAvgPos","hardTotalPos","hardAvgPos","top10","top5","top3","wr"];
-      
-      for (let i = 0; i < timeSubs.length; i++) {
-        html += `<div class="sub-header" data-column="${timeCols[i]}">${timeSubs[i]}</div>`;
-      }
-      
-      for (let i = 0; i < posSubs.length; i++) { 
-        if(i < 8) {
-          html += `<div class="sub-header" data-column="${posCols[i]}">${posSubs[i]}</div>`;
-        }
-        else {
-          html += `<div class="sub-header clickable" data-column="${posCols[i]}">${posSubs[i]}</div>`;
-        }
-      }
-
-      players.forEach(player => {
-        const s = player.stats;
-        html += `<div class=\"player-name\">${player.name}</div>`;
-        
-        html += `<div class="player-cell ${hl('totalTime', player.name)}">${formatTime(s.totalTime)}</div>`;
-        html += `<div class="player-cell ${hl('avgTime', player.name)}">${formatTime(s.avgTime)}</div>`;
-        html += `<div class="player-cell ${hl('easyTotalTime', player.name)}">${formatTime(s.easyTotalTime)}</div>`;
-        html += `<div class="player-cell ${hl('easyAvgTime', player.name)}">${formatTime(s.easyAvgTime)}</div>`;
-        html += `<div class="player-cell ${hl('mediumTotalTime', player.name)}">${formatTime(s.mediumTotalTime)}</div>`;
-        html += `<div class="player-cell ${hl('mediumAvgTime', player.name)}">${formatTime(s.mediumAvgTime)}</div>`;
-        html += `<div class="player-cell ${hl('hardTotalTime', player.name)}">${formatTime(s.hardTotalTime)}</div>`;
-        html += `<div class="player-cell ${hl('hardAvgTime', player.name)}">${formatTime(s.hardAvgTime)}</div>`;
-        
-        html += `<div class="player-cell ${hl('totalPos', player.name)}">${s.totalPos}</div>`;
-        html += `<div class="player-cell ${hl('avgPos', player.name)}">${s.avgPos.toFixed(2)}</div>`;
-        html += `<div class="player-cell ${hl('easyTotalPos', player.name)}">${s.easyTotalPos}</div>`;
-        html += `<div class="player-cell ${hl('easyAvgPos', player.name)}">${s.easyAvgPos.toFixed(2)}</div>`;
-        html += `<div class="player-cell ${hl('mediumTotalPos', player.name)}">${s.mediumTotalPos}</div>`;
-        html += `<div class="player-cell ${hl('mediumAvgPos', player.name)}">${s.mediumAvgPos.toFixed(2)}</div>`;
-        html += `<div class="player-cell ${hl('hardTotalPos', player.name)}">${s.hardTotalPos}</div>`;
-        html += `<div class="player-cell ${hl('hardAvgPos', player.name)}">${s.hardAvgPos.toFixed(2)}</div>`;
-        html += `<div class="player-cell ${hl('top10', player.name)}">${s.top10}</div>`;
-        html += `<div class="player-cell ${hl('top5', player.name)}">${s.top5}</div>`;
-        html += `<div class="player-cell ${hl('top3', player.name)}">${s.top3}</div>`;
-        html += `<div class="player-cell ${hl('wr', player.name)}">${s.wr}</div>`;
-      });
-
-      html += '</div>';
-      evaluationBody.innerHTML = html;
-
-      bindSortHandlers();
-      updateSortIndicators();
-      entryCountDisplay.textContent = `Showing ${players.length} of ${totalPlayers} players`;
-    }
-
-    function sortBy(players, column, direction = 'asc') {
-      const dir = direction === 'asc' ? 1 : -1;
-
-      return [...players].sort((a,b) => {
-        if (column === 'name') {
-          return a.name.localeCompare(b.name) * dir;
-        }
-        const colMap = {
-          time: 'avgTime',
-          easyTime: 'easyAvgTime',
-          mediumTime: 'mediumAvgTime',
-          hardTime: 'hardAvgTime',
-          position: 'avgPos',
-          easy: 'easyAvgPos',
-          medium: 'mediumAvgPos',
-          hard: 'hardAvgPos'
-        };
-        const key = colMap[column] || column;
-        const av = (a.stats && a.stats[key] != null) ? a.stats[key] : (a[key] != null ? a[key] : 0);
-        const bv = (b.stats && b.stats[key] != null) ? b.stats[key] : (b[key] != null ? b[key] : 0);
-
-        if (typeof av === 'string' || typeof bv === 'string') {
-          return (String(av)).localeCompare(String(bv)) * dir;
-        }
-        if (av < bv) return -1 * dir;
-        if (av > bv) return  1 * dir;
-        return 0;
-      });
-    }
-
-    function bindSortHandlers() {
-      const headers = evaluationBody.querySelectorAll('.clickable[data-column]');
-      headers.forEach(h => {
-        h.addEventListener('click', () => {
-          const col = h.getAttribute('data-column');
-          if (currentSort.column === col) {
-            currentSort.direction = (currentSort.direction === 'asc') ? 'desc' : 'asc';
-          } else {
-            currentSort.column = col;
-            if (['top10','top5','top3','wr'].includes(col)) {
-              currentSort.direction = 'desc';
-            } else {
-              currentSort.direction = 'asc';
-            }
-          }
-          const filtered = applyFilter((document.querySelector('input[name=\"filter\"]:checked') || {}).value || 'completed');
-          const sorted = sortBy(filtered, currentSort.column, currentSort.direction);
-          generateTable(sorted);
-        });
-      });
-    }
-
-    function updateSortIndicators() {
-      const headers = evaluationBody.querySelectorAll('.clickable[data-column]');
-      headers.forEach(h => {
-        h.classList.remove('sorted-asc','sorted-desc');
-        const col = h.getAttribute('data-column');
-        if (col === currentSort.column) {
-          h.classList.add(currentSort.direction === 'asc' ? 'sorted-asc' : 'sorted-desc');
-        }
-      });
-    }
-
-    function applyFilter(filter) {
-      switch (filter) {
-        case 'all':
-          return allPlayersData;
-        case 'completed':
-          return allPlayersData.filter(p => p.stats.completed === totalRaces);
-        case 'top10':
-          return allPlayersData.filter(p => p.stats.top10 > 0);
-        case 'topracers':
-          return allPlayersData.filter(p => topRacers.includes(p.name));
-        default:
-          return allPlayersData;
-      }
-    }
-
-    function updateView(filter) {
-      const filtered = applyFilter(filter);
-      const sorted = sortBy(filtered, currentSort.column, currentSort.direction);
-      generateTable(sorted);
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      loadAllLeaderboards();
-    });
-  </script>
+    </script>
 </body>
+
 </html>

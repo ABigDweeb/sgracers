@@ -1,6 +1,7 @@
 {
   "userId": "76561199446639397",
   "platform": "STEAM",
+  "displayName": "Seerqet",
   "bestTimes": {
     "Abyss": {
       "Easy": 24123,
@@ -8,28 +9,54 @@
       "Medium": 26255
     },
     "Atlantis": {
+      "Easy": 29312,
+      "Hard": 29496,
       "Medium": 21526
     },
+    "Crag": {
+      "Medium": 19769
+    },
     "Foregone_Destruction": {
-      "Medium": 26021
+      "Medium": 22536
     },
     "Helix": {
+      "Easy": 23160,
       "Hard": 45211,
-      "Medium": 25582
+      "Medium": 23656
+    },
+    "Highwind": {
+      "Medium": 23673
     },
     "Impact": {
-      "Hard": 26182
+      "Hard": 26182,
+      "Medium": 25208
     },
     "Karman_Station": {
-      "Hard": 30945
+      "Easy": 32466,
+      "Hard": 27227,
+      "Medium": 24991
+    },
+    "Lavawell": {
+      "Easy": 30997,
+      "Hard": 31547
+    },
+    "Oasis": {
+      "Easy": 25842
     },
     "Olympus": {
-      "Medium": 154286
+      "Hard": 72136,
+      "Medium": 25458
+    },
+    "Pantheon": {
+      "Hard": 34100
     },
     "Silo": {
-      "Hard": 77887
+      "Hard": 77887,
+      "Medium": 23356
     },
     "Stadium": {
+      "Easy": 22788,
+      "Hard": 34497,
       "Medium": 39800
     }
   }

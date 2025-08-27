@@ -1,0 +1,34 @@
+{
+  "userId": "2533275026319875",
+  "platform": "XBOX",
+  "displayName": "DAEMONWEAVE",
+  "bestTimes": {
+    "Karman_Station": {
+      "Hard": 28724
+    },
+    "Silo": {
+      "Hard": 33596
+    },
+    "Stadium": {
+      "Hard": 32048
+    },
+    "Helix": {
+      "Hard": 37737
+    },
+    "Olympus": {
+      "Hard": 37887
+    },
+    "Impact": {
+      "Hard": 30191
+    },
+    "Oasis": {
+      "Hard": 28182
+    },
+    "Crag": {
+      "Hard": 29359
+    },
+    "Pantheon": {
+      "Hard": 31378
+    }
+  }
+}

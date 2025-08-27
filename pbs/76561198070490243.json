@@ -1,0 +1,47 @@
+{
+  "userId": "76561198070490243",
+  "platform": "STEAM",
+  "displayName": "CrnBrd",
+  "bestTimes": {
+    "Silo": {
+      "Hard": 37287
+    },
+    "Atlantis": {
+      "Hard": 29422
+    },
+    "Stadium": {
+      "Hard": 31091
+    },
+    "Oasis": {
+      "Hard": 28255
+    },
+    "Pantheon": {
+      "Easy": 33791,
+      "Hard": 29412
+    },
+    "Crag": {
+      "Hard": 26592
+    },
+    "Foregone_Destruction": {
+      "Medium": 26498
+    },
+    "Helix": {
+      "Hard": 39880
+    },
+    "Olympus": {
+      "Hard": 40193
+    },
+    "Lavawell": {
+      "Hard": 27131
+    },
+    "Impact": {
+      "Hard": 23716
+    },
+    "Karman_Station": {
+      "Hard": 25787
+    },
+    "Highwind": {
+      "Hard": 36837
+    }
+  }
+}

@@ -1,22 +1,69 @@
 {
   "userId": "76561199655977361",
   "platform": "STEAM",
+  "displayName": "Destiny¿",
   "bestTimes": {
     "Abyss": {
+      "Easy": 25091,
+      "Hard": 63730,
       "Medium": 25962
     },
     "Atlantis": {
-      "Hard": 31766
+      "Easy": 35081,
+      "Hard": 31766,
+      "Medium": 24090
+    },
+    "Crag": {
+      "Hard": 38323,
+      "Medium": 19803
+    },
+    "Foregone_Destruction": {
+      "Medium": 46865
+    },
+    "Helix": {
+      "Hard": 40373
+    },
+    "Highwind": {
+      "Easy": 23857,
+      "Hard": 50817,
+      "Medium": 36751
     },
     "Impact": {
+      "Easy": 49416,
       "Hard": 19574
     },
+    "Karman_Station": {
+      "Easy": 35035,
+      "Medium": 24724
+    },
     "Lavawell": {
-      "Hard": 527888
+      "Easy": 32465,
+      "Hard": 32665,
+      "Medium": 37487
+    },
+    "Oasis": {
+      "Easy": 26092,
+      "Hard": 48449,
+      "Medium": 42108
+    },
+    "Olympus": {
+      "Easy": 33500,
+      "Hard": 79161,
+      "Medium": 32082
+    },
+    "Pantheon": {
+      "Easy": 39372,
+      "Hard": 48982,
+      "Medium": 37687
     },
     "Silo": {
       "Easy": 29307,
-      "Hard": 65216,
+      "Hard": 63346,
+      "Medium": 24741
+    },
+    "Stadium": {
+      "Easy": 20503,
+      "Hard": 33700,
       "Medium": 31079
     }
   }

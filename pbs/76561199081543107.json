@@ -1,76 +1,77 @@
 {
   "userId": "76561199081543107",
   "platform": "STEAM",
+  "displayName": "Dweeb",
   "bestTimes": {
     "Abyss": {
       "Easy": 20794,
-      "Hard": 17940,
-      "Medium": 21403
+      "Medium": 21403,
+      "Hard": 17940
     },
     "Atlantis": {
       "Easy": 27079,
-      "Hard": 22182,
-      "Medium": 19988
+      "Medium": 19988,
+      "Hard": 22182
     },
     "Crag": {
       "Easy": 28619,
-      "Hard": 24885,
-      "Medium": 18152
+      "Medium": 18152,
+      "Hard": 24885
     },
     "Foregone_Destruction": {
       "Easy": 24992,
-      "Hard": 24154,
-      "Medium": 17594
+      "Medium": 17594,
+      "Hard": 24154
     },
     "Helix": {
       "Easy": 19530,
-      "Hard": 35743,
-      "Medium": 22310
+      "Medium": 22310,
+      "Hard": 35743
     },
     "Highwind": {
       "Easy": 20263,
-      "Hard": 29566,
-      "Medium": 17486
+      "Medium": 17486,
+      "Hard": 29566
     },
     "Impact": {
       "Easy": 19937,
-      "Hard": 17514,
-      "Medium": 19965
+      "Medium": 19965,
+      "Hard": 17514
     },
     "Karman_Station": {
       "Easy": 27571,
-      "Hard": 24785,
-      "Medium": 20760
+      "Medium": 20760,
+      "Hard": 24785
     },
     "Lavawell": {
       "Easy": 29008,
-      "Hard": 25352,
-      "Medium": 23521
+      "Medium": 23521,
+      "Hard": 25352
     },
     "Oasis": {
       "Easy": 18543,
-      "Hard": 24606,
-      "Medium": 21323
+      "Medium": 21323,
+      "Hard": 24606
     },
     "Olympus": {
       "Easy": 19248,
-      "Hard": 32554,
-      "Medium": 20743
+      "Medium": 20743,
+      "Hard": 32554
     },
     "Pantheon": {
       "Easy": 24703,
-      "Hard": 26024,
-      "Medium": 20158
+      "Medium": 20158,
+      "Hard": 26024
     },
     "Silo": {
       "Easy": 23366,
-      "Hard": 27882,
-      "Medium": 18887
+      "Medium": 18887,
+      "Hard": 27136
     },
     "Stadium": {
       "Easy": 19847,
-      "Hard": 27611,
-      "Medium": 19427
+      "Medium": 19427,
+      "Hard": 27611
     },
     "Lobby": {
       "Medium": 904608000

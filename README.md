@@ -4,8 +4,8 @@ in an effort to maintain as much of splitgate 1 as we can, this website has been
 
 - online leaderboard browser for all 42 splitgate race maps
 - individual stat lookup, evaluation of all racers, data views of all positions & times, etc.
-- view all of the fastest recorded runs on one page with embedded videos
-- api handles new personal bests and updates leaderboard and individual user files automatically
+- random race picker with filters to hone in selections and improvement
+- api handles new personal bests by saving pbs and updates leaderboard automatically
 - api to use the website's custom leaderboards in-game
 - displays the full leaderboard (past top 10) for the "friend" leaderboard
 

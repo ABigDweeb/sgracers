@@ -1,9 +1,29 @@
 {
   "userId": "76561199112715826",
   "platform": "STEAM",
+  "displayName": "Corne",
   "bestTimes": {
+    "Lavawell": {
+      "Hard": 26542
+    },
+    "Stadium": {
+      "Medium": 22288,
+      "Hard": 41760
+    },
+    "Atlantis": {
+      "Hard": 284291
+    },
     "Impact": {
       "Hard": 18119
+    },
+    "Olympus": {
+      "Hard": 35458
+    },
+    "Abyss": {
+      "Easy": 26581
+    },
+    "Oasis": {
+      "Easy": 24789
     }
   }
 }

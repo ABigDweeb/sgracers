@@ -1,15 +1,53 @@
 {
   "userId": "76561199773113497",
   "platform": "STEAM",
+  "displayName": "HurricaneFrogTX",
   "bestTimes": {
+    "Abyss": {
+      "Hard": 23323,
+      "Medium": 57273
+    },
     "Atlantis": {
-      "Hard": 41064
+      "Hard": 41064,
+      "Medium": 35985
+    },
+    "Crag": {
+      "Easy": 46963,
+      "Medium": 32733
+    },
+    "Foregone_Destruction": {
+      "Medium": 61411
+    },
+    "Impact": {
+      "Medium": 35435
+    },
+    "Karman_Station": {
+      "Medium": 35919
     },
     "Lavawell": {
-      "Hard": 30454
+      "Hard": 30454,
+      "Medium": 51334
+    },
+    "Oasis": {
+      "Easy": 30880,
+      "Hard": 78878,
+      "Medium": 69119
+    },
+    "Olympus": {
+      "Easy": 34651,
+      "Hard": 166216,
+      "Medium": 42342
+    },
+    "Pantheon": {
+      "Medium": 29262
+    },
+    "Silo": {
+      "Easy": 36986,
+      "Hard": 106723,
+      "Medium": 32549
     },
     "Stadium": {
-      "Easy": 21542,
+      "Easy": 21104,
       "Hard": 35089,
       "Medium": 23731
     }

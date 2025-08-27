@@ -1,9 +1,23 @@
 {
   "userId": "76561199486950732",
   "platform": "STEAM",
+  "displayName": "Bunji",
   "bestTimes": {
+    "Lavawell": {
+      "Medium": 24649,
+      "Easy": 30079
+    },
+    "Stadium": {
+      "Easy": 20650,
+      "Hard": 47023,
+      "Medium": 43889
+    },
     "Crag": {
-      "Easy": 28887
+      "Easy": 28887,
+      "Medium": 18809
+    },
+    "Pantheon": {
+      "Easy": 43257
     }
   }
 }

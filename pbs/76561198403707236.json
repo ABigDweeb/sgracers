@@ -1,76 +1,77 @@
 {
   "userId": "76561198403707236",
   "platform": "STEAM",
+  "displayName": "Toby Repellant",
   "bestTimes": {
     "Abyss": {
       "Easy": 20876,
-      "Hard": 18641,
-      "Medium": 22215
+      "Medium": 22215,
+      "Hard": 18641
     },
     "Atlantis": {
       "Easy": 27366,
-      "Hard": 22508,
-      "Medium": 20061
+      "Medium": 20061,
+      "Hard": 22508
     },
     "Crag": {
       "Easy": 28822,
-      "Hard": 24988,
-      "Medium": 18434
+      "Medium": 18434,
+      "Hard": 24988
     },
     "Foregone_Destruction": {
       "Easy": 25317,
-      "Hard": 25037,
-      "Medium": 17773
+      "Medium": 17773,
+      "Hard": 25037
     },
     "Helix": {
       "Easy": 19615,
-      "Hard": 36032,
-      "Medium": 22590
+      "Medium": 22590,
+      "Hard": 36032
     },
     "Highwind": {
       "Easy": 20587,
-      "Hard": 29261,
-      "Medium": 17907
+      "Medium": 17907,
+      "Hard": 29261
     },
     "Impact": {
       "Easy": 20206,
-      "Hard": 18793,
-      "Medium": 20402
+      "Medium": 20402,
+      "Hard": 18793
     },
     "Karman_Station": {
       "Easy": 28267,
-      "Hard": 24650,
-      "Medium": 20983
+      "Medium": 20983,
+      "Hard": 24650
     },
     "Lavawell": {
       "Easy": 29201,
-      "Hard": 25143,
-      "Medium": 23600
+      "Medium": 23600,
+      "Hard": 25143
     },
     "Oasis": {
       "Easy": 20778,
-      "Hard": 24832,
-      "Medium": 22768
+      "Medium": 22768,
+      "Hard": 24832
     },
     "Olympus": {
       "Easy": 20421,
-      "Hard": 31749,
-      "Medium": 20644
+      "Medium": 20644,
+      "Hard": 31749
     },
     "Pantheon": {
       "Easy": 24819,
-      "Hard": 25407,
-      "Medium": 20219
+      "Medium": 20219,
+      "Hard": 25407
     },
     "Silo": {
       "Easy": 23678,
-      "Hard": 28236,
-      "Medium": 18987
+      "Medium": 18987,
+      "Hard": 28236
     },
     "Stadium": {
       "Easy": 20003,
-      "Hard": 27797,
-      "Medium": 19416
+      "Medium": 19416,
+      "Hard": 27797
     }
   }
 }

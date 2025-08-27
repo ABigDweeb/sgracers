@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Random Race Picker</title>
+    <style>
+        :root {
+            --bg: #111;
+            --panel: #1e1e1e;
+            --text: #eee;
+            --muted: #aaa;
+            --accent: #0bf;
+            --btn: #444;
+            --btn-hover: #555;
+            --red: #f55;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .app {
+            display: grid;
+            grid-template-columns: 450px 1fr 450px;
+            height: 100vh;
+            gap: 0;
+        }
+
+        .burger-menu {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        .burger-icon {
+            width: 40px;
+            height: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .burger-line {
+            height: 4px;
+            width: 100%;
+            background-color: #eee;
+            border-radius: 2px;
+        }
+
+        .menu-dropdown {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            background: #222;
+            border: 1px solid #444;
+            border-radius: 5px;
+            min-width: 200px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .menu-dropdown.show {
+            display: flex;
+        }
+
+        .menu-item {
+            padding: 12px 20px;
+            color: #eee;
+            text-decoration: none;
+            font-size: 1.05em;
+            transition: background-color .2s;
+        }
+
+        .menu-item:hover {
+            background: #333;
+        }
+
+        .left {
+            padding: 72px 18px 18px 18px;
+            background: linear-gradient(#0d0d0d, #111);
+            overflow: auto;
+        }
+
+        .timer-card {
+            background: #151617;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 14px;
+            border: 1px solid #222;
+        }
+
+        .timer-card label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .timer-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .small-input {
+            width: 120px;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            background: #0c0d0e;
+            color: var(--text);
+        }
+
+        .timer-grid {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            margin-top: 12px;
+        }
+
+        .timer-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .timer-btn {
+            background: var(--btn);
+            color: var(--text);
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            cursor: pointer;
+        }
+
+        .timer-btn:hover {
+            background: var(--btn-hover);
+        }
+
+        .timer-display {
+            margin-left: auto;
+            text-align: right;
+            font-size: 1.6rem;
+            font-weight: 700;
+            min-width: 200px;
+        }
+
+        .filters {
+            margin-top: 18px;
+            background: #151617;
+            border: 1px solid #222;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .filters .row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filters input[type="text"],
+        .filters input[type="number"] {
+            flex: 1;
+            padding: 8px;
+            border-radius: 6px;
+            background: #0c0d0e;
+            border: 1px solid #333;
+            color: var(--text);
+            min-width: 150px;
+        }
+
+        .filters input[type="range"] {
+            width: 100%;
+        }
+
+        .filters label.small {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .middle {
+            position: relative;
+            padding: 18px 24px;
+            background: linear-gradient(180deg, #0b0b0b, #071016);
+            overflow: hidden;
+        }
+
+        .randomizer {
+            position: absolute;
+            left: 50%;
+            top: 40%;
+            transform: translate(-50%, -50%);
+            width: 630px;
+            text-align: center;
+        }
+
+        .rand-map,
+        .rand-diff {
+            display: inline-block;
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--text);
+            vertical-align: middle;
+        }
+
+        .rand-diff {
+            padding-left: 5px;
+        }
+
+        .rand-btn {
+            margin-top: 14px;
+            padding: 10px 18px;
+            border-radius: 12px;
+            border: none;
+            background: var(--accent);
+            color: #042433;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .rand-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .right {
+            padding: 12px;
+            background: var(--panel);
+            overflow: auto;
+            border-left: 1px solid #0b0b0b;
+        }
+
+        .map-card {
+            background: #111213;
+            border: 1px solid #232526;
+            border-radius: 10px;
+            padding: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .map-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #1f2323;
+        }
+
+        .map-title {
+            font-weight: 700;
+        }
+
+        .diff-row {
+            display: flex;
+            width: 100%;
+            gap: 8px;
+        }
+
+        .diff-btn {
+            flex: 1;
+            padding: 8px;
+            border-radius: 8px;
+            background: #222;
+            color: var(--text);
+            border: 1px solid #2f3434;
+            cursor: pointer;
+        }
+
+        .diff-btn.excluded {
+            background: #4a4a4a;
+            color: #cfcfcf;
+            text-decoration: line-through;
+            text-decoration-thickness: 2px;
+            opacity: .8;
+        }
+
+        .diff-btn.filtered {
+            background: #2a1012;
+            color: var(--red);
+            text-decoration: line-through;
+            text-decoration-thickness: 2px;
+            border-color: #5f1f22;
+        }
+
+        .filters.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .filters.disabled label,
+        .filters.disabled input,
+        .filters.disabled button {
+            text-decoration: line-through;
+            color: var(--muted);
+        }
+
+        .dev-box {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            color: #aaa;
+            font-size: .85em;
+            text-align: right;
+            line-height: 1.4;
+            background: rgba(30, 30, 30, .8);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            z-index: 100;
+        }
+
+        .dev-box a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .dev-box a:hover {
+            text-decoration: underline;
+        }
+
+        .discord-logo {
+            height: 16px;
+            width: 21px;
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+
+        .world-record-box {
+            position: fixed;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #614a00;
+            color: gold;
+            padding: 15px;
+            border: 1px solid gold;
+            border-radius: 5px;
+            z-index: 100;
+            text-align: center;
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .world-record-box a {
+            color: gold;
+            text-decoration: underline;
+        }
+
+        .world-record-box a:hover {
+            color: #ffd700;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="burger-menu">
+        <div class="burger-icon" id="burgerIcon">
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+        </div>
+        <div class="menu-dropdown" id="menuDropdown">
+            <a href="/" class="menu-item">Leaderboard View</a>
+            <a href="/stats" class="menu-item">Individual Lookup</a>
+            <a href="/wrs" class="menu-item">World Records</a>
+            <a href="/data/evaluation" class="menu-item">Top Racer Evaluation</a>
+            <a href="/data" class="menu-item">Data Spreadsheet</a>
+            <a href="/racepicker" class="menu-item">Random Race Picker</a>
+        </div>
+    </div>
+
+    <div class="app">
+        <div class="left">
+            <div class="timer-card">
+                <label for="timerInput">Set Timer:</label>
+                <div class="timer-row">
+                    <input id="timerInput" class="small-input" type="number" min="0" max="60" value="15">
+                    <button id="createBtn" class="timer-btn">Create</button>
+                </div>
+
+                <div class="timer-grid">
+                    <div class="timer-buttons">
+                        <button id="resumeBtn" class="timer-btn">Resume</button>
+                        <button id="stopBtn" class="timer-btn">Stop</button>
+                    </div>
+                    <div class="timer-display" id="timerDisplay">15:00.000</div>
+                </div>
+            </div>
+
+            <div class="filters" id="posFilterBox">
+                <div class="row">
+                    <input id="player1" type="text" placeholder="Enter your username or platformId">
+                    <button id="lookup1" class="timer-btn">Lookup</button>
+                </div>
+                <div>
+                    <input type="checkbox" id="enablePositionFilter">
+                    <label for="enablePositionFilter">Enable Position Filter</label>
+                </div>
+                <label class="small">Filters to maps you're position is lower than:</label>
+                <div style="display:flex; gap:8px; align-items:center; margin-bottom:8px;">
+                    <input id="posSlider" type="range" min="0" max="250" value="75">
+                    <input id="posNumber" type="number" min="0" max="250" value="75" style="width:90px;">
+                </div>
+            </div>
+
+            <div class="filters disabled" id="dnfFilterBox">
+                <div>
+                    <input type="checkbox" id="enableDnfFilter">
+                    <label for="enableDnfFilter">Enable DNF Filter</label>
+                </div>
+                <label class="small">Filters to maps you haven't completed</label>
+            </div>
+
+            <div class="filters disabled" id="compFilterBox">
+                <div class="row">
+                    <input id="player2" type="text" placeholder="Enter player to compare against">
+                    <button id="lookup2" class="timer-btn">Lookup</button>
+                </div>
+                <div>
+                    <input id="enableCompare" type="checkbox">
+                    <label for="enableCompare"> Enable Comparison Filter</label>
+                </div>
+                <label class="small">Filters to maps you are not beating compared player</label>
+            </div>
+        </div>
+
+        <div class="middle">
+            <div class="randomizer" id="randomizer">
+                <span class="rand-map" id="randMap">—</span>
+                <span class="rand-diff" id="randDiff">—</span>
+                <div><button id="randBtn" class="rand-btn">Get Random Race</button></div>
+            </div>
+
+            <div class="world-record-box" id="worldRecordBox">
+                Watch the world record <a id="worldRecordLink" href="#" target="_blank">here</a>!
+            </div>
+
+            <div class="dev-box">
+                <a href="https://discord.gg/YgGdSM3yC4" target="_blank">
+                    <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-logo" alt="Discord"></a> v0.5.0<br>
+                <a href="https://x.com/ABigDweeb" target="_blank">made by Dweeb</a>
+            </div>
+        </div>
+
+        <div class="right" id="mapsPanel">
+
+        </div>
+    </div>
+
+    <script>
+        const maps = ["Abyss", "Atlantis", "Crag", "Foregone_Destruction", "Helix", "Highwind",
+            "Impact", "Karman_Station", "Lavawell", "Oasis", "Olympus", "Pantheon", "Silo", "Stadium"
+        ];
+        const difficulties = ["Easy", "Medium", "Hard"];
+
+        const state = {
+            excluded: new Set(),
+            manualAllow: new Set(),
+            filtered: new Set(),
+            positions1: {},
+            positions2: {},
+            maxTotalPlayers: 250,
+            player1LookedUp: false,
+            timer: {
+                endTime: 0,
+                remainingMs: 15 * 60000,
+                running: false,
+                raf: null
+            },
+            selectedMap: null,
+            selectedDifficulty: null,
+            dnfFilterEnabled: false,
+            isSpinning: false,
+            spinIntervals: [],
+            spinTimeouts: []
+        };
+
+        const elements = {
+            burgerIcon: document.getElementById('burgerIcon'),
+            menuDropdown: document.getElementById('menuDropdown'),
+            mapsPanel: document.getElementById('mapsPanel'),
+            randMapEl: document.getElementById('randMap'),
+            randDiffEl: document.getElementById('randDiff'),
+            randBtn: document.getElementById('randBtn'),
+            createBtn: document.getElementById('createBtn'),
+            resumeBtn: document.getElementById('resumeBtn'),
+            stopBtn: document.getElementById('stopBtn'),
+            timerInput: document.getElementById('timerInput'),
+            timerDisplay: document.getElementById('timerDisplay'),
+            player1Input: document.getElementById('player1'),
+            player2Input: document.getElementById('player2'),
+            lookup1Btn: document.getElementById('lookup1'),
+            lookup2Btn: document.getElementById('lookup2'),
+            enablePosCheckbox: document.getElementById('enablePositionFilter'),
+            posSlider: document.getElementById('posSlider'),
+            posNumber: document.getElementById('posNumber'),
+            enableCompare: document.getElementById('enableCompare'),
+            compFilterBox: document.getElementById('compFilterBox'),
+            worldRecordBox: document.getElementById('worldRecordBox'),
+            worldRecordLink: document.getElementById('worldRecordLink'),
+            enableDnfFilter: document.getElementById('enableDnfFilter'),
+            dnfFilterBox: document.getElementById('dnfFilterBox')
+        };
+
+        function displayMapName(map) {
+            return map === "Silo" ? "Club Silo" : map.replace(/_/g, ' ');
+        }
+
+        function formatTime(ms) {
+            ms = Math.max(0, Math.floor(ms));
+            const hrs = Math.floor(ms / 3600000);
+            const mins = Math.floor((ms % 3600000) / 60000);
+            const secs = Math.floor((ms % 60000) / 1000);
+            const mss = ms % 1000;
+
+            if (hrs > 0) {
+                return `${hrs}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}.${String(mss).padStart(3, '0')}`;
+            } else {
+                return `${mins}:${String(secs).padStart(2, '0')}.${String(mss).padStart(3, '0')}`;
+            }
+        }
+
+        function setupNavigation() {
+            elements.burgerIcon.addEventListener('click', () => {
+                elements.menuDropdown.classList.toggle('show');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.burger-menu')) {
+                    elements.menuDropdown.classList.remove('show');
+                }
+            });
+        }
+
+        function renderTimer() {
+            if (state.timer.running) {
+                const left = state.timer.endTime - Date.now();
+                state.timer.remainingMs = Math.max(0, left);
+                elements.timerDisplay.textContent = formatTime(state.timer.remainingMs);
+
+                if (state.timer.remainingMs <= 0) {
+                    state.timer.running = false;
+                    cancelAnimationFrame(state.timer.raf);
+                } else {
+                    state.timer.raf = requestAnimationFrame(renderTimer);
+                }
+            } else {
+                elements.timerDisplay.textContent = formatTime(state.timer.remainingMs);
+            }
+        }
+
+        function setupTimerControls() {
+            elements.createBtn.addEventListener('click', () => {
+                const mins = Math.max(0, Number(elements.timerInput.value) || 0);
+                state.timer.remainingMs = mins * 60000;
+                state.timer.endTime = Date.now() + state.timer.remainingMs;
+
+                if (!state.timer.running) {
+                    state.timer.running = true;
+                    state.timer.raf = requestAnimationFrame(renderTimer);
+                }
+            });
+
+            elements.resumeBtn.addEventListener('click', () => {
+                if (state.timer.running || state.timer.remainingMs <= 0) return;
+
+                state.timer.endTime = Date.now() + state.timer.remainingMs;
+                state.timer.running = true;
+                state.timer.raf = requestAnimationFrame(renderTimer);
+            });
+
+            elements.stopBtn.addEventListener('click', () => {
+                if (!state.timer.running) return;
+
+                state.timer.running = false;
+                cancelAnimationFrame(state.timer.raf);
+            });
+        }
+
+        function buildMapCards() {
+            elements.mapsPanel.innerHTML = '';
+
+            maps.forEach(map => {
+                const card = document.createElement('div');
+                card.className = 'map-card';
+
+                const img = document.createElement('img');
+                img.src = `/icons/maps/${map}Screenshot.png`;
+                img.alt = map;
+                img.onerror = function() {
+                    this.style.display = 'none';
+                };
+
+                const title = document.createElement('div');
+                title.className = 'map-title';
+                title.textContent = displayMapName(map);
+
+                const row = document.createElement('div');
+                row.className = 'diff-row';
+
+                difficulties.forEach(diff => {
+                    const btn = document.createElement('button');
+                    btn.className = 'diff-btn';
+                    btn.textContent = diff;
+                    btn.dataset.map = map;
+                    btn.dataset.diff = diff;
+
+                    const key = `${map}::${diff}`;
+                    if (state.excluded.has(key)) btn.classList.add('excluded');
+                    if (state.filtered.has(key)) btn.classList.add('filtered');
+                    if (state.manualAllow.has(key)) btn.classList.add('');
+
+                    btn.addEventListener('click', () => handleDifficultyButtonClick(key, btn));
+                    row.appendChild(btn);
+                });
+
+                card.appendChild(img);
+                card.appendChild(title);
+                card.appendChild(row);
+                elements.mapsPanel.appendChild(card);
+            });
+        }
+
+        function handleDifficultyButtonClick(key, button) {
+            if (state.excluded.has(key)) {
+                state.excluded.delete(key);
+                button.classList.remove('excluded');
+                return;
+            }
+
+            if (state.filtered.has(key) && !state.manualAllow.has(key)) {
+                state.manualAllow.add(key);
+                button.classList.remove('filtered');
+                state.filtered.delete(key);
+                return;
+            }
+
+            if (state.manualAllow.has(key)) {
+                state.manualAllow.delete(key);
+                applyFilters();
+                refreshButtonStates();
+                return;
+            }
+
+            state.excluded.add(key);
+            button.classList.add('excluded');
+        }
+
+        function refreshButtonStates() {
+            maps.forEach(m => {
+                difficulties.forEach(d => {
+                    const key = `${m}::${d}`;
+                    const btn = document.querySelector(`.diff-btn[data-map="${m}"][data-diff="${d}"]`);
+                    if (!btn) return;
+
+                    btn.classList.toggle('excluded', state.excluded.has(key));
+                    btn.classList.toggle('filtered', state.filtered.has(key));
+                });
+            });
+        }
+
+        async function fetchLeaderboardsForPlayer(player) {
+            if (!player) return null;
+
+            const leaderboards = maps.flatMap(m =>
+                difficulties.map(d => ({
+                    map: m,
+                    difficulty: d,
+                    length: 'all'
+                }))
+            );
+
+            const isPlatform = /^[A-Fa-f0-9]{16,}$/.test(player);
+            const body = {
+                leaderboards,
+                [isPlatform ? 'platformId' : 'displayName']: player
+            };
+
+            const res = await fetch('/api/leaderboard-data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            });
+
+            if (!res.ok) throw new Error('API ' + res.status);
+            return await res.json();
+        }
+
+        async function handlePlayer1Lookup() {
+            const player = elements.player1Input.value.trim();
+            if (!player) return alert('Enter player 1 displayName or platformId');
+
+            elements.lookup1Btn.disabled = true;
+            elements.lookup1Btn.textContent = 'Looking...';
+
+            try {
+                const data = await fetchLeaderboardsForPlayer(player);
+
+                Object.keys(state.positions1).forEach(k => delete state.positions1[k]);
+
+                let maxTP = 0;
+                maps.forEach(m => {
+                    difficulties.forEach(d => {
+                        const key = `${m}::${d}`;
+                        const entry = data?.[m]?.[d];
+
+                        if (entry && entry.position != null) {
+                            state.positions1[key] = entry.position;
+                            if (entry.totalPlayers) maxTP = Math.max(maxTP, entry.totalPlayers);
+                        } else {
+                            state.positions1[key] = null;
+                        }
+                    });
+                });
+
+                if (maxTP > 0) {
+                    state.maxTotalPlayers = maxTP;
+                    elements.posSlider.max = String(state.maxTotalPlayers);
+                    elements.posNumber.max = String(state.maxTotalPlayers);
+
+                    const defaultValue = Math.min(75, state.maxTotalPlayers);
+                    elements.posSlider.value = elements.posNumber.value = String(defaultValue);
+                }
+
+                state.player1LookedUp = true;
+                updatePlayer1FilterState();
+                applyFilters();
+                enableControlsAfterLookup();
+            } catch (err) {
+                alert('Lookup failed: ' + err.message);
+                console.error(err);
+            } finally {
+                elements.lookup1Btn.disabled = false;
+                elements.lookup1Btn.textContent = 'Lookup';
+            }
+        }
+
+        async function handlePlayer2Lookup() {
+            const player = elements.player2Input.value.trim();
+            if (!player) return;
+
+            try {
+                const data = await fetchLeaderboardsForPlayer(player);
+
+                Object.keys(state.positions2).forEach(k => delete state.positions2[k]);
+
+                maps.forEach(m => {
+                    difficulties.forEach(d => {
+                        const key = `${m}::${d}`;
+                        const entry = data?.[m]?.[d];
+                        state.positions2[key] = (entry && entry.position != null) ? entry.position : null;
+                    });
+                });
+
+                applyFilters();
+                refreshButtonStates();
+            } catch (err) {
+                console.warn('player2 lookup failed', err);
+            }
+        }
+
+        function updatePlayer1FilterState() {
+            const enabled = state.player1LookedUp;
+            elements.enablePosCheckbox.disabled = !enabled;
+            elements.posSlider.disabled = !enabled;
+            elements.posNumber.disabled = !enabled;
+            elements.enableDnfFilter.disabled = !enabled;
+
+            elements.enablePosCheckbox.parentElement.style.opacity = enabled ? '1' : '0.5';
+            elements.enablePosCheckbox.parentElement.style.textDecoration = enabled ? 'none' : 'line-through';
+            elements.posSlider.style.opacity = enabled ? '1' : '0.5';
+            elements.posNumber.style.opacity = enabled ? '1' : '0.5';
+            elements.dnfFilterBox.style.opacity = enabled ? '1' : '0.5';
+            
+            if (enabled) {
+                elements.dnfFilterBox.classList.remove('disabled');
+            } else {
+                elements.dnfFilterBox.classList.add('disabled');
+            }
+        }
+
+        function enableControlsAfterLookup() {
+            elements.player2Input.disabled = false;
+            elements.enableCompare.disabled = false;
+            elements.posSlider.disabled = false;
+            elements.posNumber.disabled = false;
+            elements.compFilterBox.classList.remove('disabled');
+        }
+
+        function applyFilters() {
+            state.filtered.clear();
+            const threshold = Number(elements.posNumber.value) || 0;
+            const compEnabled = elements.enableCompare.checked &&
+                elements.player2Input.value.trim() &&
+                state.player1LookedUp;
+            const dnfEnabled = elements.enableDnfFilter.checked && state.player1LookedUp;
+
+            maps.forEach(m => {
+                difficulties.forEach(d => {
+                    const key = `${m}::${d}`;
+                    const btn = document.querySelector(`.diff-btn[data-map="${m}"][data-diff="${d}"]`);
+                    if (!btn) return;
+
+                    let shouldFilter = false;
+
+                    if (state.manualAllow.has(key)) {
+                        btn.classList.remove('filtered', 'excluded');
+                        return;
+                    }
+
+                    let userExcluded = state.excluded.has(key);
+
+                    const p1 = state.positions1[key];
+                    const p2 = state.positions2[key];
+                    const enablePosFilter = elements.enablePosCheckbox.checked;
+
+                    if (enablePosFilter && p1 != null && p1 <= threshold) shouldFilter = true;
+                    if (compEnabled && p1 != null && p2 != null && p1 < p2) shouldFilter = true;
+                    if (dnfEnabled && p1 !== null) shouldFilter = true;
+
+                    btn.classList.remove('filtered', 'excluded');
+
+                    if (shouldFilter) {
+                        state.filtered.add(key);
+                        btn.classList.add('filtered');
+                    } else if (userExcluded) {
+                        btn.classList.add('excluded');
+                    }
+                });
+            });
+        }
+
+        function currentAllowedPool() {
+            const pool = [];
+
+            maps.forEach(m => {
+                difficulties.forEach(d => {
+                    const key = `${m}::${d}`;
+
+                    if (state.excluded.has(key)) return;
+                    if (state.manualAllow.has(key)) {
+                        pool.push({
+                            map: m,
+                            diff: d
+                        });
+                        return;
+                    }
+                    if (state.filtered.has(key)) return;
+
+                    pool.push({
+                        map: m,
+                        diff: d
+                    });
+                });
+            });
+
+            return pool;
+        }
+
+        function spinText(el, getter, durationMs = 4000, intervalMs = 50) {
+            return new Promise(resolve => {
+                const intervalId = setInterval(() => {
+                    el.textContent = getter();
+                }, intervalMs);
+                
+                state.spinIntervals.push(intervalId);
+
+                const timeoutId = setTimeout(() => {
+                    clearInterval(intervalId);
+                    resolve();
+                }, durationMs);
+                
+                state.spinTimeouts.push(timeoutId);
+            });
+        }
+
+        function updateWorldRecordLink(map, difficulty) {
+            let urlMap = map;
+            if (map === "Foregone_Destruction") {
+                urlMap = "Foregone_Destruction";
+            } else if (map === "Karman_Station") {
+                urlMap = "Karman_Station";
+            } else if (map === "Silo") {
+                urlMap = "Silo";
+            }
+
+            const url = `/wrs?map=${urlMap}&difficulty=${difficulty}`;
+            elements.worldRecordLink.href = url;
+            elements.worldRecordBox.style.display = 'block';
+        }
+
+        function clearSpinAnimations() {
+            state.spinIntervals.forEach(intervalId => clearInterval(intervalId));
+            state.spinIntervals = [];
+            
+            state.spinTimeouts.forEach(timeoutId => clearTimeout(timeoutId));
+            state.spinTimeouts = [];
+            
+            state.isSpinning = false;
+            
+            elements.randBtn.disabled = false;
+            elements.randBtn.textContent = 'Get Random Race';
+        }
+
+        async function handleRandomize() {
+            if (state.isSpinning) {
+                clearSpinAnimations();
+                
+                elements.worldRecordBox.style.display = 'none';
+            }
+            
+            const pool = currentAllowedPool();
+            
+            elements.worldRecordBox.style.display = 'none';
+
+            if (!pool.length) {
+                elements.randMapEl.textContent = 'No valid races';
+                elements.randDiffEl.textContent = '—';
+                return;
+            }
+
+            state.isSpinning = true;
+            elements.randBtn.disabled = true;
+            elements.randBtn.textContent = 'Spinning...';
+
+            const spinDuration = 4200;
+
+            try {
+                await Promise.all([
+                    spinText(elements.randMapEl, () =>
+                        displayMapName(pool[Math.floor(Math.random() * pool.length)].map),
+                        spinDuration, 50
+                    ),
+                    spinText(elements.randDiffEl, () =>
+                        pool[Math.floor(Math.random() * pool.length)].diff,
+                        spinDuration, 50
+                    )
+                ]);
+
+                const final = pool[Math.floor(Math.random() * pool.length)];
+                elements.randMapEl.textContent = displayMapName(final.map);
+
+                setTimeout(() => {
+                    elements.randDiffEl.textContent = final.diff;
+                    state.selectedMap = final.map;
+                    state.selectedDifficulty = final.diff;
+                    
+                    updateWorldRecordLink(final.map, final.diff);
+                    
+                    state.isSpinning = false;
+                    elements.randBtn.disabled = false;
+                    elements.randBtn.textContent = 'Get Random Race';
+                }, 120);
+            } catch (error) {
+                if (error.name !== 'AbortError') {
+                    console.error('Spin error:', error);
+                }
+            }
+        }
+
+        function setupEventListeners() {
+            elements.lookup1Btn.addEventListener('click', handlePlayer1Lookup);
+            elements.lookup2Btn.addEventListener('click', handlePlayer2Lookup);
+
+            elements.enablePosCheckbox.addEventListener('change', () => {
+                applyFilters();
+                refreshButtonStates();
+            });
+
+            elements.enableCompare.addEventListener('change', () => {
+                applyFilters();
+                refreshButtonStates();
+            });
+
+            elements.enableDnfFilter.addEventListener('change', () => {
+                state.dnfFilterEnabled = elements.enableDnfFilter.checked;
+                applyFilters();
+                refreshButtonStates();
+            });
+
+            elements.player1Input.addEventListener('change', () => {
+                handlePlayer1Lookup();
+            });
+
+            elements.player2Input.addEventListener('change', async () => {
+                if (!elements.player1Input.value.trim()) return;
+
+                if (!elements.player2Input.value.trim()) {
+                    Object.keys(state.positions2).forEach(k => delete state.positions2[k]);
+                    applyFilters();
+                    refreshButtonStates();
+                    return;
+                }
+
+                handlePlayer2Lookup();
+            });
+
+            elements.posSlider.addEventListener('input', () => {
+                elements.posNumber.value = elements.posSlider.value;
+                applyFilters();
+            });
+
+            elements.posNumber.addEventListener('input', () => {
+                let value = Number(elements.posNumber.value) || 1;
+                value = Math.max(1, Math.min(Number(elements.posNumber.max || 250), value));
+                elements.posNumber.value = String(value);
+                elements.posSlider.value = String(value);
+                applyFilters();
+            });
+
+            elements.randBtn.addEventListener('click', handleRandomize);
+        }
+
+        function initializeApp() {
+            setupNavigation();
+            setupTimerControls();
+            setupEventListeners();
+            buildMapCards();
+            updatePlayer1FilterState();
+
+            elements.posNumber.value = elements.posSlider.value;
+            elements.timerDisplay.textContent = formatTime(state.timer.remainingMs);
+        }
+
+        initializeApp();
+    </script>
+</body>
+
+</html>

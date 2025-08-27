@@ -1,9 +1,35 @@
 {
   "userId": "76561198884934348",
   "platform": "STEAM",
+  "displayName": "Doge Bread",
   "bestTimes": {
+    "Crag": {
+      "Hard": 30854
+    },
+    "Karman_Station": {
+      "Hard": 31267
+    },
+    "Stadium": {
+      "Hard": 36820
+    },
+    "Oasis": {
+      "Hard": 67198
+    },
+    "Pantheon": {
+      "Hard": 83346
+    },
+    "Helix": {
+      "Hard": 93821
+    },
     "Silo": {
-      "Hard": 28439
+      "Hard": 28439,
+      "Easy": 63803
+    },
+    "Highwind": {
+      "Hard": 114052
+    },
+    "Impact": {
+      "Hard": 30262
     }
   }
 }

@@ -1,7 +1,39 @@
 {
   "userId": "76561198069529391",
   "platform": "STEAM",
+  "displayName": "iAgonyii",
   "bestTimes": {
+    "Impact": {
+      "Hard": 21444
+    },
+    "Atlantis": {
+      "Hard": 26558
+    },
+    "Lavawell": {
+      "Hard": 26003
+    },
+    "Helix": {
+      "Hard": 56072
+    },
+    "Silo": {
+      "Hard": 63132
+    },
+    "Highwind": {
+      "Hard": 63456
+    },
+    "Stadium": {
+      "Hard": 28852,
+      "Medium": 22008
+    },
+    "Crag": {
+      "Hard": 63395
+    },
+    "Pantheon": {
+      "Hard": 51700
+    },
+    "Olympus": {
+      "Hard": 100235
+    },
     "Abyss": {
       "Hard": 18989
     }

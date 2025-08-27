@@ -1,0 +1,25 @@
+{
+  "userId": "76561198042446096",
+  "platform": "STEAM",
+  "displayName": "Mr. Lord",
+  "bestTimes": {
+    "Olympus": {
+      "Hard": 68474
+    },
+    "Stadium": {
+      "Hard": 36508
+    },
+    "Pantheon": {
+      "Hard": 37165
+    },
+    "Helix": {
+      "Medium": 31410,
+      "Hard": 47400
+    },
+    "Abyss": {
+      "Medium": 26577,
+      "Easy": 26425,
+      "Hard": 28534
+    }
+  }
+}

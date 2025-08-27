@@ -1,7 +1,24 @@
 {
   "userId": "76561197994343010",
   "platform": "STEAM",
+  "displayName": "beluga",
   "bestTimes": {
+    "Atlantis": {
+      "Hard": 27855
+    },
+    "Helix": {
+      "Hard": 121892
+    },
+    "Impact": {
+      "Easy": 44400,
+      "Hard": 19638
+    },
+    "Stadium": {
+      "Hard": 51958
+    },
+    "Silo": {
+      "Hard": 95486
+    },
     "Karman_Station": {
       "Hard": 24802
     }

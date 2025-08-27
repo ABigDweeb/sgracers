@@ -1,9 +1,22 @@
 {
   "userId": "76561198144783517",
   "platform": "STEAM",
+  "displayName": "Brylan Bristopher Woods",
   "bestTimes": {
     "Stadium": {
+      "Easy": 20466,
+      "Medium": 22444,
       "Hard": 27914
+    },
+    "Helix": {
+      "Easy": 21825,
+      "Hard": 38384
+    },
+    "Impact": {
+      "Hard": 37222
+    },
+    "Olympus": {
+      "Hard": 160969
     }
   }
 }

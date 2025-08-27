@@ -1,6 +1,7 @@
 {
   "userId": "76561198812017833",
   "platform": "STEAM",
+  "displayName": "@BroKidSam",
   "bestTimes": {
     "Abyss": {
       "Easy": 25629,
@@ -8,7 +9,7 @@
       "Medium": 23568
     },
     "Atlantis": {
-      "Easy": 32753,
+      "Easy": 32132,
       "Hard": 29437,
       "Medium": 23085
     },
@@ -68,7 +69,7 @@
       "Medium": 22194
     },
     "Stadium": {
-      "Easy": 21577,
+      "Easy": 21367,
       "Hard": 33595,
       "Medium": 24076
     }

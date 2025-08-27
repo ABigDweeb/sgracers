@@ -1,0 +1,39 @@
+{
+  "userId": "76561198323718550",
+  "platform": "STEAM",
+  "displayName": "Surf",
+  "bestTimes": {
+    "Crag": {
+      "Hard": 25973,
+      "Easy": 30254,
+      "Medium": 18976
+    },
+    "Oasis": {
+      "Easy": 22733,
+      "Hard": 44710
+    },
+    "Stadium": {
+      "Easy": 20776,
+      "Medium": 40742
+    },
+    "Silo": {
+      "Easy": 27258
+    },
+    "Atlantis": {
+      "Easy": 51952
+    },
+    "Olympus": {
+      "Easy": 34796
+    },
+    "Highwind": {
+      "Hard": 38301
+    },
+    "Helix": {
+      "Medium": 23007,
+      "Easy": 23300
+    },
+    "Pantheon": {
+      "Easy": 25364
+    }
+  }
+}

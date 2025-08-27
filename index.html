@@ -1,372 +1,401 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="UTF-8">
-  <title>SG Race Leaderboard Browser</title>
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      background: #111; 
-      color: #eee; 
-      margin: 0; 
-      padding: 15px 30px;
-    }
-    h1 { 
-      margin-bottom: 20px;
-      font-size: 2.8em; 
-      text-align: center;
-    }
-    .container { 
-      max-width: 1200px; 
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-    }
-    .controls { 
-      display: flex; 
-      gap: 40px; 
-      margin-bottom: 20px;
-    }
-    select { 
-      padding: 15px 25px; 
-      background: #222; 
-      color: #eee; 
-      border: 1px solid #444; 
-      border-radius: 8px;
-      font-size: 1.5em;
-      min-width: 250px;
-    }
-    #leaderboardDisplay { 
-      margin-top: 20px;
-      font-family: monospace;
-      font-size: 2em;
-      line-height: 1.8;
-      width: 615px;
-      margin-left: 0;
-      max-height: 70vh;
-      overflow-y: auto;
-    }
-    .position-image {
-      width: 74.5px;
-      height: 40px;
-      vertical-align: middle;
-      margin-right: 5px;
-    }
-    .leaderboard-entry {
-      margin-bottom: 15px;
-      white-space: pre;
-      letter-spacing: 1.5px;
-      display: flex;
-      align-items: center;
-      font-family: monospace;
-    }
-    .leaderboard-entry-text {
-      display: inline-block;
-      white-space: pre;
-    }
-    .first-place {
-      color: gold;
-      text-shadow: 0 0 5px rgba(255,215,0,0.7);
-    }
-    .second-place {
-      color: silver;
-      text-shadow: 0 0 5px rgba(192,192,192,0.7);
-    }
-    .third-place {
-      color: #cd7f32;
-      text-shadow: 0 0 5px rgba(205,127,50,0.7);
-    }
-    .top5 {
-      color: #51b78a;
-      text-shadow: 0 0 5px rgba(81,183,138,0.7);
-    }
-    .top10 {
-      color: #a0d6f7;
-      text-shadow: 0 0 5px rgba(160,214,247,0.7);
-    }
-    .loading { 
-      color: #0bf; 
-      font-style: italic; 
-    }
-    .error { 
-      color: #f55;
-    }
-    .entry-count {
-      margin-top: 10px;
-      font-size: 0.8em;
-      color: #888;
-    }
-    .dev-box {
-      position: fixed;
-      bottom: 15px;
-      right: 15px;
-      color: #aaa;
-      font-size: 0.85em;
-      text-align: right;
-      line-height: 1.4;
-      background: rgba(30, 30, 30, 0.8);
-      padding: 8px 12px;
-      border-radius: 6px;
-      border: 1px solid #444;
-    }
-    .dev-box a {
-      color: inherit;
-      text-decoration: none;
-    }
-    .dev-box a:hover {
-      text-decoration: underline;
-    }
-    .discord-logo {
-      height: 16px;
-      width: 21px;
-      vertical-align: middle;
-      margin-right: 4px;
-    }
-    .burger-menu {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 100;
-    }
-    .burger-icon {
-      width: 40px;
-      height: 30px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      cursor: pointer;
-      padding: 5px;
-    }
-    .burger-line {
-      height: 4px;
-      width: 100%;
-      background-color: #eee;
-      border-radius: 2px;
-    }
-    .menu-dropdown {
-      position: absolute;
-      top: 50px;
-      left: 0;
-      background: #222;
-      border: 1px solid #444;
-      border-radius: 5px;
-      min-width: 200px;
-      display: none;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    .menu-dropdown.show {
-      display: flex;
-    }
-    .menu-item {
-      padding: 12px 20px;
-      color: #eee;
-      text-decoration: none;
-      font-size: 1.2em;
-      transition: background-color 0.2s;
-    }
-    .menu-item:hover {
-      background-color: #333;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>SG Race Leaderboard Browser</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: #eee;
+            margin: 0;
+            padding: 15px 30px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.8em;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .controls {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 20px;
+        }
+
+        select {
+            padding: 15px 25px;
+            background: #222;
+            color: #eee;
+            border: 1px solid #444;
+            border-radius: 8px;
+            font-size: 1.5em;
+            min-width: 250px;
+        }
+
+        #leaderboardDisplay {
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 2em;
+            line-height: 1.8;
+            width: 615px;
+            margin-left: 0;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .position-image {
+            width: 74.5px;
+            height: 40px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        .leaderboard-entry {
+            margin-bottom: 15px;
+            white-space: pre;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            font-family: monospace;
+        }
+
+        .leaderboard-entry-text {
+            display: inline-block;
+            white-space: pre;
+        }
+
+        .first-place {
+            color: gold;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.7);
+        }
+
+        .second-place {
+            color: silver;
+            text-shadow: 0 0 5px rgba(192, 192, 192, 0.7);
+        }
+
+        .third-place {
+            color: #cd7f32;
+            text-shadow: 0 0 5px rgba(205, 127, 50, 0.7);
+        }
+
+        .top5 {
+            color: #51b78a;
+            text-shadow: 0 0 5px rgba(81, 183, 138, 0.7);
+        }
+
+        .top10 {
+            color: #a0d6f7;
+            text-shadow: 0 0 5px rgba(160, 214, 247, 0.7);
+        }
+
+        .loading {
+            color: #0bf;
+            font-style: italic;
+        }
+
+        .error {
+            color: #f55;
+        }
+
+        .entry-count {
+            margin-top: 10px;
+            font-size: 0.8em;
+            color: #888;
+        }
+
+        .dev-box {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            color: #aaa;
+            font-size: 0.85em;
+            text-align: right;
+            line-height: 1.4;
+            background: rgba(30, 30, 30, 0.8);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #444;
+        }
+
+        .dev-box a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .dev-box a:hover {
+            text-decoration: underline;
+        }
+
+        .discord-logo {
+            height: 16px;
+            width: 21px;
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+
+        .burger-menu {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        .burger-icon {
+            width: 40px;
+            height: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .burger-line {
+            height: 4px;
+            width: 100%;
+            background-color: #eee;
+            border-radius: 2px;
+        }
+
+        .menu-dropdown {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            background: #222;
+            border: 1px solid #444;
+            border-radius: 5px;
+            min-width: 200px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .menu-dropdown.show {
+            display: flex;
+        }
+
+        .menu-item {
+            padding: 12px 20px;
+            color: #eee;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: background-color 0.2s;
+        }
+
+        .menu-item:hover {
+            background-color: #333;
+        }
+    </style>
 </head>
+
 <body>
-  <div class="burger-menu">
-    <div class="burger-icon" id="burgerIcon">
-      <div class="burger-line"></div>
-      <div class="burger-line"></div>
-      <div class="burger-line"></div>
+    <div class="burger-menu">
+        <div class="burger-icon" id="burgerIcon">
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+        </div>
+        <div class="menu-dropdown" id="menuDropdown">
+            <a href="/" class="menu-item">Leaderboard View</a>
+            <a href="/stats" class="menu-item">Individual Lookup</a>
+            <a href="/wrs" class="menu-item">World Records</a>
+            <a href="/data/evaluation" class="menu-item">Top Racer Evaluation</a>
+            <a href="/data" class="menu-item">Data Spreadsheet</a>
+            <a href="/racepicker" class="menu-item">Random Race Picker</a>
+        </div>
     </div>
-    <div class="menu-dropdown" id="menuDropdown">
-      <a href="/" class="menu-item">Leaderboard View</a>
-      <a href="/data/times" class="menu-item">Times Spreadsheet</a>
-      <a href="/data/positions" class="menu-item">Positions Spreadsheet</a>
-      <a href="/data/individual" class="menu-item">Individual Lookup</a>
-      <a href="/wrs" class="menu-item">World Records</a>
-      <a href="/data/evaluation" class="menu-item">Top Racer Evaluation</a>
+
+    <div class="container">
+        <h1>Splitgate Race Leaderboard Browser</h1>
+
+        <div class="controls">
+            <select id="mapSelect"></select>
+            <select id="difficultySelect"></select>
+        </div>
+
+        <div id="leaderboardDisplay">Loading Stadium Medium leaderboard...</div>
+        <div id="entryCount" class="entry-count"></div>
     </div>
-  </div>
 
-  <div class="container">
-    <h1>Splitgate Race Leaderboard Browser</h1>
-    
-    <div class="controls">
-      <select id="mapSelect"></select>
-      <select id="difficultySelect"></select>
+    <div class="dev-box">
+        <a href="https://discord.gg/YgGdSM3yC4" target="_blank">
+            <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-logo" alt="Discord"></a> v0.5.0<br>
+        <a href="https://x.com/ABigDweeb" target="_blank">made by Dweeb</a>
     </div>
-    
-    <div id="leaderboardDisplay">Loading Stadium Medium leaderboard...</div>
-    <div id="entryCount" class="entry-count"></div>
-  </div>
 
-  <div class="dev-box">
-    <a href="https://discord.gg/YgGdSM3yC4" target="_blank"> 
-    <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-logo" alt="Discord"></a> v0.3.2<br>
-    <a href="https://x.com/ABigDweeb" target="_blank">made by Dweeb</a>
-  </div>
+    <script>
+        const maps = [
+            "Abyss", "Atlantis", "Crag", "Foregone_Destruction", "Helix",
+            "Highwind", "Impact", "Karman_Station", "Lavawell", "Oasis",
+            "Olympus", "Pantheon", "Silo", "Stadium"
+        ];
+        const difficulties = ["Easy", "Medium", "Hard"];
 
-  <script>
-    const maps = [
-      "Abyss", "Atlantis", "Crag", "Foregone_Destruction", "Helix",
-      "Highwind", "Impact", "Karman_Station", "Lavawell", "Oasis",
-      "Olympus", "Pantheon", "Silo", "Stadium"
-    ];
-    const difficulties = ["Easy", "Medium", "Hard"];
+        const mapSelect = document.getElementById('mapSelect');
+        const difficultySelect = document.getElementById('difficultySelect');
+        const leaderboardDisplay = document.getElementById('leaderboardDisplay');
+        const entryCountDisplay = document.getElementById('entryCount');
+        const burgerIcon = document.getElementById('burgerIcon');
+        const menuDropdown = document.getElementById('menuDropdown');
 
-    const mapSelect = document.getElementById('mapSelect');
-    const difficultySelect = document.getElementById('difficultySelect');
-    const leaderboardDisplay = document.getElementById('leaderboardDisplay');
-    const entryCountDisplay = document.getElementById('entryCount');
-    const burgerIcon = document.getElementById('burgerIcon');
-    const menuDropdown = document.getElementById('menuDropdown');
+        burgerIcon.addEventListener('click', function() {
+            menuDropdown.classList.toggle('show');
+        });
 
-    burgerIcon.addEventListener('click', function() {
-      menuDropdown.classList.toggle('show');
-    });
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.burger-menu')) {
+                menuDropdown.classList.remove('show');
+            }
+        });
 
-    document.addEventListener('click', function(event) {
-      if (!event.target.closest('.burger-menu')) {
-        menuDropdown.classList.remove('show');
-      }
-    });
+        function formatTime(ms) {
+            const seconds = ms / 1000;
+            if (seconds >= 60) {
+                const mins = Math.floor(seconds / 60);
+                const secs = (seconds % 60).toFixed(3);
+                return `${mins}:${secs.padStart(6, '0')}`;
+            }
+            return `  ${seconds.toFixed(3)}`;
+        }
 
-    function formatTime(ms) {
-      const seconds = ms / 1000;
-      if (seconds >= 60) {
-        const mins = Math.floor(seconds / 60);
-        const secs = (seconds % 60).toFixed(3);
-        return `${mins}:${secs.padStart(6, '0')}`;
-      }
-      return `  ${seconds.toFixed(3)}`;
-    }
+        function trimUsername(name) {
+            if (name.length > 20) {
+                return name.substring(0, 17) + '...';
+            }
+            return name;
+        }
 
-    function trimUsername(name) {
-      if (name.length > 20) {
-        return name.substring(0, 17) + '...';
-      }
-      return name;
-    }
+        function formatEntry(position, displayName, time) {
+            const trimmedName = trimUsername(displayName);
+            const nameText = trimmedName.padEnd(20, ' ');
+            const formattedTime = formatTime(time);
 
-    function formatEntry(position, displayName, time) {
-      const trimmedName = trimUsername(displayName);
-      const nameText = trimmedName.padEnd(20, ' ');
-      const formattedTime = formatTime(time);
-      
-      if (position <= 3) {
-        const imageName = `${position}${position === 1 ? 'st' : position === 2 ? 'nd' : 'rd'}place.png`;
-        return `
+            if (position <= 3) {
+                const imageName = `${position}${position === 1 ? 'st' : position === 2 ? 'nd' : 'rd'}place.png`;
+                return `
           <img src="/icons/${imageName}" class="position-image" alt="${position}${position === 1 ? 'st' : position === 2 ? 'nd' : 'rd'} place">
           <span class="leaderboard-entry-text"> - ${nameText} ${formattedTime}</span>
         `;
-      } else {
-        const suffix = position === 1 ? 'st' : position === 2 ? 'nd' : position === 3 ? 'rd' : 'th';
-        let positionText;
-        if (position < 10) {
-          positionText = `  ${position}${suffix}`;
-        } else if (position < 100) {
-          positionText = ` ${position}${suffix}`;
-        } else {
-          positionText = `${position}${suffix}`;
-        }
-        return `<span class="leaderboard-entry-text">${positionText} - ${nameText} ${formattedTime}</span>`;
-      }
-    }
-
-    function displayLeaderboard(data) {
-      try {
-        const entries = Array.isArray(data) ? data : (data.leaderboard || []);
-        
-        if (entries.length === 0) {
-          throw new Error('No leaderboard entries found');
+            } else {
+                const suffix = position === 1 ? 'st' : position === 2 ? 'nd' : position === 3 ? 'rd' : 'th';
+                let positionText;
+                if (position < 10) {
+                    positionText = `  ${position}${suffix}`;
+                } else if (position < 100) {
+                    positionText = ` ${position}${suffix}`;
+                } else {
+                    positionText = `${position}${suffix}`;
+                }
+                return `<span class="leaderboard-entry-text">${positionText} - ${nameText} ${formattedTime}</span>`;
+            }
         }
 
-        let html = '';
-        entries.forEach((entry, index) => {
-          const position = index + 1;
-          const displayName = entry.displayName || entry.name || `Player ${position}`;
-          const time = entry.value || entry.time || entry.score || 0;
-          
-          let entryClass = '';
-          if (position === 1) entryClass = 'first-place';
-          else if (position === 2) entryClass = 'second-place';
-          else if (position === 3) entryClass = 'third-place';
-          else if (position === 4 || position === 5) entryClass = 'top5';
-          else if (position >= 6 && position <= 10) entryClass = 'top10';
-          
-          html += `<div class="leaderboard-entry ${entryClass}">${formatEntry(position, displayName, time)}</div>`;
-        });
-        
-        leaderboardDisplay.innerHTML = html;
-        leaderboardDisplay.className = "";
-        entryCountDisplay.textContent = `${entries.length} entries`;
-      } catch (error) {
-        leaderboardDisplay.innerHTML = `Error: ${error.message}`;
-        leaderboardDisplay.className = "error";
-        entryCountDisplay.textContent = '';
-      }
-    }
+        function displayLeaderboard(data) {
+            try {
+                const entries = Array.isArray(data) ? data : (data.leaderboard || []);
 
-    async function loadLeaderboard() {
-      const map = mapSelect.value;
-      const difficulty = difficultySelect.value;
-      const filename = `${map}_${difficulty}.json`;
-      
-      leaderboardDisplay.innerHTML = "Loading...";
-      leaderboardDisplay.className = "loading";
-      entryCountDisplay.textContent = '';
+                if (entries.length === 0) {
+                    throw new Error('No leaderboard entries found');
+                }
 
-      try {
-        const response = await fetch(`/leaderboards/${filename}`);
-        if (!response.ok) throw new Error('Leaderboard not found');
-        
-        const data = await response.json();
-        displayLeaderboard(data);
-      } catch (error) {
-        leaderboardDisplay.innerHTML = `Error: ${error.message}`;
-        leaderboardDisplay.className = "error";
-        entryCountDisplay.textContent = '';
-      }
-    }
+                let html = '';
+                entries.forEach((entry, index) => {
+                    const position = index + 1;
+                    const displayName = entry.displayName || entry.name || `Player ${position}`;
+                    const time = entry.value || entry.time || entry.score || 0;
 
-    function populateDropdowns() {
-      mapSelect.innerHTML = '';
-      difficultySelect.innerHTML = '';
+                    let entryClass = '';
+                    if (position === 1) entryClass = 'first-place';
+                    else if (position === 2) entryClass = 'second-place';
+                    else if (position === 3) entryClass = 'third-place';
+                    else if (position === 4 || position === 5) entryClass = 'top5';
+                    else if (position >= 6 && position <= 10) entryClass = 'top10';
 
-      maps.forEach(map => {
-      const option = document.createElement('option');
-      option.value = map;
-  
-      let displayName = map.replace(/_/g, ' ');
-      if (map === "Silo") {
-        displayName = "Club Silo";
-      }
-  
-      option.textContent = displayName;
-      mapSelect.appendChild(option);
-      });
+                    html += `<div class="leaderboard-entry ${entryClass}">${formatEntry(position, displayName, time)}</div>`;
+                });
 
-      difficulties.forEach(diff => {
-        const option = document.createElement('option');
-        option.value = diff;
-        option.textContent = diff;
-        difficultySelect.appendChild(option);
-      });
+                leaderboardDisplay.innerHTML = html;
+                leaderboardDisplay.className = "";
+                entryCountDisplay.textContent = `${entries.length} entries`;
+            } catch (error) {
+                leaderboardDisplay.innerHTML = `Error: ${error.message}`;
+                leaderboardDisplay.className = "error";
+                entryCountDisplay.textContent = '';
+            }
+        }
 
-      mapSelect.value = "Stadium";
-      difficultySelect.value = "Medium";
-    }
+        async function loadLeaderboard() {
+            const map = mapSelect.value;
+            const difficulty = difficultySelect.value;
 
-    function init() {
-      populateDropdowns();
-      mapSelect.addEventListener('change', loadLeaderboard);
-      difficultySelect.addEventListener('change', loadLeaderboard);
-      loadLeaderboard();
-    }
+            leaderboardDisplay.innerHTML = "Loading...";
+            leaderboardDisplay.className = "loading";
+            entryCountDisplay.textContent = '';
 
-    init();
-  </script>
+            try {
+                const response = await fetch(`/api/generate-leaderboard?map=${map}&difficulty=${difficulty}&length=all`);
+                if (!response.ok) throw new Error('Leaderboard not found');
+
+                const data = await response.json();
+                displayLeaderboard(data);
+            } catch (error) {
+                leaderboardDisplay.innerHTML = `Error: ${error.message}`;
+                leaderboardDisplay.className = "error";
+                entryCountDisplay.textContent = '';
+            }
+        }
+
+        function populateDropdowns() {
+            mapSelect.innerHTML = '';
+            difficultySelect.innerHTML = '';
+
+            maps.forEach(map => {
+                const option = document.createElement('option');
+                option.value = map;
+
+                let displayName = map.replace(/_/g, ' ');
+                if (map === "Silo") {
+                    displayName = "Club Silo";
+                }
+
+                option.textContent = displayName;
+                mapSelect.appendChild(option);
+            });
+
+            difficulties.forEach(diff => {
+                const option = document.createElement('option');
+                option.value = diff;
+                option.textContent = diff;
+                difficultySelect.appendChild(option);
+            });
+
+            mapSelect.value = "Stadium";
+            difficultySelect.value = "Medium";
+        }
+
+        function init() {
+            populateDropdowns();
+            mapSelect.addEventListener('change', loadLeaderboard);
+            difficultySelect.addEventListener('change', loadLeaderboard);
+            loadLeaderboard();
+        }
+
+        init();
+    </script>
 </body>
+
 </html>

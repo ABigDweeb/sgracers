@@ -1,6 +1,7 @@
 {
   "userId": "76561198354034498",
   "platform": "STEAM",
+  "displayName": "Brayden",
   "bestTimes": {
     "Abyss": {
       "Easy": 20848,
@@ -44,7 +45,7 @@
     },
     "Lavawell": {
       "Easy": 29193,
-      "Hard": 25280,
+      "Hard": 25235,
       "Medium": 23500
     },
     "Oasis": {

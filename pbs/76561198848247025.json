@@ -1,0 +1,42 @@
+{
+  "userId": "76561198848247025",
+  "platform": "STEAM",
+  "displayName": "fred",
+  "bestTimes": {
+    "Helix": {
+      "Hard": 103860,
+      "Medium": 23002,
+      "Easy": 22302
+    },
+    "Stadium": {
+      "Hard": 94840,
+      "Easy": 20243
+    },
+    "Pantheon": {
+      "Hard": 98349,
+      "Easy": 25340
+    },
+    "Crag": {
+      "Easy": 30762,
+      "Medium": 18925,
+      "Hard": 25577
+    },
+    "Olympus": {
+      "Hard": 156009,
+      "Easy": 28443
+    },
+    "Oasis": {
+      "Easy": 22654,
+      "Medium": 42267
+    },
+    "Atlantis": {
+      "Hard": 32574
+    },
+    "Highwind": {
+      "Hard": 39911
+    },
+    "Lavawell": {
+      "Medium": 64018
+    }
+  }
+}

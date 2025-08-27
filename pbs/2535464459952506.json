@@ -1,0 +1,50 @@
+{
+  "userId": "2535464459952506",
+  "platform": "XBOX",
+  "displayName": "Linkz PDXG",
+  "bestTimes": {
+    "Stadium": {
+      "Hard": 29246
+    },
+    "Pantheon": {
+      "Hard": 28027
+    },
+    "Crag": {
+      "Hard": 27195
+    },
+    "Karman_Station": {
+      "Hard": 26346
+    },
+    "Atlantis": {
+      "Hard": 26027
+    },
+    "Olympus": {
+      "Hard": 36430
+    },
+    "Helix": {
+      "Hard": 38120
+    },
+    "Impact": {
+      "Hard": 25310
+    },
+    "Lavawell": {
+      "Hard": 27928
+    },
+    "Oasis": {
+      "Hard": 27226
+    },
+    "Highwind": {
+      "Hard": 32530
+    },
+    "Silo": {
+      "Hard": 30658
+    },
+    "Abyss": {
+      "Medium": 27494,
+      "Easy": 25408
+    },
+    "Foregone_Destruction": {
+      "Medium": 47881
+    }
+  }
+}

@@ -2,14 +2,6 @@
   "version": 2,
   "rewrites": [
     {
-      "source": "/data",
-      "destination": "/data/positions"
-    },
-    {
-      "source": "/worldrecords",
-      "destination": "/wrs"
-    },
-    {
       "source": "/social/public/namespaces/splitgate/leaderboard",
       "destination": "/api/rewrite-handler"
     },
@@ -20,21 +12,6 @@
     {
       "source": "/splitgate/public/namespaces/splitgate/users/([^/]+)/race/friends/leaderboard",
       "destination": "/api/friend-lb-redirect"
-    },
-    {
-      "source": "/",
-      "destination": "/index.html"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/leaderboard/(.*).json",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600"
-        }
-      ]
     }
   ],
   "cleanUrls": false,

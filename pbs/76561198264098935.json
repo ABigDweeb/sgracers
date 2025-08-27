@@ -1,9 +1,24 @@
 {
   "userId": "76561198264098935",
   "platform": "STEAM",
+  "displayName": "Xero",
   "bestTimes": {
+    "Impact": {
+      "Medium": 41498,
+      "Easy": 42801
+    },
     "Stadium": {
-      "Easy": 20022
+      "Easy": 20022,
+      "Medium": 37361
+    },
+    "Abyss": {
+      "Easy": 37055
+    },
+    "Foregone_Destruction": {
+      "Easy": 43604
+    },
+    "Oasis": {
+      "Easy": 23201
     }
   }
 }

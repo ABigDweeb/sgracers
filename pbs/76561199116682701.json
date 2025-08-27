@@ -1,9 +1,47 @@
 {
   "userId": "76561199116682701",
   "platform": "STEAM",
+  "displayName": "Fiive",
   "bestTimes": {
+    "Silo": {
+      "Hard": 32340,
+      "Medium": 19699
+    },
+    "Highwind": {
+      "Hard": 32150,
+      "Easy": 22033,
+      "Medium": 20743
+    },
+    "Atlantis": {
+      "Hard": 25006
+    },
+    "Impact": {
+      "Hard": 26389
+    },
+    "Helix": {
+      "Medium": 44691,
+      "Easy": 20051
+    },
+    "Lavawell": {
+      "Medium": 53582,
+      "Hard": 27417
+    },
+    "Stadium": {
+      "Hard": 32263,
+      "Medium": 41784
+    },
     "Karman_Station": {
       "Medium": 21000
+    },
+    "Olympus": {
+      "Easy": 21764
+    },
+    "Crag": {
+      "Easy": 29405,
+      "Medium": 18842
+    },
+    "Abyss": {
+      "Medium": 24966
     }
   }
 }
