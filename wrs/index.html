@@ -593,23 +593,42 @@
             const urlParams = new URLSearchParams(window.location.search);
             const mapParam = urlParams.get('map');
             const difficultyParam = urlParams.get('difficulty');
-
+        
             let selectedMap = "Stadium";
             let selectedDifficulty = "Medium";
-
+        
             if (mapParam) {
-                if (mapParam === "Silo") selectedMap = "Silo";
-                else if (mapParam === "Foregone_Destruction") selectedMap = "Foregone_Destruction";
-                else if (mapParam === "Karman_Station") selectedMap = "Karman_Station";
-                else if (maps.includes(mapParam.replace(/_/g, ' '))) {
-                    selectedMap = mapParam.replace(/_/g, ' ');
+                const normalizedMapParam = mapParam.toLowerCase().replace(/_/g, ' ');
+                
+                const foundMap = maps.find(map => 
+                    map.toLowerCase().replace(/_/g, ' ') === normalizedMapParam
+                );
+                
+                if (foundMap) {
+                    selectedMap = foundMap;
+                } else {
+                    if (normalizedMapParam === "club silo" || normalizedMapParam === "silo") {
+                        selectedMap = "Silo";
+                    } else if (normalizedMapParam === "foregone destruction" || normalizedMapParam === "foregone_destruction") {
+                        selectedMap = "Foregone_Destruction";
+                    } else if (normalizedMapParam === "karman station" || normalizedMapParam === "karman_station") {
+                        selectedMap = "Karman_Station";
+                    }
                 }
             }
-
-            if (difficultyParam && difficulties.includes(difficultyParam)) {
-                selectedDifficulty = difficultyParam;
+        
+            // Handle case-insensitive difficulty parameter
+            if (difficultyParam) {
+                const normalizedDifficultyParam = difficultyParam.toLowerCase();
+                const foundDifficulty = difficulties.find(diff => 
+                    diff.toLowerCase() === normalizedDifficultyParam
+                );
+                
+                if (foundDifficulty) {
+                    selectedDifficulty = foundDifficulty;
+                }
             }
-
+        
             return {
                 map: selectedMap,
                 difficulty: selectedDifficulty
