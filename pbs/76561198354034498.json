@@ -16,7 +16,7 @@
     "Crag": {
       "Easy": 28614,
       "Hard": 24287,
-      "Medium": 18455
+      "Medium": 18019
     },
     "Foregone_Destruction": {
       "Easy": 25065,
@@ -35,7 +35,7 @@
     },
     "Impact": {
       "Easy": 20375,
-      "Hard": 18999,
+      "Hard": 18734,
       "Medium": 20380
     },
     "Karman_Station": {
@@ -45,7 +45,7 @@
     },
     "Lavawell": {
       "Easy": 29193,
-      "Hard": 25235,
+      "Hard": 24488,
       "Medium": 23500
     },
     "Oasis": {
@@ -55,7 +55,7 @@
     },
     "Olympus": {
       "Easy": 20982,
-      "Hard": 33126,
+      "Hard": 31.201,
       "Medium": 21628
     },
     "Pantheon": {
