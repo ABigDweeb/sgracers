@@ -5,7 +5,7 @@
   "bestTimes": {
     "Abyss": {
       "Easy": 20848,
-      "Hard": 17850,
+      "Hard": 18916,
       "Medium": 22282
     },
     "Atlantis": {
@@ -16,7 +16,7 @@
     "Crag": {
       "Easy": 28614,
       "Hard": 24287,
-      "Medium": 18019
+      "Medium": 18455
     },
     "Foregone_Destruction": {
       "Easy": 25065,
@@ -35,17 +35,17 @@
     },
     "Impact": {
       "Easy": 20375,
-      "Hard": 18734,
+      "Hard": 18999,
       "Medium": 20380
     },
     "Karman_Station": {
       "Easy": 28339,
       "Hard": 24333,
-      "Medium": 20904
+      "Medium": 21050
     },
     "Lavawell": {
       "Easy": 29193,
-      "Hard": 24488,
+      "Hard": 25235,
       "Medium": 23500
     },
     "Oasis": {
@@ -55,7 +55,7 @@
     },
     "Olympus": {
       "Easy": 20982,
-      "Hard": 31201,
+      "Hard": 33126,
       "Medium": 21628
     },
     "Pantheon": {
@@ -69,9 +69,9 @@
       "Medium": 19007
     },
     "Stadium": {
-      "Easy": 19963,
+      "Easy": 20106,
       "Hard": 28189,
-      "Medium": 19561
+      "Medium": 19900
     }
   }
 }
