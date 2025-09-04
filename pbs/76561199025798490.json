@@ -17,6 +17,9 @@
       "Hard": 29443,
       "Medium": 20584
     },
+    "Foregone_Destruction": {
+      "Easy": 27325
+    },
     "Helix": {
       "Hard": 118224,
       "Medium": 24789
@@ -25,6 +28,7 @@
       "Medium": 21823
     },
     "Impact": {
+      "Easy": 24475,
       "Hard": 22893
     },
     "Karman_Station": {
