@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Individual Lookup</title>
+    <title>Player Stats</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <style>
         body {
@@ -26,13 +26,6 @@
             flex-direction: column;
             align-items: center;
             max-width: 1400px;
-        }
-
-        #playerLookup {
-            margin: 20px 0;
-            display: flex;
-            gap: 10px;
-            align-items: center;
         }
 
         #playerInput {
@@ -288,6 +281,29 @@
         .menu-item:hover {
             background-color: #333;
         }
+
+        #compareButton {
+            padding: 10px 20px;
+            background: #444;
+            color: #eee;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+
+        #compareButton:hover {
+            background: #555;
+        }
+        
+        #playerLookup {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 20px 0;
+            gap: 10px;
+        }
     </style>
 </head>
 
@@ -300,11 +316,12 @@
         </div>
         <div class="menu-dropdown" id="menuDropdown">
             <a href="/" class="menu-item">Leaderboard View</a>
-            <a href="/stats" class="menu-item">Individual Lookup</a>
+            <a href="/stats" class="menu-item">Player Stats</a>
             <a href="/wrs" class="menu-item">World Records</a>
             <a href="/data/evaluation" class="menu-item">Top Racer Evaluation</a>
-            <a href="/data" class="menu-item">Data Spreadsheet</a>
             <a href="/racepicker" class="menu-item">Random Race Picker</a>
+            <a href="/data" class="menu-item">Spreadsheet Data</a>
+            <a href="/how-to" class="menu-item">How To Connect</a>
         </div>
     </div>
 
@@ -314,10 +331,11 @@
 
 
     <div class="container">
-        <h1>Player Lookup</h1>
+        <h1>Player Stats</h1>
         <div id="playerLookup">
             <input type="text" id="playerInput" placeholder="Enter username or platformId">
             <button id="lookupButton">Search</button>
+            <button id="compareButton">Compare against...</button>
         </div>
         <div id="resultsDisplay" style="display: none;"></div>
         <table class="stats-table" id="statsTable" style="display: none;">
@@ -369,7 +387,7 @@
 
     <div class="dev-box">
         <a href="https://discord.gg/YgGdSM3yC4" target="_blank">
-            <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-logo" alt="Discord"></a> v0.5.0<br>
+            <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-logo" alt="Discord"></a> v0.7.0<br>
         <a href="https://x.com/ABigDweeb" target="_blank">made by Dweeb</a>
     </div>
 
@@ -395,11 +413,21 @@
             positionsBody = document.getElementById('positionsBody'),
             positionsFooter = document.getElementById('positionsFooter'),
             timesBody = document.getElementById('timesBody'),
-            timesFooter = document.getElementById('timesFooter');
+            timesFooter = document.getElementById('timesFooter'),
+            compareButton = document.getElementById('compareButton');
+        let currentPlayer = null;
 
         lookupButton.addEventListener('click', lookupPlayer);
+
         playerInput.addEventListener('keypress', e => {
             if (e.key === "Enter") lookupPlayer();
+        });
+
+        compareButton.addEventListener('click', function() {
+            if (currentPlayer) {
+                localStorage.setItem('comparePlayer1', currentPlayer);
+            }
+            window.location.href = '/stats/compare';
         });
 
         function formatMapName(map) {
@@ -548,6 +576,8 @@
                     resultsDisplay.className = "not-found";
                     return;
                 }
+
+                currentPlayer = input;
 
                 if (stats.missingRaces > 0) {
                     document.getElementById('dnfNotification').style.display = "block";

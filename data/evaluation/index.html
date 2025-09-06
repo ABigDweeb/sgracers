@@ -113,6 +113,15 @@
             border-bottom: 1px solid #444;
         }
 
+        .player-name a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .player-name a:hover {
+            text-decoration: underline;
+        }
+
         .player-cell {
             background: #222;
             text-align: center;
@@ -309,11 +318,12 @@
         </div>
         <div class="menu-dropdown" id="menuDropdown">
             <a href="/" class="menu-item">Leaderboard View</a>
-            <a href="/stats" class="menu-item">Individual Lookup</a>
+            <a href="/stats" class="menu-item">Player Stats</a>
             <a href="/wrs" class="menu-item">World Records</a>
             <a href="/data/evaluation" class="menu-item">Top Racer Evaluation</a>
-            <a href="/data" class="menu-item">Data Spreadsheet</a>
             <a href="/racepicker" class="menu-item">Random Race Picker</a>
+            <a href="/data" class="menu-item">Spreadsheet Data</a>
+            <a href="/how-to" class="menu-item">How To Connect</a>
         </div>
     </div>
 
@@ -333,7 +343,7 @@
 
     <div class="dev-box">
         <a href="https://discord.gg/YgGdSM3yC4" target="_blank">
-            <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-logo" alt="Discord"></a> v0.5.0<br>
+            <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-logo" alt="Discord"></a> v0.7.0<br>
         <a href="https://x.com/ABigDweeb" target="_blank">made by Dweeb</a>
     </div>
 
@@ -699,7 +709,7 @@
 
             players.forEach(player => {
                 const s = player.stats;
-                html += `<div class="player-name">${player.name}</div>`;
+                html += `<div class="player-name"><a href="/stats?player=${encodeURIComponent(player.name)}">${player.name}</a></div>`;
 
                 html += `<div class="player-cell ${hl('totalTime', player.name)}">${formatTime(s.totalTime)}</div>`;
                 html += `<div class="player-cell ${hl('avgTime', player.name)}">${formatTime(s.avgTime)}</div>`;

@@ -392,11 +392,12 @@
         </div>
         <div class="menu-dropdown" id="menuDropdown">
             <a href="/" class="menu-item">Leaderboard View</a>
-            <a href="/stats" class="menu-item">Individual Lookup</a>
+            <a href="/stats" class="menu-item">Player Stats</a>
             <a href="/wrs" class="menu-item">World Records</a>
             <a href="/data/evaluation" class="menu-item">Top Racer Evaluation</a>
-            <a href="/data" class="menu-item">Data Spreadsheet</a>
             <a href="/racepicker" class="menu-item">Random Race Picker</a>
+            <a href="/data" class="menu-item">Spreadsheet Data</a>
+            <a href="/how-to" class="menu-item">How To Connect</a>
         </div>
     </div>
 
@@ -468,7 +469,7 @@
 
             <div class="dev-box">
                 <a href="https://discord.gg/YgGdSM3yC4" target="_blank">
-                    <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-logo" alt="Discord"></a> v0.5.0<br>
+                    <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-logo" alt="Discord"></a> v0.7.0<br>
                 <a href="https://x.com/ABigDweeb" target="_blank">made by Dweeb</a>
             </div>
         </div>
@@ -616,7 +617,7 @@
                 card.className = 'map-card';
 
                 const img = document.createElement('img');
-                img.src = `/icons/maps/${map}Screenshot.png`;
+                img.src = `/images/maps/${map}Screenshot.png`;
                 img.alt = map;
                 img.onerror = function() {
                     this.style.display = 'none';

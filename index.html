@@ -77,6 +77,14 @@
             white-space: pre;
         }
 
+        .player-name {
+            cursor: pointer;
+        }
+
+        .player-name:hover {
+            color: #0df;
+        }
+
         .first-place {
             color: gold;
             text-shadow: 0 0 5px rgba(255, 215, 0, 0.7);
@@ -211,11 +219,12 @@
         </div>
         <div class="menu-dropdown" id="menuDropdown">
             <a href="/" class="menu-item">Leaderboard View</a>
-            <a href="/stats" class="menu-item">Individual Lookup</a>
+            <a href="/stats" class="menu-item">Player Stats</a>
             <a href="/wrs" class="menu-item">World Records</a>
             <a href="/data/evaluation" class="menu-item">Top Racer Evaluation</a>
-            <a href="/data" class="menu-item">Data Spreadsheet</a>
             <a href="/racepicker" class="menu-item">Random Race Picker</a>
+            <a href="/data" class="menu-item">Spreadsheet Data</a>
+            <a href="/how-to" class="menu-item">How To Connect</a>
         </div>
     </div>
 
@@ -233,7 +242,7 @@
 
     <div class="dev-box">
         <a href="https://discord.gg/YgGdSM3yC4" target="_blank">
-            <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-logo" alt="Discord"></a> v0.5.0<br>
+            <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-logo" alt="Discord"></a> v0.7.0<br>
         <a href="https://x.com/ABigDweeb" target="_blank">made by Dweeb</a>
     </div>
 
@@ -283,12 +292,14 @@
             const trimmedName = trimUsername(displayName);
             const nameText = trimmedName.padEnd(20, ' ');
             const formattedTime = formatTime(time);
-
+        
+            const clickableName = `<span class="player-name" data-player="${encodeURIComponent(displayName)}">${nameText}</span>`;
+            
             if (position <= 3) {
                 const imageName = `${position}${position === 1 ? 'st' : position === 2 ? 'nd' : 'rd'}place.png`;
                 return `
-          <img src="/icons/${imageName}" class="position-image" alt="${position}${position === 1 ? 'st' : position === 2 ? 'nd' : 'rd'} place">
-          <span class="leaderboard-entry-text"> - ${nameText} ${formattedTime}</span>
+          <img src="/images/${imageName}" class="position-image" alt="${position}${position === 1 ? 'st' : position === 2 ? 'nd' : 'rd'} place">
+          <span class="leaderboard-entry-text"> - ${clickableName} ${formattedTime}</span>
         `;
             } else {
                 const suffix = position === 1 ? 'st' : position === 2 ? 'nd' : position === 3 ? 'rd' : 'th';
@@ -300,7 +311,7 @@
                 } else {
                     positionText = `${position}${suffix}`;
                 }
-                return `<span class="leaderboard-entry-text">${positionText} - ${nameText} ${formattedTime}</span>`;
+                return `<span class="leaderboard-entry-text">${positionText} - ${clickableName} ${formattedTime}</span>`;
             }
         }
 
@@ -331,11 +342,23 @@
                 leaderboardDisplay.innerHTML = html;
                 leaderboardDisplay.className = "";
                 entryCountDisplay.textContent = `${entries.length} entries`;
+
+                addPlayerNameClickHandlers();
             } catch (error) {
                 leaderboardDisplay.innerHTML = `Error: ${error.message}`;
                 leaderboardDisplay.className = "error";
                 entryCountDisplay.textContent = '';
             }
+        }
+
+        function addPlayerNameClickHandlers() {
+            const playerNames = leaderboardDisplay.querySelectorAll('.player-name');
+            playerNames.forEach(nameElement => {
+                nameElement.addEventListener('click', function(e) {
+                    const playerName = this.getAttribute('data-player');
+                    window.location.href = `/stats?player=${playerName}`;
+                });
+            });
         }
 
         async function loadLeaderboard() {

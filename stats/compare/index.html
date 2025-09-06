@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Player Comparison</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: #eee;
+            margin: 0;
+            padding: 10px 0 15px;
+        }
+        
+        h1 {
+            margin-bottom: 10px;
+            font-size: 2.8em;
+            text-align: center;
+        }
+        
+        .container {
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1625px;
+        }
+        
+        .player-inputs {
+            margin: 20px 0;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .player-input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .player-input {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .player-input input {
+            padding: 10px 15px;
+            font-size: 1.2em;
+            background: #222;
+            color: #eee;
+            border: 1px solid #444;
+            border-radius: 5px;
+            min-width: 300px;
+        }
+        
+        .compare-button-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .compare-button {
+            padding: 10px 20px;
+            background: #444;
+            color: #eee;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        
+        .compare-button:hover {
+            background: #555;
+        }
+        
+        .player-stats {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 10px;
+            gap: 20px;
+        }
+        
+        .player-stat-section {
+            width: 33%;
+        }
+        
+        .comparison-stat-section {
+            width: 33%;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #444;
+        }
+        
+        .comparison-stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #444;
+        }
+        
+        .stats-table th,
+        .stats-table td,
+        .comparison-stats-table th,
+        .comparison-stats-table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #555;
+        }
+        
+        .stats-table th,
+        .comparison-stats-table th {
+            background: #333;
+            font-weight: bold;
+        }
+        
+        .stats-table td,
+        .comparison-stats-table td {
+            background: #252525;
+        }
+        
+        .tables-container {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+        }
+        
+        .table-wrapper {
+            width: 33%;
+            overflow-x: auto;
+        }
+        
+        .comparison-wrapper {
+            width: 33%;
+            overflow-x: auto;
+        }
+        
+        .results-table,
+        .comparison-table {
+            font-family: monospace;
+            font-size: 1em;
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #444;
+        }
+        
+        .results-table th,
+        .comparison-table th {
+            background: #333;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 4;
+            border-right: 1px solid #444;
+            border-top: 1px solid #444;
+        }
+        
+        .results-table td,
+        .comparison-table td {
+            padding: 10px;
+            border: 1px solid #555;
+            text-align: center;
+        }
+        
+        .map-cell {
+            background: #252525;
+            text-align: left !important;
+            font-weight: bold;
+            position: sticky;
+            left: 0;
+            z-index: 3;
+        }
+        
+        .position-cell,
+        .time-cell {
+            text-align: center;
+        }
+        
+        .totals-footer {
+            font-weight: bold;
+            background: #2a2a2a;
+        }
+        
+        .totals-footer td.map-cell {
+            text-align: left;
+            padding-left: 10px;
+        }
+        
+        .totals-footer td {
+            text-align: center;
+        }
+        
+        .totals-row {
+            font-weight: bold;
+            background: #2a2a2a;
+            text-align: center;
+        }
+        
+        .position-cell.not-found,
+        .time-cell.not-found {
+            color: #f55;
+            background: #3a2a2a;
+        }
+        
+        .first-place {
+            color: gold;
+            background: #614a00;
+        }
+        
+        .second-place {
+            color: #c7c7c7;
+            background: #8a8a8a;
+        }
+        
+        .third-place {
+            color: #cd7f32;
+            background: #453113;
+        }
+        
+        .top5 {
+            color: #cefde7;
+            background: #51b78a;
+        }
+        
+        .top10 {
+            color: #a0d6f7;
+            background: #5186a5;
+        }
+        
+        .better {
+            color: #0f0 !important;
+            background: #2a5a2a !important;
+        }
+        
+        .worse {
+            color: #f55 !important;
+            background: #5a2a2a !important;
+        }
+        
+        .equal {
+            color: #ddd !important;
+        }
+        
+        .not-applicable {
+            color: #888 !important;
+            font-style: italic;
+        }
+        
+        .loading {
+            color: #0bf;
+            font-style: italic;
+        }
+        
+        .error {
+            color: #f55;
+        }
+        
+        .not-found {
+            color: #888;
+            font-style: italic;
+        }
+        
+        .view-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #222;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            z-index: 100;
+        }
+        
+        .view-toggle span {
+            color: #ddd;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 24px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #5186a5;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked+.slider {
+            background-color: #51b78a;
+        }
+        
+        input:checked+.slider:before {
+            transform: translateX(36px);
+        }
+        
+        .dev-box {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            color: #aaa;
+            font-size: 0.85em;
+            text-align: right;
+            line-height: 1.4;
+            background: rgba(30, 30, 30, 0.8);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #444;
+        }
+        
+        .dev-box a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        .dev-box a:hover {
+            text-decoration: underline;
+        }
+        
+        .discord-logo {
+            height: 16px;
+            width: 21px;
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+        
+        /* Burger Menu */
+        .burger-menu {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+        
+        .burger-icon {
+            width: 40px;
+            height: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .burger-line {
+            height: 4px;
+            width: 100%;
+            background-color: #eee;
+            border-radius: 2px;
+        }
+        
+        .menu-dropdown {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            background: #222;
+            border: 1px solid #444;
+            border-radius: 5px;
+            min-width: 200px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .menu-dropdown.show {
+            display: flex;
+        }
+        
+        .menu-item {
+            padding: 12px 20px;
+            color: #eee;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: background-color 0.2s;
+        }
+        
+        .menu-item:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="burger-menu">
+        <div class="burger-icon" id="burgerIcon">
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+        </div>
+        <div class="menu-dropdown" id="menuDropdown">
+            <a href="/" class="menu-item">Leaderboard View</a>
+            <a href="/stats" class="menu-item">Player Stats</a>
+            <a href="/wrs" class="menu-item">World Records</a>
+            <a href="/data/evaluation" class="menu-item">Top Racer Evaluation</a>
+            <a href="/racepicker" class="menu-item">Random Race Picker</a>
+            <a href="/data" class="menu-item">Spreadsheet Data</a>
+            <a href="/how-to" class="menu-item">How To Connect</a>
+        </div>
+    </div>
+
+    <div class="view-toggle">
+        <span>Positions</span>
+        <label class="switch">
+            <input type="checkbox" id="viewToggle">
+            <span class="slider"></span>
+        </label>
+        <span>Times</span>
+    </div>
+
+    <div class="container">
+        <h1>Player Comparison</h1>
+        <div class="player-inputs">
+            <div class="player-input-group">
+                <div class="player-input">
+                    <input type="text" id="player1Input" placeholder="Enter username or platformId">
+                </div>
+            </div>
+            
+            <div class="compare-button-container">
+                <button id="compareButton" class="compare-button">Compare</button>
+            </div>
+            
+            <div class="player-input-group">
+                <div class="player-input">
+                    <input type="text" id="player2Input" placeholder="Enter username or platformId">
+                </div>
+            </div>
+        </div>
+
+        <div class="player-stats" id="playerStats" style="display: none;">
+            <div class="player-stat-section" id="player1Stats">
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>Total Position</th>
+                            <th>Avg Position</th>
+                            <th>Total Time</th>
+                            <th>Avg Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="player1StatsBody"></tbody>
+                </table>
+            </div>
+            
+            <div class="comparison-stat-section">
+                <table class="comparison-stats-table">
+                    <thead>
+                        <tr>
+                            <th>Total Position</th>
+                            <th>Avg Position</th>
+                            <th>Total Time</th>
+                            <th>Avg Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="comparisonStatsBody"></tbody>
+                </table>
+            </div>
+            
+            <div class="player-stat-section" id="player2Stats">
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>Total Position</th>
+                            <th>Avg Position</th>
+                            <th>Total Time</th>
+                            <th>Avg Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="player2StatsBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="tables-container" id="tablesContainer" style="display: none;">
+            <div class="table-wrapper">
+                <table class="results-table" id="player1Table">
+                    <thead id="player1TableHead"></thead>
+                    <tbody id="player1TableBody"></tbody>
+                    <tfoot id="player1TableFooter"></tfoot>
+                </table>
+            </div>
+            
+            <div class="comparison-wrapper">
+                <table class="comparison-table" id="comparisonTable">
+                    <thead id="comparisonTableHead"></thead>
+                    <tbody id="comparisonTableBody"></tbody>
+                    <tfoot id="comparisonTableFooter"></tfoot>
+                </table>
+            </div>
+            
+            <div class="table-wrapper">
+                <table class="results-table" id="player2Table">
+                    <thead id="player2TableHead"></thead>
+                    <tbody id="player2TableBody"></tbody>
+                    <tfoot id="player2TableFooter"></tfoot>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="dev-box">
+        <a href="https://discord.gg/YgGdSM3yC4" target="_blank">
+            <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-logo" alt="Discord"></a> v0.7.0<br>
+        <a href="https://x.com/ABigDweeb" target="_blank">made by Dweeb</a>
+    </div>
+
+    <script>
+        burgerIcon.addEventListener('click', function() {
+            menuDropdown.classList.toggle('show');
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.burger-menu')) {
+                menuDropdown.classList.remove('show');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const maps = ["Abyss", "Atlantis", "Crag", "Foregone_Destruction", "Helix", "Highwind", "Impact", "Karman_Station", "Lavawell", "Oasis", "Olympus", "Pantheon", "Silo", "Stadium"];
+            const difficulties = ["Easy", "Medium", "Hard"];
+
+            const playerDataCache = new Map();
+            let lastPlayer1Name = '';
+            let lastPlayer2Name = '';
+            
+            const player1Input = document.getElementById('player1Input');
+            const player2Input = document.getElementById('player2Input');
+            const compareButton = document.getElementById('compareButton');
+            const viewToggle = document.getElementById('viewToggle');
+            const playerStats = document.getElementById('playerStats');
+            const tablesContainer = document.getElementById('tablesContainer');
+            const player1Name = document.getElementById('player1Name');
+            const player2Name = document.getElementById('player2Name');
+            const player1StatsBody = document.getElementById('player1StatsBody');
+            const player2StatsBody = document.getElementById('player2StatsBody');
+            const player1TableHead = document.getElementById('player1TableHead');
+            const player2TableHead = document.getElementById('player2TableHead');
+            const player1TableBody = document.getElementById('player1TableBody');
+            const player2TableBody = document.getElementById('player2TableBody');
+            const player1TableFooter = document.getElementById('player1TableFooter');
+            const player2TableFooter = document.getElementById('player2TableFooter');
+            const comparisonTable = document.getElementById('comparisonTable');
+            const comparisonTableHead = document.getElementById('comparisonTableHead');
+            const comparisonTableBody = document.getElementById('comparisonTableBody');
+            const comparisonTableFooter = document.getElementById('comparisonTableFooter');
+            
+            let showTimes = false;
+            let player1Data = null;
+            let player2Data = null;
+            
+            const savedPlayer1 = localStorage.getItem('comparePlayer1');
+            if (savedPlayer1) {
+                player1Input.value = savedPlayer1;
+                localStorage.removeItem('comparePlayer1');
+            }
+            
+            compareButton.addEventListener('click', comparePlayers);
+            if (viewToggle) {
+                viewToggle.addEventListener('change', toggleView);
+            }
+            
+            player1Input.addEventListener('keypress', e => {
+                if (e.key === "Enter" && player1Input.value.trim() && player2Input.value.trim()) {
+                    comparePlayers();
+                }
+            });
+            
+            player2Input.addEventListener('keypress', e => {
+                if (e.key === "Enter" && player1Input.value.trim() && player2Input.value.trim()) {
+                    comparePlayers();
+                }
+            });
+            
+            function formatMapName(map) {
+                let formatted = map.replace(/_/g, ' ');
+                return formatted === "Silo" ? "Club Silo" : formatted;
+            }
+            
+            function formatTime(ms) {
+                if (ms === null) return 'DNF';
+                const m = Math.floor(ms / 60000),
+                    s = Math.floor((ms % 60000) / 1000),
+                    msr = Math.floor(ms % 1000);
+                return m > 0 ? `${m}:${s.toString().padStart(2,'0')}.${msr.toString().padStart(3,'0')}` : `${s}.${msr.toString().padStart(3,'0')}`;
+            }
+            
+            function getPositionClass(pos) {
+                if (pos === null) return '';
+                if (pos === 1) return 'first-place';
+                if (pos === 2) return 'second-place';
+                if (pos === 3) return 'third-place';
+                if (pos <= 5) return 'top5';
+                if (pos <= 10) return 'top10';
+                return '';
+            }
+            
+            async function fetchPlayerData(playerName) {
+                if (playerDataCache.has(playerName)) {
+                    console.log('Using cached data for:', playerName);
+                    return playerDataCache.get(playerName);
+                }
+                
+                const leaderboards = maps.flatMap(m =>
+                    difficulties.map(d => ({
+                        map: m,
+                        difficulty: d,
+                        length: "all"
+                    }))
+                );
+                
+                const isPlatformId = /^[A-Fa-f0-9]{16,}$/.test(playerName);
+                
+                const body = {
+                    leaderboards,
+                    [isPlatformId ? "platformId" : "displayName"]: playerName
+                };
+                
+                const res = await fetch("/api/leaderboard-data", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(body)
+                });
+                
+                if (!res.ok) throw new Error(`API ${res.status}`);
+                const data = await res.json();
+                
+                playerDataCache.set(playerName, data);
+                console.log('Cached data for:', playerName);
+                
+                return data;
+            }
+            
+            function processPlayerData(data, playerName) {
+                let stats = {
+                    totalPosition: 0,
+                    totalTime: 0,
+                    completedRaces: 0
+                };
+                
+                let diffStats = {
+                    Easy: { totalPosition: 0, totalTime: 0, count: 0, timeCount: 0 },
+                    Medium: { totalPosition: 0, totalTime: 0, count: 0, timeCount: 0 },
+                    Hard: { totalPosition: 0, totalTime: 0, count: 0, timeCount: 0 }
+                };
+                
+                let playerData = {};
+                
+                maps.forEach(map => {
+                    playerData[map] = {};
+                    difficulties.forEach(d => {
+                        const entry = data[map]?.[d];
+                        if (entry && entry.position != null) {
+                            playerData[map][d] = {
+                                ...entry,
+                                isFound: true
+                            };
+                            stats.completedRaces++;
+                            stats.totalPosition += entry.position;
+                            
+                            diffStats[d].totalPosition += entry.position;
+                            diffStats[d].count++;
+                            
+                            if (entry.time && entry.time > 0) {
+                                stats.totalTime += entry.time;
+                                diffStats[d].totalTime += entry.time;
+                                diffStats[d].timeCount++;
+                            }
+                        } else {
+                            playerData[map][d] = {
+                                position: null,
+                                time: null,
+                                totalPlayers: 0,
+                                isFound: false
+                            };
+                        }
+                    });
+                });
+                
+                const avgPos = stats.completedRaces ? stats.totalPosition / stats.completedRaces : 0;
+                const avgTime = stats.completedRaces ? stats.totalTime / stats.completedRaces : 0;
+                
+                diffStats.Easy.avgPosition = diffStats.Easy.count ? (diffStats.Easy.totalPosition / diffStats.Easy.count) : 0;
+                diffStats.Medium.avgPosition = diffStats.Medium.count ? (diffStats.Medium.totalPosition / diffStats.Medium.count) : 0;
+                diffStats.Hard.avgPosition = diffStats.Hard.count ? (diffStats.Hard.totalPosition / diffStats.Hard.count) : 0;
+                
+                diffStats.Easy.avgTime = diffStats.Easy.timeCount ? (diffStats.Easy.totalTime / diffStats.Easy.timeCount) : 0;
+                diffStats.Medium.avgTime = diffStats.Medium.timeCount ? (diffStats.Medium.totalTime / diffStats.Medium.timeCount) : 0;
+                diffStats.Hard.avgTime = diffStats.Hard.timeCount ? (diffStats.Hard.totalTime / diffStats.Hard.timeCount) : 0;
+                
+                return {
+                    name: playerName,
+                    data: playerData,
+                    stats: {
+                        ...stats,
+                        avgPos,
+                        avgTime,
+                        diffStats
+                    }
+                };
+            }
+            
+            async function comparePlayers() {
+                const player1Name = player1Input.value.trim();
+                const player2Name = player2Input.value.trim();
+                
+                if (!player1Name || !player2Name) {
+                    alert("Please enter both player names");
+                    return;
+                }
+                
+                try {
+                    let data1, data2;
+                    
+                    if (player1Name !== lastPlayer1Name) {
+                        data1 = await fetchPlayerData(player1Name);
+                        lastPlayer1Name = player1Name;
+                    } else {
+                        data1 = playerDataCache.get(player1Name);
+                    }
+                    
+                    if (player2Name !== lastPlayer2Name) {
+                        data2 = await fetchPlayerData(player2Name);
+                        lastPlayer2Name = player2Name;
+                    } else {
+                        data2 = playerDataCache.get(player2Name);
+                    }
+                    
+                    player1Data = processPlayerData(data1, player1Name);
+                    player2Data = processPlayerData(data2, player2Name);
+                    
+                    displayStats();
+                    displayTables();
+                    displayComparison();
+                    
+                    playerStats.style.display = "flex";
+                    tablesContainer.style.display = "flex";
+                    
+                } catch (e) {
+                    console.error('comparePlayers error', e);
+                    alert(`Error: ${e.message}`);
+                }
+            }
+
+            function displayComparison() {
+                const headerHtml = `<tr><th>Map</th>${difficulties.map(d => `<th>${d}</th>`).join('')}</tr>`;
+                
+                if (comparisonTableHead) comparisonTableHead.innerHTML = headerHtml;
+                
+                let comparisonHtml = maps.map(map => {
+                    const rowCells = difficulties.map(diff => {
+                        const p1Data = player1Data.data[map][diff];
+                        const p2Data = player2Data.data[map][diff];
+                        
+                        if (p1Data.isFound && p2Data.isFound) {
+                            let difference, comparisonClass;
+                            
+                            if (showTimes) {
+                                if (p1Data.time && p2Data.time && p1Data.time > 0 && p2Data.time > 0) {
+                                    if (p1Data.time < p2Data.time) {
+                                        difference = `-${formatTime(p2Data.time - p1Data.time)}`;
+                                        comparisonClass = 'better';
+                                    } else if (p1Data.time > p2Data.time) {
+                                        difference = `+${formatTime(p1Data.time - p2Data.time)}`;
+                                        comparisonClass = 'worse';
+                                    } else {
+                                        difference = "0.000";
+                                        comparisonClass = 'equal';
+                                    }
+                                } else {
+                                    difference = "N/A";
+                                    comparisonClass = 'not-applicable';
+                                }
+                            } else {
+                                const posDiff = p1Data.position - p2Data.position;
+                                if (posDiff < 0) {
+                                    difference = posDiff.toString();
+                                    comparisonClass = 'better';
+                                } else if (posDiff > 0) {
+                                    difference = `+${posDiff}`;
+                                    comparisonClass = 'worse';
+                                } else {
+                                    difference = "0";
+                                    comparisonClass = 'equal';
+                                }
+                            }
+                            
+                            return `<td class="${comparisonClass}">${difference}</td>`;
+                        } else {
+                            return `<td class="not-applicable">N/A</td>`;
+                        }
+                    }).join('');
+                    
+                    return `<tr><td class="map-cell">${formatMapName(map)}</td>${rowCells}</tr>`;
+                }).join('');
+                
+                if (comparisonTableBody) comparisonTableBody.innerHTML = comparisonHtml;
+                
+                let comparisonFooterHtml = '';
+                
+                if (showTimes) {
+                    comparisonFooterHtml = `
+                        <tr class="totals-footer">
+                            <td class="map-cell">Total Time Difference</td>
+                            <td class="${getComparisonClass(player1Data.stats.diffStats.Easy.totalTime, player2Data.stats.diffStats.Easy.totalTime, true)}">${formatTimeDifference(player1Data.stats.diffStats.Easy.totalTime, player2Data.stats.diffStats.Easy.totalTime, true)}</td>
+                            <td class="${getComparisonClass(player1Data.stats.diffStats.Medium.totalTime, player2Data.stats.diffStats.Medium.totalTime, true)}">${formatTimeDifference(player1Data.stats.diffStats.Medium.totalTime, player2Data.stats.diffStats.Medium.totalTime, true)}</td>
+                            <td class="${getComparisonClass(player1Data.stats.diffStats.Hard.totalTime, player2Data.stats.diffStats.Hard.totalTime, true)}">${formatTimeDifference(player1Data.stats.diffStats.Hard.totalTime, player2Data.stats.diffStats.Hard.totalTime, true)}</td>
+                        </tr>
+                        <tr class="totals-footer">
+                            <td class="map-cell">Average Time Difference</td>
+                            <td class="${getComparisonClass(player1Data.stats.diffStats.Easy.avgTime, player2Data.stats.diffStats.Easy.avgTime, true)}">${formatTimeDifference(player1Data.stats.diffStats.Easy.avgTime, player2Data.stats.diffStats.Easy.avgTime, true)}</td>
+                            <td class="${getComparisonClass(player1Data.stats.diffStats.Medium.avgTime, player2Data.stats.diffStats.Medium.avgTime, true)}">${formatTimeDifference(player1Data.stats.diffStats.Medium.avgTime, player2Data.stats.diffStats.Medium.avgTime, true)}</td>
+                            <td class="${getComparisonClass(player1Data.stats.diffStats.Hard.avgTime, player2Data.stats.diffStats.Hard.avgTime, true)}">${formatTimeDifference(player1Data.stats.diffStats.Hard.avgTime, player2Data.stats.diffStats.Hard.avgTime, true)}</td>
+                        </tr>
+                    `;
+                } else {
+                    comparisonFooterHtml = `
+                        <tr class="totals-footer">
+                            <td class="map-cell">Total Position Difference</td>
+                            <td class="${getComparisonClass(player1Data.stats.diffStats.Easy.totalPosition, player2Data.stats.diffStats.Easy.totalPosition, false)}">${formatPositionDifference(player1Data.stats.diffStats.Easy.totalPosition, player2Data.stats.diffStats.Easy.totalPosition)}</td>
+                            <td class="${getComparisonClass(player1Data.stats.diffStats.Medium.totalPosition, player2Data.stats.diffStats.Medium.totalPosition, false)}">${formatPositionDifference(player1Data.stats.diffStats.Medium.totalPosition, player2Data.stats.diffStats.Medium.totalPosition)}</td>
+                            <td class="${getComparisonClass(player1Data.stats.diffStats.Hard.totalPosition, player2Data.stats.diffStats.Hard.totalPosition, false)}">${formatPositionDifference(player1Data.stats.diffStats.Hard.totalPosition, player2Data.stats.diffStats.Hard.totalPosition)}</td>
+                        </tr>
+                        <tr class="totals-footer">
+                            <td class="map-cell">Average Position Difference</td>
+                            <td class="${getComparisonClass(player1Data.stats.diffStats.Easy.avgPosition, player2Data.stats.diffStats.Easy.avgPosition, false)}">${formatPositionDifference(player1Data.stats.diffStats.Easy.avgPosition, player2Data.stats.diffStats.Easy.avgPosition, true)}</td>
+                            <td class="${getComparisonClass(player1Data.stats.diffStats.Medium.avgPosition, player2Data.stats.diffStats.Medium.avgPosition, false)}">${formatPositionDifference(player1Data.stats.diffStats.Medium.avgPosition, player2Data.stats.diffStats.Medium.avgPosition, true)}</td>
+                            <td class="${getComparisonClass(player1Data.stats.diffStats.Hard.avgPosition, player2Data.stats.diffStats.Hard.avgPosition, false)}">${formatPositionDifference(player1Data.stats.diffStats.Hard.avgPosition, player2Data.stats.diffStats.Hard.avgPosition, true)}</td>
+                        </tr>
+                    `;
+                }
+                
+                if (comparisonTableFooter) comparisonTableFooter.innerHTML = comparisonFooterHtml;
+            }
+            
+            function getComparisonClass(value1, value2, isTime) {
+                if (value1 === value2) return 'equal';
+                if (isTime) {
+                    return value1 < value2 ? 'better' : 'worse';
+                } else {
+                    return value1 < value2 ? 'better' : 'worse';
+                }
+            }
+            
+            function formatPositionDifference(value1, value2, isAverage = false) {
+                const diff = value1 - value2;
+                if (Math.abs(diff) < 0.001) return "0";
+                
+                if (isAverage) {
+                    const roundedDiff = Math.round(diff * 100) / 100;
+                    if (roundedDiff > 0) return `+${roundedDiff.toFixed(2)}`;
+                    return roundedDiff.toFixed(2);
+                } else {
+                    // For totals, use integers
+                    const intDiff = Math.round(diff);
+                    if (intDiff > 0) return `+${intDiff}`;
+                    return intDiff.toString();
+                }
+            }
+            
+            function formatTimeDifference(time1, time2, isTime) {
+                if (time1 === time2) return "0.000";
+                const diff = time1 - time2;
+                if (isTime) {
+                    const absDiff = Math.abs(diff);
+                    return diff > 0 ? `+${formatTime(absDiff)}` : `-${formatTime(absDiff)}`;
+                }
+                return diff > 0 ? `+${diff}` : diff.toString();
+            }
+            
+            function displayStats() {
+            if (player1StatsBody) {
+                player1StatsBody.innerHTML = `
+                    <tr>
+                        <td>${player1Data.stats.totalPosition}</td>
+                        <td>${player1Data.stats.avgPos.toFixed(2)}</td>
+                        <td>${formatTime(player1Data.stats.totalTime)}</td>
+                        <td>${formatTime(player1Data.stats.avgTime)}</td>
+                    </tr>
+                `;
+            }
+            
+            if (player2StatsBody) {
+                player2StatsBody.innerHTML = `
+                    <tr>
+                        <td>${player2Data.stats.totalPosition}</td>
+                        <td>${player2Data.stats.avgPos.toFixed(2)}</td>
+                        <td>${formatTime(player2Data.stats.totalTime)}</td>
+                        <td>${formatTime(player2Data.stats.avgTime)}</td>
+                    </tr>
+                `;
+            }
+            
+            const comparisonStatsBody = document.getElementById('comparisonStatsBody');
+            if (comparisonStatsBody) {
+                comparisonStatsBody.innerHTML = `
+                    <tr>
+                        <td class="${getComparisonClass(player1Data.stats.totalPosition, player2Data.stats.totalPosition, false)}">
+                            ${formatPositionDifference(player1Data.stats.totalPosition, player2Data.stats.totalPosition)}
+                        </td>
+                        <td class="${getComparisonClass(player1Data.stats.avgPos, player2Data.stats.avgPos, false)}">
+                            ${formatPositionDifference(player1Data.stats.avgPos, player2Data.stats.avgPos, true)}
+                        </td>
+                        <td class="${getComparisonClass(player1Data.stats.totalTime, player2Data.stats.totalTime, true)}">
+                            ${formatTimeDifference(player1Data.stats.totalTime, player2Data.stats.totalTime, true)}
+                        </td>
+                        <td class="${getComparisonClass(player1Data.stats.avgTime, player2Data.stats.avgTime, true)}">
+                            ${formatTimeDifference(player1Data.stats.avgTime, player2Data.stats.avgTime, true)}
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+            
+            function displayTables() {
+                const headerHtml = `<tr><th>Map</th>${difficulties.map(d => `<th>${d}</th>`).join('')}</tr>`;
+                
+                if (player1TableHead) player1TableHead.innerHTML = headerHtml;
+                if (player2TableHead) player2TableHead.innerHTML = headerHtml;
+                
+                if (showTimes) {
+                    if (player1TableBody) {
+                        player1TableBody.innerHTML = maps.map(m => 
+                            `<tr><td class="map-cell">${formatMapName(m)}</td>${
+                                difficulties.map(d => 
+                                    player1Data.data[m][d].isFound && player1Data.data[m][d].time ? 
+                                    `<td class="time-cell ${getPositionClass(player1Data.data[m][d].position)}">${formatTime(player1Data.data[m][d].time)}</td>` :
+                                    `<td class="time-cell not-found">DNF</td>`
+                                ).join('')
+                            }</tr>`
+                        ).join('');
+                    }
+                    
+                    if (player2TableBody) {
+                        player2TableBody.innerHTML = maps.map(m => 
+                            `<tr><td class="map-cell">${formatMapName(m)}</td>${
+                                difficulties.map(d => 
+                                    player2Data.data[m][d].isFound && player2Data.data[m][d].time ? 
+                                    `<td class="time-cell ${getPositionClass(player2Data.data[m][d].position)}">${formatTime(player2Data.data[m][d].time)}</td>` :
+                                    `<td class="time-cell not-found">DNF</td>`
+                                ).join('')
+                            }</tr>`
+                        ).join('');
+                    }
+                    
+                    if (player1TableFooter) {
+                        player1TableFooter.innerHTML = `
+                            <tr class="totals-footer">
+                                <td class="map-cell">Total Time</td>
+                                <td>${player1Data.stats.diffStats.Easy.timeCount > 0 ? formatTime(player1Data.stats.diffStats.Easy.totalTime) : 'N/A'}</td>
+                                <td>${player1Data.stats.diffStats.Medium.timeCount > 0 ? formatTime(player1Data.stats.diffStats.Medium.totalTime) : 'N/A'}</td>
+                                <td>${player1Data.stats.diffStats.Hard.timeCount > 0 ? formatTime(player1Data.stats.diffStats.Hard.totalTime) : 'N/A'}</td>
+                            </tr>
+                            <tr class="totals-footer">
+                                <td class="map-cell">Average Time</td>
+                                <td>${player1Data.stats.diffStats.Easy.timeCount > 0 ? formatTime(player1Data.stats.diffStats.Easy.avgTime) : 'N/A'}</td>
+                                <td>${player1Data.stats.diffStats.Medium.timeCount > 0 ? formatTime(player1Data.stats.diffStats.Medium.avgTime) : 'N/A'}</td>
+                                <td>${player1Data.stats.diffStats.Hard.timeCount > 0 ? formatTime(player1Data.stats.diffStats.Hard.avgTime) : 'N/A'}</td>
+                            </tr>
+                        `;
+                    }
+                    
+                    if (player2TableFooter) {
+                        player2TableFooter.innerHTML = `
+                            <tr class="totals-footer">
+                                <td class="map-cell">Total Time</td>
+                                <td>${player2Data.stats.diffStats.Easy.timeCount > 0 ? formatTime(player2Data.stats.diffStats.Easy.totalTime) : 'N/A'}</td>
+                                <td>${player2Data.stats.diffStats.Medium.timeCount > 0 ? formatTime(player2Data.stats.diffStats.Medium.totalTime) : 'N/A'}</td>
+                                <td>${player2Data.stats.diffStats.Hard.timeCount > 0 ? formatTime(player2Data.stats.diffStats.Hard.totalTime) : 'N/A'}</td>
+                            </tr>
+                            <tr class="totals-footer">
+                                <td class="map-cell">Average Time</td>
+                                <td>${player2Data.stats.diffStats.Easy.timeCount > 0 ? formatTime(player2Data.stats.diffStats.Easy.avgTime) : 'N/A'}</td>
+                                <td>${player2Data.stats.diffStats.Medium.timeCount > 0 ? formatTime(player2Data.stats.diffStats.Medium.avgTime) : 'N/A'}</td>
+                                <td>${player2Data.stats.diffStats.Hard.timeCount > 0 ? formatTime(player2Data.stats.diffStats.Hard.avgTime) : 'N/A'}</td>
+                            </tr>
+                        `;
+                    }
+                } else {
+                    if (player1TableBody) {
+                        player1TableBody.innerHTML = maps.map(m => 
+                            `<tr><td class="map-cell">${formatMapName(m)}</td>${
+                                difficulties.map(d => 
+                                    player1Data.data[m][d].isFound ? 
+                                    `<td class="position-cell ${getPositionClass(player1Data.data[m][d].position)}">${player1Data.data[m][d].position} / ${player1Data.data[m][d].totalPlayers}</td>` :
+                                    `<td class="position-cell not-found">DNF</td>`
+                                ).join('')
+                            }</tr>`
+                        ).join('');
+                    }
+                    
+                    if (player2TableBody) {
+                        player2TableBody.innerHTML = maps.map(m => 
+                            `<tr><td class="map-cell">${formatMapName(m)}</td>${
+                                difficulties.map(d => 
+                                    player2Data.data[m][d].isFound ? 
+                                    `<td class="position-cell ${getPositionClass(player2Data.data[m][d].position)}">${player2Data.data[m][d].position} / ${player2Data.data[m][d].totalPlayers}</td>` :
+                                    `<td class="position-cell not-found">DNF</td>`
+                                ).join('')
+                            }</tr>`
+                        ).join('');
+                    }
+                    
+                    if (player1TableFooter) {
+                        player1TableFooter.innerHTML = `
+                            <tr class="totals-footer">
+                                <td class="map-cell">Total Position</td>
+                                <td>${player1Data.stats.diffStats.Easy.count > 0 ? player1Data.stats.diffStats.Easy.totalPosition : 'N/A'}</td>
+                                <td>${player1Data.stats.diffStats.Medium.count > 0 ? player1Data.stats.diffStats.Medium.totalPosition : 'N/A'}</td>
+                                <td>${player1Data.stats.diffStats.Hard.count > 0 ? player1Data.stats.diffStats.Hard.totalPosition : 'N/A'}</td>
+                            </tr>
+                            <tr class="totals-footer">
+                                <td class="map-cell">Average Position</td>
+                                <td>${player1Data.stats.diffStats.Easy.count > 0 ? player1Data.stats.diffStats.Easy.avgPosition.toFixed(2) : 'N/A'}</td>
+                                <td>${player1Data.stats.diffStats.Medium.count > 0 ? player1Data.stats.diffStats.Medium.avgPosition.toFixed(2) : 'N/A'}</td>
+                                <td>${player1Data.stats.diffStats.Hard.count > 0 ? player1Data.stats.diffStats.Hard.avgPosition.toFixed(2) : 'N/A'}</td>
+                            </tr>
+                        `;
+                    }
+                    
+                    if (player2TableFooter) {
+                        player2TableFooter.innerHTML = `
+                            <tr class="totals-footer">
+                                <td class="map-cell">Total Position</td>
+                                <td>${player2Data.stats.diffStats.Easy.count > 0 ? player2Data.stats.diffStats.Easy.totalPosition : 'N/A'}</td>
+                                <td>${player2Data.stats.diffStats.Medium.count > 0 ? player2Data.stats.diffStats.Medium.totalPosition : 'N/A'}</td>
+                                <td>${player2Data.stats.diffStats.Hard.count > 0 ? player2Data.stats.diffStats.Hard.totalPosition : 'N/A'}</td>
+                            </tr>
+                            <tr class="totals-footer">
+                                <td class="map-cell">Average Position</td>
+                                <td>${player2Data.stats.diffStats.Easy.count > 0 ? player2Data.stats.diffStats.Easy.avgPosition.toFixed(2) : 'N/A'}</td>
+                                <td>${player2Data.stats.diffStats.Medium.count > 0 ? player2Data.stats.diffStats.Medium.avgPosition.toFixed(2) : 'N/A'}</td>
+                                <td>${player2Data.stats.diffStats.Hard.count > 0 ? player2Data.stats.diffStats.Hard.avgPosition.toFixed(2) : 'N/A'}</td>
+                            </tr>
+                        `;
+                    }
+                }
+            }
+            
+            function toggleView() {
+                showTimes = this.checked;
+                if (player1Data && player2Data) {
+                    displayTables();
+                    displayComparison();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
