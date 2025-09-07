@@ -680,7 +680,8 @@
                 let stats = {
                     totalPosition: 0,
                     totalTime: 0,
-                    completedRaces: 0
+                    completedRaces: 0,
+                    totalRaces: maps.length * difficulties.length
                 };
                 
                 let diffStats = {
@@ -713,25 +714,34 @@
                             }
                         } else {
                             playerData[map][d] = {
-                                position: null,
-                                time: null,
+                                position: 200,
+                                time: 120000,
                                 totalPlayers: 0,
-                                isFound: false
+                                isFound: false,
+                                isDNF: true
                             };
+                            
+                            stats.totalPosition += 200;
+                            stats.totalTime += 120000;
+                            
+                            diffStats[d].totalPosition += 200;
+                            diffStats[d].count++;
+                            diffStats[d].totalTime += 120000;
+                            diffStats[d].timeCount++;
                         }
                     });
                 });
                 
-                const avgPos = stats.completedRaces ? stats.totalPosition / stats.completedRaces : 0;
-                const avgTime = stats.completedRaces ? stats.totalTime / stats.completedRaces : 0;
+                const avgPos = stats.totalPosition / stats.totalRaces;
+                const avgTime = stats.totalTime / stats.totalRaces;
                 
-                diffStats.Easy.avgPosition = diffStats.Easy.count ? (diffStats.Easy.totalPosition / diffStats.Easy.count) : 0;
-                diffStats.Medium.avgPosition = diffStats.Medium.count ? (diffStats.Medium.totalPosition / diffStats.Medium.count) : 0;
-                diffStats.Hard.avgPosition = diffStats.Hard.count ? (diffStats.Hard.totalPosition / diffStats.Hard.count) : 0;
+                diffStats.Easy.avgPosition = diffStats.Easy.totalPosition / (maps.length);
+                diffStats.Medium.avgPosition = diffStats.Medium.totalPosition / (maps.length);
+                diffStats.Hard.avgPosition = diffStats.Hard.totalPosition / (maps.length);
                 
-                diffStats.Easy.avgTime = diffStats.Easy.timeCount ? (diffStats.Easy.totalTime / diffStats.Easy.timeCount) : 0;
-                diffStats.Medium.avgTime = diffStats.Medium.timeCount ? (diffStats.Medium.totalTime / diffStats.Medium.timeCount) : 0;
-                diffStats.Hard.avgTime = diffStats.Hard.timeCount ? (diffStats.Hard.totalTime / diffStats.Hard.timeCount) : 0;
+                diffStats.Easy.avgTime = diffStats.Easy.totalTime / (maps.length);
+                diffStats.Medium.avgTime = diffStats.Medium.totalTime / (maps.length);
+                diffStats.Hard.avgTime = diffStats.Hard.totalTime / (maps.length);
                 
                 return {
                     name: playerName,
@@ -937,25 +947,25 @@
             }
             
             const comparisonStatsBody = document.getElementById('comparisonStatsBody');
-            if (comparisonStatsBody) {
-                comparisonStatsBody.innerHTML = `
-                    <tr>
-                        <td class="${getComparisonClass(player1Data.stats.totalPosition, player2Data.stats.totalPosition, false)}">
-                            ${formatPositionDifference(player1Data.stats.totalPosition, player2Data.stats.totalPosition)}
-                        </td>
-                        <td class="${getComparisonClass(player1Data.stats.avgPos, player2Data.stats.avgPos, false)}">
-                            ${formatPositionDifference(player1Data.stats.avgPos, player2Data.stats.avgPos, true)}
-                        </td>
-                        <td class="${getComparisonClass(player1Data.stats.totalTime, player2Data.stats.totalTime, true)}">
-                            ${formatTimeDifference(player1Data.stats.totalTime, player2Data.stats.totalTime, true)}
-                        </td>
-                        <td class="${getComparisonClass(player1Data.stats.avgTime, player2Data.stats.avgTime, true)}">
-                            ${formatTimeDifference(player1Data.stats.avgTime, player2Data.stats.avgTime, true)}
-                        </td>
-                    </tr>
-                `;
+                if (comparisonStatsBody) {
+                    comparisonStatsBody.innerHTML = `
+                        <tr>
+                            <td class="${getComparisonClass(player1Data.stats.totalPosition, player2Data.stats.totalPosition, false)}">
+                                ${formatPositionDifference(player1Data.stats.totalPosition, player2Data.stats.totalPosition)}
+                            </td>
+                            <td class="${getComparisonClass(player1Data.stats.avgPos, player2Data.stats.avgPos, false)}">
+                                ${formatPositionDifference(player1Data.stats.avgPos, player2Data.stats.avgPos, true)}
+                            </td>
+                            <td class="${getComparisonClass(player1Data.stats.totalTime, player2Data.stats.totalTime, true)}">
+                                ${formatTimeDifference(player1Data.stats.totalTime, player2Data.stats.totalTime, true)}
+                            </td>
+                            <td class="${getComparisonClass(player1Data.stats.avgTime, player2Data.stats.avgTime, true)}">
+                                ${formatTimeDifference(player1Data.stats.avgTime, player2Data.stats.avgTime, true)}
+                            </td>
+                        </tr>
+                    `;
+                }
             }
-        }
             
             function displayTables() {
                 const headerHtml = `<tr><th>Map</th>${difficulties.map(d => `<th>${d}</th>`).join('')}</tr>`;
@@ -967,11 +977,14 @@
                     if (player1TableBody) {
                         player1TableBody.innerHTML = maps.map(m => 
                             `<tr><td class="map-cell">${formatMapName(m)}</td>${
-                                difficulties.map(d => 
-                                    player1Data.data[m][d].isFound && player1Data.data[m][d].time ? 
-                                    `<td class="time-cell ${getPositionClass(player1Data.data[m][d].position)}">${formatTime(player1Data.data[m][d].time)}</td>` :
-                                    `<td class="time-cell not-found">DNF</td>`
-                                ).join('')
+                                difficulties.map(d => {
+                                    const cellData = player1Data.data[m][d];
+                                    if (cellData.isFound) {
+                                        return `<td class="time-cell ${getPositionClass(cellData.position)}">${formatTime(cellData.time)}</td>`;
+                                    } else {
+                                        return `<td class="time-cell not-found">DNF</td>`;
+                                    }
+                                }).join('')
                             }</tr>`
                         ).join('');
                     }
@@ -979,57 +992,29 @@
                     if (player2TableBody) {
                         player2TableBody.innerHTML = maps.map(m => 
                             `<tr><td class="map-cell">${formatMapName(m)}</td>${
-                                difficulties.map(d => 
-                                    player2Data.data[m][d].isFound && player2Data.data[m][d].time ? 
-                                    `<td class="time-cell ${getPositionClass(player2Data.data[m][d].position)}">${formatTime(player2Data.data[m][d].time)}</td>` :
-                                    `<td class="time-cell not-found">DNF</td>`
-                                ).join('')
+                                difficulties.map(d => {
+                                    const cellData = player2Data.data[m][d];
+                                    if (cellData.isFound) {
+                                        return `<td class="time-cell ${getPositionClass(cellData.position)}">${formatTime(cellData.time)}</td>`;
+                                    } else {
+                                        return `<td class="time-cell not-found">DNF</td>`;
+                                    }
+                                }).join('')
                             }</tr>`
                         ).join('');
-                    }
-                    
-                    if (player1TableFooter) {
-                        player1TableFooter.innerHTML = `
-                            <tr class="totals-footer">
-                                <td class="map-cell">Total Time</td>
-                                <td>${player1Data.stats.diffStats.Easy.timeCount > 0 ? formatTime(player1Data.stats.diffStats.Easy.totalTime) : 'N/A'}</td>
-                                <td>${player1Data.stats.diffStats.Medium.timeCount > 0 ? formatTime(player1Data.stats.diffStats.Medium.totalTime) : 'N/A'}</td>
-                                <td>${player1Data.stats.diffStats.Hard.timeCount > 0 ? formatTime(player1Data.stats.diffStats.Hard.totalTime) : 'N/A'}</td>
-                            </tr>
-                            <tr class="totals-footer">
-                                <td class="map-cell">Average Time</td>
-                                <td>${player1Data.stats.diffStats.Easy.timeCount > 0 ? formatTime(player1Data.stats.diffStats.Easy.avgTime) : 'N/A'}</td>
-                                <td>${player1Data.stats.diffStats.Medium.timeCount > 0 ? formatTime(player1Data.stats.diffStats.Medium.avgTime) : 'N/A'}</td>
-                                <td>${player1Data.stats.diffStats.Hard.timeCount > 0 ? formatTime(player1Data.stats.diffStats.Hard.avgTime) : 'N/A'}</td>
-                            </tr>
-                        `;
-                    }
-                    
-                    if (player2TableFooter) {
-                        player2TableFooter.innerHTML = `
-                            <tr class="totals-footer">
-                                <td class="map-cell">Total Time</td>
-                                <td>${player2Data.stats.diffStats.Easy.timeCount > 0 ? formatTime(player2Data.stats.diffStats.Easy.totalTime) : 'N/A'}</td>
-                                <td>${player2Data.stats.diffStats.Medium.timeCount > 0 ? formatTime(player2Data.stats.diffStats.Medium.totalTime) : 'N/A'}</td>
-                                <td>${player2Data.stats.diffStats.Hard.timeCount > 0 ? formatTime(player2Data.stats.diffStats.Hard.totalTime) : 'N/A'}</td>
-                            </tr>
-                            <tr class="totals-footer">
-                                <td class="map-cell">Average Time</td>
-                                <td>${player2Data.stats.diffStats.Easy.timeCount > 0 ? formatTime(player2Data.stats.diffStats.Easy.avgTime) : 'N/A'}</td>
-                                <td>${player2Data.stats.diffStats.Medium.timeCount > 0 ? formatTime(player2Data.stats.diffStats.Medium.avgTime) : 'N/A'}</td>
-                                <td>${player2Data.stats.diffStats.Hard.timeCount > 0 ? formatTime(player2Data.stats.diffStats.Hard.avgTime) : 'N/A'}</td>
-                            </tr>
-                        `;
                     }
                 } else {
                     if (player1TableBody) {
                         player1TableBody.innerHTML = maps.map(m => 
                             `<tr><td class="map-cell">${formatMapName(m)}</td>${
-                                difficulties.map(d => 
-                                    player1Data.data[m][d].isFound ? 
-                                    `<td class="position-cell ${getPositionClass(player1Data.data[m][d].position)}">${player1Data.data[m][d].position} / ${player1Data.data[m][d].totalPlayers}</td>` :
-                                    `<td class="position-cell not-found">DNF</td>`
-                                ).join('')
+                                difficulties.map(d => {
+                                    const cellData = player1Data.data[m][d];
+                                    if (cellData.isFound) {
+                                        return `<td class="position-cell ${getPositionClass(cellData.position)}">${cellData.position} / ${cellData.totalPlayers}</td>`;
+                                    } else {
+                                        return `<td class="position-cell not-found">DNF</td>`;
+                                    }
+                                }).join('')
                             }</tr>`
                         ).join('');
                     }
@@ -1037,48 +1022,51 @@
                     if (player2TableBody) {
                         player2TableBody.innerHTML = maps.map(m => 
                             `<tr><td class="map-cell">${formatMapName(m)}</td>${
-                                difficulties.map(d => 
-                                    player2Data.data[m][d].isFound ? 
-                                    `<td class="position-cell ${getPositionClass(player2Data.data[m][d].position)}">${player2Data.data[m][d].position} / ${player2Data.data[m][d].totalPlayers}</td>` :
-                                    `<td class="position-cell not-found">DNF</td>`
-                                ).join('')
+                                difficulties.map(d => {
+                                    const cellData = player2Data.data[m][d];
+                                    if (cellData.isFound) {
+                                        return `<td class="position-cell ${getPositionClass(cellData.position)}">${cellData.position} / ${cellData.totalPlayers}</td>`;
+                                    } else {
+                                        return `<td class="position-cell not-found">DNF</td>`;
+                                    }
+                                }).join('')
                             }</tr>`
                         ).join('');
                     }
-                    
-                    if (player1TableFooter) {
-                        player1TableFooter.innerHTML = `
-                            <tr class="totals-footer">
-                                <td class="map-cell">Total Position</td>
-                                <td>${player1Data.stats.diffStats.Easy.count > 0 ? player1Data.stats.diffStats.Easy.totalPosition : 'N/A'}</td>
-                                <td>${player1Data.stats.diffStats.Medium.count > 0 ? player1Data.stats.diffStats.Medium.totalPosition : 'N/A'}</td>
-                                <td>${player1Data.stats.diffStats.Hard.count > 0 ? player1Data.stats.diffStats.Hard.totalPosition : 'N/A'}</td>
-                            </tr>
-                            <tr class="totals-footer">
-                                <td class="map-cell">Average Position</td>
-                                <td>${player1Data.stats.diffStats.Easy.count > 0 ? player1Data.stats.diffStats.Easy.avgPosition.toFixed(2) : 'N/A'}</td>
-                                <td>${player1Data.stats.diffStats.Medium.count > 0 ? player1Data.stats.diffStats.Medium.avgPosition.toFixed(2) : 'N/A'}</td>
-                                <td>${player1Data.stats.diffStats.Hard.count > 0 ? player1Data.stats.diffStats.Hard.avgPosition.toFixed(2) : 'N/A'}</td>
-                            </tr>
-                        `;
-                    }
-                    
-                    if (player2TableFooter) {
-                        player2TableFooter.innerHTML = `
-                            <tr class="totals-footer">
-                                <td class="map-cell">Total Position</td>
-                                <td>${player2Data.stats.diffStats.Easy.count > 0 ? player2Data.stats.diffStats.Easy.totalPosition : 'N/A'}</td>
-                                <td>${player2Data.stats.diffStats.Medium.count > 0 ? player2Data.stats.diffStats.Medium.totalPosition : 'N/A'}</td>
-                                <td>${player2Data.stats.diffStats.Hard.count > 0 ? player2Data.stats.diffStats.Hard.totalPosition : 'N/A'}</td>
-                            </tr>
-                            <tr class="totals-footer">
-                                <td class="map-cell">Average Position</td>
-                                <td>${player2Data.stats.diffStats.Easy.count > 0 ? player2Data.stats.diffStats.Easy.avgPosition.toFixed(2) : 'N/A'}</td>
-                                <td>${player2Data.stats.diffStats.Medium.count > 0 ? player2Data.stats.diffStats.Medium.avgPosition.toFixed(2) : 'N/A'}</td>
-                                <td>${player2Data.stats.diffStats.Hard.count > 0 ? player2Data.stats.diffStats.Hard.avgPosition.toFixed(2) : 'N/A'}</td>
-                            </tr>
-                        `;
-                    }
+                }
+                
+                if (player1TableFooter) {
+                    player1TableFooter.innerHTML = `
+                        <tr class="totals-footer">
+                            <td class="map-cell">Total ${showTimes ? 'Time' : 'Position'}</td>
+                            <td>${showTimes ? formatTime(player1Data.stats.diffStats.Easy.totalTime) : player1Data.stats.diffStats.Easy.totalPosition}</td>
+                            <td>${showTimes ? formatTime(player1Data.stats.diffStats.Medium.totalTime) : player1Data.stats.diffStats.Medium.totalPosition}</td>
+                            <td>${showTimes ? formatTime(player1Data.stats.diffStats.Hard.totalTime) : player1Data.stats.diffStats.Hard.totalPosition}</td>
+                        </tr>
+                        <tr class="totals-footer">
+                            <td class="map-cell">Average ${showTimes ? 'Time' : 'Position'}</td>
+                            <td>${showTimes ? formatTime(player1Data.stats.diffStats.Easy.avgTime) : player1Data.stats.diffStats.Easy.avgPosition.toFixed(2)}</td>
+                            <td>${showTimes ? formatTime(player1Data.stats.diffStats.Medium.avgTime) : player1Data.stats.diffStats.Medium.avgPosition.toFixed(2)}</td>
+                            <td>${showTimes ? formatTime(player1Data.stats.diffStats.Hard.avgTime) : player1Data.stats.diffStats.Hard.avgPosition.toFixed(2)}</td>
+                        </tr>
+                    `;
+                }
+                
+                if (player2TableFooter) {
+                    player2TableFooter.innerHTML = `
+                        <tr class="totals-footer">
+                            <td class="map-cell">Total ${showTimes ? 'Time' : 'Position'}</td>
+                            <td>${showTimes ? formatTime(player2Data.stats.diffStats.Easy.totalTime) : player2Data.stats.diffStats.Easy.totalPosition}</td>
+                            <td>${showTimes ? formatTime(player2Data.stats.diffStats.Medium.totalTime) : player2Data.stats.diffStats.Medium.totalPosition}</td>
+                            <td>${showTimes ? formatTime(player2Data.stats.diffStats.Hard.totalTime) : player2Data.stats.diffStats.Hard.totalPosition}</td>
+                        </tr>
+                        <tr class="totals-footer">
+                            <td class="map-cell">Average ${showTimes ? 'Time' : 'Position'}</td>
+                            <td>${showTimes ? formatTime(player2Data.stats.diffStats.Easy.avgTime) : player2Data.stats.diffStats.Easy.avgPosition.toFixed(2)}</td>
+                            <td>${showTimes ? formatTime(player2Data.stats.diffStats.Medium.avgTime) : player2Data.stats.diffStats.Medium.avgPosition.toFixed(2)}</td>
+                            <td>${showTimes ? formatTime(player2Data.stats.diffStats.Hard.avgTime) : player2Data.stats.diffStats.Hard.avgPosition.toFixed(2)}</td>
+                        </tr>
+                    `;
                 }
             }
             
@@ -1092,4 +1080,5 @@
         });
     </script>
 </body>
+
 </html>
