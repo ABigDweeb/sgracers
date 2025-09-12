@@ -417,6 +417,14 @@
             compareButton = document.getElementById('compareButton');
         let currentPlayer = null;
 
+        function penaltyPos(missing) {
+            return missing * 200;
+        }
+
+        function penaltyTime(missing) {
+            return missing * 120000;
+        }
+
         lookupButton.addEventListener('click', lookupPlayer);
 
         playerInput.addEventListener('keypress', e => {
@@ -583,25 +591,47 @@
                     document.getElementById('dnfNotification').style.display = "block";
                 }
 
-                const avgPos = stats.completedRaces ? stats.totalPosition / stats.completedRaces : 0,
-                    avgTime = stats.completedRaces ? stats.totalTime / stats.completedRaces : 0;
+                const totalRaces = maps.length * difficulties.length;
+                const totalPosWithPenalty = stats.totalPosition + penaltyPos(stats.missingRaces);
+                const totalTimeWithPenalty = stats.totalTime + penaltyTime(stats.missingRaces);
+                
+                const avgPos = totalPosWithPenalty / totalRaces;
+                const avgTime = totalTimeWithPenalty / totalRaces;
+
+                const mapsPerDifficulty = maps.length;
+                
+                const easyTotalPos = diffStats.positions.Easy.sum + penaltyPos(diffStats.positions.Easy.missing);
+                const easyTotalTime = diffStats.times.Easy.sum + penaltyTime(diffStats.times.Easy.missing);
+                const easyAvgPos = easyTotalPos / mapsPerDifficulty;
+                const easyAvgTime = easyTotalTime / mapsPerDifficulty;
+                
+                const mediumTotalPos = diffStats.positions.Medium.sum + penaltyPos(diffStats.positions.Medium.missing);
+                const mediumTotalTime = diffStats.times.Medium.sum + penaltyTime(diffStats.times.Medium.missing);
+                const mediumAvgPos = mediumTotalPos / mapsPerDifficulty;
+                const mediumAvgTime = mediumTotalTime / mapsPerDifficulty;
+                
+                const hardTotalPos = diffStats.positions.Hard.sum + penaltyPos(diffStats.positions.Hard.missing);
+                const hardTotalTime = diffStats.times.Hard.sum + penaltyTime(diffStats.times.Hard.missing);
+                const hardAvgPos = hardTotalPos / mapsPerDifficulty;
+                const hardAvgTime = hardTotalTime / mapsPerDifficulty;
+
                 statsBody.innerHTML = `
       <tr>
         <td style="${stats.t10 === 42 ? 'background-color: #2a5a2a; color: #0f0;' : ''}">${stats.t10}</td>
         <td style="${stats.t5 === 42 ? 'background-color: #2a5a2a; color: #0f0;' : ''}">${stats.t5}</td>
         <td style="${stats.t3 === 42 ? 'background-color: #2a5a2a; color: #0f0;' : ''}">${stats.t3}</td>
         <td style="${stats.wr === 42 ? 'background-color: #2a5a2a; color: #0f0;' : ''}">${stats.wr}</td>
-        <td>${stats.totalPosition}</td>
+        <td>${totalPosWithPenalty}</td>
         <td>${avgPos.toFixed(2)}</td>
-        <td>${formatTime(stats.totalTime)}</td>
+        <td>${formatTime(totalTimeWithPenalty)}</td>
         <td>${formatTime(avgTime)}</td>
       </tr>`;
 
                 positionsBody.innerHTML = maps.map(m => `<tr><td class="map-cell">${formatMapName(m)}</td>${difficulties.map(d=>playerData[m][d].isFound?`<td class="position-cell ${getPositionClass(playerData[m][d].position)}">${playerData[m][d].position} / ${playerData[m][d].totalPlayers}</td>`:`<td class="position-cell not-found">DNF</td>`).join('')}</tr>`).join('');
                 timesBody.innerHTML = maps.map(m => `<tr><td class="map-cell">${formatMapName(m)}</td>${difficulties.map(d=>playerData[m][d].isFound?`<td class="time-cell ${getPositionClass(playerData[m][d].position)}">${formatTime(playerData[m][d].time)}</td>`:`<td class="time-cell not-found">DNF</td>`).join('')}</tr>`).join('');
 
-                positionsFooter.innerHTML = `<tr class="totals-row"><td class="map-cell">Total Position</td><td>${diffStats.positions.Easy.sum}</td><td>${diffStats.positions.Medium.sum}</td><td>${diffStats.positions.Hard.sum}</td></tr><tr class="totals-row"><td class="map-cell">Average Position</td><td>${(diffStats.positions.Easy.sum/diffStats.positions.Easy.count||0).toFixed(2)}</td><td>${(diffStats.positions.Medium.sum/diffStats.positions.Medium.count||0).toFixed(2)}</td><td>${(diffStats.positions.Hard.sum/diffStats.positions.Hard.count||0).toFixed(2)}</td></tr>`;
-                timesFooter.innerHTML = `<tr class="totals-row"><td class="map-cell">Total Time</td><td>${formatTime(diffStats.times.Easy.sum)}</td><td>${formatTime(diffStats.times.Medium.sum)}</td><td>${formatTime(diffStats.times.Hard.sum)}</td></tr><tr class="totals-row"><td class="map-cell">Average Time</td><td>${formatTime(diffStats.times.Easy.sum/diffStats.times.Easy.count||0)}</td><td>${formatTime(diffStats.times.Medium.sum/diffStats.times.Medium.count||0)}</td><td>${formatTime(diffStats.times.Hard.sum/diffStats.times.Hard.count||0)}</td></tr>`;
+                positionsFooter.innerHTML = `<tr class="totals-row"><td class="map-cell">Total Position</td><td>${easyTotalPos}</td><td>${mediumTotalPos}</td><td>${hardTotalPos}</td></tr><tr class="totals-row"><td class="map-cell">Average Position</td><td>${easyAvgPos.toFixed(2)}</td><td>${mediumAvgPos.toFixed(2)}</td><td>${hardAvgPos.toFixed(2)}</td></tr>`;
+                timesFooter.innerHTML = `<tr class="totals-row"><td class="map-cell">Total Time</td><td>${formatTime(easyTotalTime)}</td><td>${formatTime(mediumTotalTime)}</td><td>${formatTime(hardTotalTime)}</td></tr><tr class="totals-row"><td class="map-cell">Average Time</td><td>${formatTime(easyAvgTime)}</td><td>${formatTime(mediumAvgTime)}</td><td>${formatTime(hardAvgTime)}</td></tr>`;
 
                 resultsDisplay.style.display = "none";
                 statsTable.style.display = "table";
