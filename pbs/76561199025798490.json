@@ -10,6 +10,7 @@
     },
     "Atlantis": {
       "Easy": 31137,
+      "Medium": 25974,
       "Hard": 29748
     },
     "Crag": {
@@ -18,24 +19,33 @@
       "Medium": 20584
     },
     "Foregone_Destruction": {
-      "Easy": 27325
+      "Easy": 27325,
+      "Medium": 26035,
+      "Hard": 38854
     },
     "Helix": {
+      "Easy": 22460,
       "Hard": 118224,
       "Medium": 24789
     },
     "Highwind": {
-      "Medium": 21823
+      "Easy": 26051,
+      "Medium": 21823,
+      "Hard": 39937
     },
     "Impact": {
       "Easy": 24475,
+      "Medium": 23605,
       "Hard": 22893
     },
     "Karman_Station": {
       "Easy": 33336,
-      "Medium": 22156
+      "Medium": 22156,
+      "Hard": 28654
     },
     "Lavawell": {
+      "Easy": 31507,
+      "Medium": 28081,
       "Hard": 28006
     },
     "Olympus": {
