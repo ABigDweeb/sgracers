@@ -20,7 +20,8 @@
     },
     "Foregone_Destruction": {
       "Easy": 24525,
-      "Medium": 17779
+      "Medium": 17779,
+      "Hard": 33962
     },
     "Helix": {
       "Easy": 19499,
@@ -29,7 +30,8 @@
     },
     "Highwind": {
       "Easy": 20623,
-      "Medium": 17552
+      "Medium": 17552,
+      "Hard": 67446
     },
     "Impact": {
       "Easy": 19691,
@@ -53,7 +55,7 @@
     },
     "Olympus": {
       "Easy": 20810,
-      "Hard": 222256,
+      "Hard": 81831,
       "Medium": 23781
     },
     "Pantheon": {
@@ -63,7 +65,8 @@
     },
     "Silo": {
       "Easy": 23742,
-      "Medium": 19092
+      "Medium": 19092,
+      "Hard": 75484
     },
     "Stadium": {
       "Easy": 19928,
