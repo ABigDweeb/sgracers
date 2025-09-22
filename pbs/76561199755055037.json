@@ -5,7 +5,7 @@
   "bestTimes": {
     "Abyss": {
       "Easy": 20931,
-      "Hard": 18851,
+      "Hard": 18348,
       "Medium": 22192
     },
     "Atlantis": {
@@ -71,7 +71,7 @@
     "Stadium": {
       "Easy": 19923,
       "Hard": 28374,
-      "Medium": 19599
+      "Medium": 19543
     }
   }
 }
