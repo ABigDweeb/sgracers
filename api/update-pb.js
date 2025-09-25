@@ -276,7 +276,7 @@ module.exports = async (req, res) => {
             });
         }
     }
-
+    
     const octokit = new Octokit({
         auth: process.env.GITHUB_TOKEN
     });
@@ -322,6 +322,9 @@ module.exports = async (req, res) => {
 
         if (platform.toLowerCase() === 'steam') {
             const steamUsername = await getSteamUsername(platformUserId);
+
+            console.log(`${steamUsername} - ${timeMs} ${map} ${difficulty} - ${platformUserId}`);
+            
             if (steamUsername && steamUsername !== pbData.displayName) {
                 const oldName = pbData.displayName;
                 pbData.displayName = steamUsername;
@@ -460,4 +463,5 @@ module.exports = async (req, res) => {
             details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }
+
 };
