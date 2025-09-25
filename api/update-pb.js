@@ -385,6 +385,9 @@ module.exports = async (req, res) => {
                 });
             }
 
+            console.log(`Updated display name from ${pbData.displayName} to ${steamUsername}`);
+            console.log(`Existing time ${currentPb} is faster than ${timeMs}`);
+
             return res.status(200).json({
                 success: false,
                 message: 'Existing time is faster',
@@ -398,6 +401,8 @@ module.exports = async (req, res) => {
         pbData.bestTimes[map][difficulty] = timeMs;
 
         pbData.bestTimes = sortBestTimes(pbData.bestTimes);
+
+        console.log(`${pbData.displayName} - ${(timeMs/1000).toFixed(3)}s ${map} ${difficulty}`);
 
         const {
             data: pbBlob
@@ -459,3 +464,4 @@ module.exports = async (req, res) => {
         });
     }
 };
+
