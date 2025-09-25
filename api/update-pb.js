@@ -385,9 +385,6 @@ module.exports = async (req, res) => {
                 });
             }
 
-            console.log(`Updated display name from ${pbData.displayName} to ${steamUsername}`);
-            console.log(`Existing time ${currentPb} is faster than ${timeMs}`);
-
             return res.status(200).json({
                 success: false,
                 message: 'Existing time is faster',
@@ -464,4 +461,3 @@ module.exports = async (req, res) => {
         });
     }
 };
-
