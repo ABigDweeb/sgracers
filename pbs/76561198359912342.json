@@ -1,77 +1,77 @@
 {
   "userId": "76561198359912342",
   "platform": "STEAM",
-  "displayName": "void",
+  "displayName": "Patrick Bateman",
   "bestTimes": {
     "Abyss": {
       "Easy": 20925,
-      "Hard": 18987,
-      "Medium": 23025
+      "Medium": 23025,
+      "Hard": 18987
     },
     "Atlantis": {
       "Easy": 27394,
-      "Hard": 22876,
-      "Medium": 20221
+      "Medium": 20221,
+      "Hard": 22876
     },
     "Crag": {
       "Easy": 28760,
-      "Hard": 24276,
-      "Medium": 18706
+      "Medium": 18706,
+      "Hard": 24276
     },
     "Foregone_Destruction": {
       "Easy": 25075,
-      "Hard": 26016,
-      "Medium": 17609
+      "Medium": 17609,
+      "Hard": 26016
     },
     "Helix": {
       "Easy": 19771,
-      "Hard": 35366,
-      "Medium": 22695
+      "Medium": 22695,
+      "Hard": 35366
     },
     "Highwind": {
       "Easy": 20962,
-      "Hard": 31000,
-      "Medium": 18486
+      "Medium": 18486,
+      "Hard": 31000
     },
     "Impact": {
       "Easy": 20343,
-      "Hard": 20379,
-      "Medium": 21152
+      "Medium": 21152,
+      "Hard": 20379
     },
     "Karman_Station": {
       "Easy": 27658,
-      "Hard": 24822,
-      "Medium": 21978
+      "Medium": 21978,
+      "Hard": 24822
     },
     "Lavawell": {
       "Easy": 30033,
-      "Hard": 27833,
-      "Medium": 24093
+      "Medium": 24093,
+      "Hard": 27833
     },
     "Oasis": {
       "Easy": 19955,
-      "Hard": 25135,
-      "Medium": 22898
+      "Medium": 22898,
+      "Hard": 25135
     },
     "Olympus": {
       "Easy": 20984,
-      "Hard": 34243,
-      "Medium": 21654
+      "Medium": 21654,
+      "Hard": 34243
     },
     "Pantheon": {
       "Easy": 25520,
-      "Hard": 28203,
-      "Medium": 21085
+      "Medium": 21085,
+      "Hard": 28203
     },
     "Silo": {
       "Easy": 22933,
-      "Hard": 27127,
-      "Medium": 20042
+      "Medium": 20042,
+      "Hard": 27127
     },
     "Stadium": {
       "Easy": 20637,
-      "Hard": 29028,
-      "Medium": 19812
+      "Medium": 19812,
+      "Hard": 29028
     }
   }
 }
